@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { tempData } from './settings/temp-data.js';
+import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
+import { withActiveProp } from './utilities/hoc/withActiveProp.js';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -16,15 +18,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          this.state.screens.map(screen => {
-            return (
+        <ListActiveComponent
+          data={this.state.screens}
+          Component={
+            (item)=> (
               <div className="screen">
-                <p>screen 1</p>
+                <p>{item.title}</p>
               </div>
             )
-          })
-        }
+          }
+        />
+        
 
         {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
