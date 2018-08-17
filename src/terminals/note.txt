@@ -1,0 +1,5 @@
+Terminals:
+Components which:
+- Combine reusable components to create a end user component (Composition)
+- These components aren't meant to be reused
+- Have descriptive names of what they represent

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { tempData } from './settings/temp-data.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
-import { withActiveProp } from './utilities/hoc/withActiveProp.js';
 // import logo from './logo.svg';
 import './App.css';
 
@@ -17,13 +16,35 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="Et1">
+        {/*------------------------*/}
+        {/*--- application root ---*/}
+        {/*------------------------*/}
         <ListActiveComponent
           data={this.state.screens}
           Component={
             (item)=> (
-              <div className="screen">
-                <p>{item.title}</p>
+              <div className={`screen ${item.name}`}>
+                {/*----------------------------*/}
+                {/*--- Each view (or screen ---*/}
+                {/*----------------------------*/}
+                <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{item.title}</p>
+                {
+                  item.dividers && 
+                  <ListActiveComponent
+                    data={item.dividers}
+                    Component={
+                      (divider)=> (
+                        <div className={`screen ${item.name} ${divider.name}`}>
+                          {/*--------------------*/}
+                          {/*--- Each divider ---*/}
+                          {/*--------------------*/}
+                          <p>{divider.name}</p>
+                        </div>
+                      )
+                    }
+                  />
+                }
               </div>
             )
           }

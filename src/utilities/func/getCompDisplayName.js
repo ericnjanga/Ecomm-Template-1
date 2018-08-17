@@ -4,5 +4,7 @@
  */
 
 export default function getCompDisplayName(WrappedComponent) {
+
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+
 }

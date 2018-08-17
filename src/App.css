@@ -1,3 +1,9 @@
+/**
+ * ACRONYMS
+ * -------------------------------
+ * App prefix: Et1 (Ecommerce Template 1)
+*/
+
 
 /**
  * Init
@@ -11,10 +17,11 @@
 
 
 /**
- * screen
+ * SCREEN
+ * (Any panel that either occupies the entire window or part of it
  * -------------------------------
 */
-.screen {
+.Et1 .screen {
   display: flex;
   position: relative;
   width: 100%;
@@ -22,11 +29,17 @@
   border: 10px solid turquoise;
 }
 
+@import 'css/auth.css';
+@import 'css/home.css';
+@import 'css/single.css';
+@import 'css/admin.css';
 
 
 
 
 
+
+/* 
 .App {
   text-align: center;
 }
@@ -54,4 +67,4 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+} */

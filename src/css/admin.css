@@ -1,0 +1,28 @@
+
+
+
+/**
+ * SIDEBAR
+ * -------------------------------
+*/
+.Et1 .screen.sidebar {
+  background: #336ca6;
+  flex-basis: 100px;
+  align-items: center;
+}
+.Et1 .screen.sidebar button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 15px 10px;
+  padding-left: 20px;
+  font-size: 16px;
+  background-color: #336ca6;
+  border: 0px;
+  color: #f7f7f7;
+  border-bottom: 1px solid #204871;
+}
+.Et1 .screen.sidebar.active {
+  align-items: normal;
+  flex-basis: 900px;
+}
