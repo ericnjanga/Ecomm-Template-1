@@ -7,6 +7,7 @@ import { withActiveProp } from './../hoc/withActiveProp.js';
  
 const ListActiveComponent = ({ data: listData, Component }) => {
 
+
   if (!listData) {
 
     return false;

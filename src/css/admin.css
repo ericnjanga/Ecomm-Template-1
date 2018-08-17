@@ -5,12 +5,13 @@
  * SIDEBAR
  * -------------------------------
 */
-.Et1 .screen.sidebar {
+.Et1 .screen.admin.sidebar {
   background: #336ca6;
   flex-basis: 100px;
   align-items: center;
+  flex-direction: column;
 }
-.Et1 .screen.sidebar button {
+.Et1 .screen.admin.sidebar button {
   display: block;
   width: 100%;
   text-align: left;
@@ -22,7 +23,11 @@
   color: #f7f7f7;
   border-bottom: 1px solid #204871;
 }
-.Et1 .screen.sidebar.active {
+.Et1 .screen.admin.sidebar.active {
   align-items: normal;
   flex-basis: 900px;
+}
+.Et1 .screen.admin.sidebar ul {
+  list-style: none;
+  padding: 0;
 }

@@ -1,5 +1,8 @@
 Terminals:
+----------
 Components which:
-- Combine reusable components to create a end user component (Composition)
+- Combine reusable components to create a end-user component (Composition)
 - These components aren't meant to be reused
-- Have descriptive names of what they represent
+- They have descriptive names of what they represent (and what they are used for)
+
+(Concept imaginated in Aug 17th, 2018)
