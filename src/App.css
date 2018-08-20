@@ -26,7 +26,6 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  border: 10px solid turquoise;
 }
 
 @import 'css/auth.css';
@@ -36,9 +35,22 @@
 
 
 
+.screen.auth {
+  background: lime;
+}
+.screen.home {
+  background: red;
+}
+.screen.single {
+  background: turquoise;
+}
+
 
 .test-with-class {
   border: 40px dashed lime;
+}
+ul {
+  margin: 0;
 }
 
 
