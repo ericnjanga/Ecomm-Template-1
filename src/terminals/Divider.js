@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ListActiveComponent from './../utilities/lists/ListActiveComponent.js';
-import { toggleText } from './../utilities/func/mix1.js';
 import AdminSidebar from './AdminSidebar.js';
+import AdminContent from './AdminContent.js';
+import Box from './../utilities/comps/Box.js';
 
 
 
@@ -14,7 +15,10 @@ import AdminSidebar from './AdminSidebar.js';
 const Divider = ({
   parentName,
   name,
-  sections
+  sections,
+  togglePages,
+  toggleSidebar,
+  className,
 }) => {
 
 
@@ -44,9 +48,15 @@ const Divider = ({
 
     case 'admin':
       if(name=='sidebar'){
-        finalComponent = <AdminSidebar data={sections} />;
+        finalComponent = (<AdminSidebar
+          data={sections}
+          toggleSidebar={toggleSidebar}
+          className="$$$$$"
+        />);
       } else if (name=='content') {
-        finalComponent = <AdminContent data={sections} />;
+        finalComponent = (<AdminContent
+          data={sections}
+          togglePages={togglePages}/>);
       }
       break;
     
@@ -57,7 +67,9 @@ const Divider = ({
   // console.log('>>>>finalComponent=', finalComponent);
 
 
-  return finalComponent;
+  return (<Box className={className}>
+    { finalComponent }
+  </Box>);
 };
 
 

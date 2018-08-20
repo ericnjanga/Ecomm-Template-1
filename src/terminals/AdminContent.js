@@ -1,4 +1,5 @@
 import React from 'react';
+import ListActiveComponent from './../utilities/lists/ListActiveComponent';
 
 const AdminContent = ({
   data,

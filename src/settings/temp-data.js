@@ -72,6 +72,8 @@ export const tempData = {
           id: 0,
           name: 'sidebar',
           active: true,
+          isDrawer: true,
+          isOpen: false,
         },
         {
           id: 1,
@@ -82,60 +84,69 @@ export const tempData = {
       sections: [
         {
           id: 0,
-          name: 'section1',
-          title: 'section1',
+          name: 'section *',
+          title: 'section*',
           active: true,
           items: [
             {
-              name: 'section11',
+              id: 0,
+              name: 'section*1',
               active: true,
             },
             {
-              name: 'section12',
+              id: 1,
+              name: 'section*2',
               active: true,
             },
             {
-              name: 'section13',
+              id: 3,
+              name: 'section*3',
               active: true,
             },
           ],
         },
         {
           id: 1,
-          name: 'section2',
-          title: 'section2',
+          name: 'section~',
+          title: 'section~',
           active: true,
           items: [
             {
-              name: 'section21',
+              id: 0,
+              name: 'section~1',
               active: true,
             },
             {
-              name: 'section22',
+              id: 1,
+              name: 'section~2',
               active: false,
             },
             {
-              name: 'section23',
+              id: 2,
+              name: 'section~3',
               active: false,
             },
           ],
         },
         {
           id: 2,
-          name: 'section3',
-          title: 'section3',
+          name: 'section%',
+          title: 'section%',
           active: true,
           items: [
             {
-              name: 'section31',
+              id: 0,
+              name: 'section%1',
               active: true,
             },
             {
-              name: 'section32',
+              id: 1,
+              name: 'section%2',
               active: false,
             },
             {
-              name: 'section33',
+              id: 2,
+              name: 'section%3',
               active: false,
             },
           ],

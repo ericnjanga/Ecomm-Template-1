@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { tempData } from './settings/temp-data.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
-// import logo from './logo.svg';
+import Box from './utilities/comps/Box.js';
+import { toggleText } from './utilities/func/mix1.js';
 import './App.css';
+
+
+
 
 class App extends Component {
 
@@ -12,7 +16,23 @@ class App extends Component {
     this.state = {
       screens: [...tempData.screens],
     };
+    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
+    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
   }
+
+
+  handleToggleSidebar(data, itemId) {
+    console.log('---*****');
+    const {screens} = this.state;
+    screens[3].dividers[0].isOpen = !screens[3].dividers[0].isOpen;
+    this.setState({ screens });
+  }
+
+
+  handleTogglePages(data, itemId) {
+    console.log('---', data, itemId);
+  }
+
 
 
   render() {
@@ -25,7 +45,7 @@ class App extends Component {
           data={this.state.screens}
           Component={
             (screen)=> (
-              <div className={`screen ${screen.name}`}>
+              <Box className={`screen ${screen.name}`}>
                 {/*----------------------------*/}
                 {/*--- Each view (or screen ---*/}
                 {/*----------------------------*/}
@@ -36,7 +56,7 @@ class App extends Component {
                     data={screen.dividers}
                     Component={
                       (divider)=> (
-                        <div className={`screen ${screen.name} ${divider.name}`}>
+                        <React.Fragment>
                           {/*--------------------*/}
                           {/*--- Each divider ---*/}
                           {/*--------------------*/}
@@ -44,15 +64,18 @@ class App extends Component {
                             parentName={screen.name}
                             sections={screen.sections ? [...screen.sections] : []}
                             {...divider}
+                            toggleSidebar={this.handleToggleSidebar}
+                            togglePages={this.handleTogglePages}
+                            className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                             // {...screen}
                           />
                           {/* <p>{item.name} - {divider.name}</p> */}
-                        </div>
+                        </React.Fragment>
                       )
                     }
                   />
                 }
-              </div>
+              </Box>
             )
           }
         />

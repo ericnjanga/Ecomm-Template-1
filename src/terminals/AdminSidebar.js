@@ -23,16 +23,18 @@ const TextAndButton = ({ className, btnState, text, handleClick }) => {
 
 const AdminSidebar = ({
   data,
+  togglePages,
+  toggleSidebar,
 }) => {
 
   console.log('data=', data);
   return (
-    <div>
+    <React.Fragment>
       <TextAndButton
         className="app__brand"
         text="Brand Name"
         btnState={true}
-        handleClick={()=>{}}
+        handleClick={toggleSidebar}
       />
       <ListActiveComponent
         data={data}
@@ -40,7 +42,7 @@ const AdminSidebar = ({
           (sidebarItem, itemIndex)=>(
             <div className={`menu ${toggleText(sidebarItem.active, 'active', '')}`}>
               <button
-                onClick={()=>{/*this.togglePages(this.state.pages, sidebarItem.name)*/}}
+                onClick={()=>{togglePages(data, sidebarItem.name)}}
               >
                 { sidebarItem.title }
               </button>
@@ -50,7 +52,7 @@ const AdminSidebar = ({
                     <ListActiveComponent
                       data={sidebarItem.items}
                       Component={
-                        (subitem)=>(
+                        (subitem, subitemIndex)=>(
                           <li className={`${toggleText(subitem.active, 'active', '')}`}>
                             <button
                               onClick={()=>{/*this.togglePages(sidebarItem.items, subitem.name, itemIndex)*/}}
@@ -65,7 +67,7 @@ const AdminSidebar = ({
           )
         }
       />
-    </div>
+    </React.Fragment>
   );
 };
 
