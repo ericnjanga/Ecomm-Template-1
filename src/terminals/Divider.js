@@ -18,6 +18,7 @@ const Divider = ({
   sections,
   togglePages,
   toggleSidebar,
+  adminDataSubmit,
   className,
 }) => {
 
@@ -57,6 +58,7 @@ const Divider = ({
       } else if (name=='content') {
         finalComponent = (<AdminContent
           data={sections}
+          handleSubmit={adminDataSubmit}
           togglePages={togglePages}/>);
       }
       break;

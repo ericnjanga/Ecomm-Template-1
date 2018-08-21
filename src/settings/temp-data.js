@@ -84,24 +84,63 @@ export const tempData = {
       sections: [
         {
           id: 0,
-          name: 'section ALPHA',
-          title: 'APLHA',
+          name: 'site-info',
+          title: `App's basic information`,
           active: true,
           items: [
             {
               id: 0,
-              name: 'ALPHA 1',
+              title: 'Administrator',
+              name: 'administrator',
               active: true,
+              isSingleRecord: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  'Username': { type: 'string', default: 'Admin Username' },
+                  'Password': { type: 'string', default: 'Admin Password' },
+                },
+              },
             },
             {
               id: 1,
-              name: 'ALPHA 2',
+              title: 'Brand',
+              name: 'brand',
               active: false,
+              schema: {
+                type: 'object',
+                properties: {
+                  'Brand Name': { type: 'string', default: 'Company Brand Name' },
+                  'À Propos': { type: 'string', default: 'Text About the company' },
+                  'Email': { type: 'string', default: 'Company email' },
+                  'Phone1': { type: 'string', default: 'Company Phone (Primary)' },
+                  'Phone2': { type: 'string', default: 'Company Phone (Secondary)' },
+                },
+              },
+              uiSchema: {
+                'À Propos': {
+                  "ui:widget": "textarea"
+                },
+              },
             },
             {
               id: 3,
-              name: 'ALPHA 3',
+              title: 'System',
+              name: 'system',
               active: false,
+              schema: {
+                type: "array",
+                minItems: 2,
+                title: "A multiple-choice list",
+                items: {
+                  type: 'string',
+                  enum: ['Login Panel', 'User Can Contact Admin', '*******', '######'],
+                },
+                uniqueItems: true,
+              },
+              uiSchema: {
+                "ui:widget": "checkboxes"
+              },
             },
           ],
         },
@@ -115,6 +154,13 @@ export const tempData = {
               id: 0,
               name: 'BETA 1',
               active: true,
+              schema: {
+                type: 'object',
+                properties: {
+                  firstName: { type: 'string', default: 'BETA 1 - item1' },
+                  lastName: { type: 'string', default: 'BETA 1 - item2' },
+                },
+              },
             },
             {
               id: 1,

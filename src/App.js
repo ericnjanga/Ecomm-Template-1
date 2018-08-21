@@ -6,6 +6,8 @@ import Box from './utilities/comps/Box.js';
 import { toggleText, toggleCollectionProperty } from './utilities/func/mix1.js';
 import './App.css';
 
+import { database } from './settings/basics.js';
+
 
 
 
@@ -17,7 +19,8 @@ class App extends Component {
       screens: [...tempData.screens],
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
-    this.handleToggleAdminPages = this.handleToggleAdminPages.bind(this);
+    this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
+    this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
   }
 
 
@@ -27,6 +30,51 @@ class App extends Component {
     screens[3].dividers[0].isOpen = !screens[3].dividers[0].isOpen;
     this.setState({ screens });
   }
+
+
+  handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
+
+    console.log('--onsubmit=', nodeRoot, nodeDir1, isSingleRecord );
+
+
+    // const nodeRoot = 'items';
+
+
+    const listRef = database.ref(`${nodeRoot}/${nodeDir1}/`);
+    const record = { ...event.formData };
+    let updates = {};
+    let recordId = '';
+    record.createdOn = Date.now();
+
+    if(!isSingleRecord) {
+      if (!record.id) { 
+        // Get a key for a new Post.
+        recordId = listRef.push().key; 
+      } 
+      updates[`${recordId}`] = record;
+    } else {
+      updates = record; 
+    }
+
+    //...
+    // updates[`/${recordId}`] = record; 
+    console.log('....', updates);
+    listRef.update(updates);
+
+    // return new Promise((resolve) => { 
+      // if (!record.id) { 
+      //   // Get a key for a new Post.
+      //   record.id = listRef.push().key; 
+      // } 
+      // updates[`/${record.id}`] = record; 
+      // resolve(record); 
+      // return listRef.update(updates);
+    // });// [end] promise
+
+
+
+
+  } //...
 
 
   
@@ -40,7 +88,7 @@ class App extends Component {
    * @collTargetId: string identifying the item we will activate
    * @subpageIndex: index at which the collection will be replaced in the parent collection (before being replaced in the state)
   */
-  handleToggleAdminPages(collection, collTargetId, subpageIndex) {
+  handleAdminPageToggle(collection, collTargetId, subpageIndex) {
     let sections = '';
     const {screens} = this.state;
     if (typeof subpageIndex !== 'number' && !subpageIndex) {
@@ -101,7 +149,8 @@ class App extends Component {
                             sections={screen.sections ? [...screen.sections] : []}
                             {...divider}
                             toggleSidebar={this.handleToggleSidebar}
-                            togglePages={this.handleToggleAdminPages}
+                            togglePages={this.handleAdminPageToggle}
+                            adminDataSubmit={this.handleAdminDataSubmit}
                             className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                             // {...screen}
                           />

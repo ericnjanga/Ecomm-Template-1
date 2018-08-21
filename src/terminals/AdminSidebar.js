@@ -58,7 +58,7 @@ const AdminSidebar = ({
                         <li className={`${toggleText(subitem.active, 'active', '')}`}>
                           <button
                             onClick={()=>{ togglePages(sidebarItem.items, subitem.name, sidebarItem.id) }}
-                          >{ subitem.name }</button>
+                          >{ subitem.title }</button>
                         </li>
                       )
                     }
