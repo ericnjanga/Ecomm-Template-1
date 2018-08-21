@@ -1,6 +1,6 @@
 import React from 'react';
 import { toggleText } from './../utilities/func/mix1.js';
-import ListActiveComponent from './../utilities/lists/ListActiveComponent.js';
+import ListComponent from './../utilities/lists/ListComponent.js';
 
 
 
@@ -36,31 +36,33 @@ const AdminSidebar = ({
         btnState={true}
         handleClick={toggleSidebar}
       />
-      <ListActiveComponent
+      { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
+      <ListComponent
         data={data}
         Component={
-          (sidebarItem, itemIndex)=>(
+          (sidebarItem)=>(
             <div className={`menu ${toggleText(sidebarItem.active, 'active', '')}`}>
               <button
-                onClick={()=>{togglePages(data, sidebarItem.name)}}
+                onClick={()=>{ togglePages(data, sidebarItem.name) }}
               >
                 { sidebarItem.title }
               </button>
               {
                 sidebarItem.items &&
                 <ul>
-                    <ListActiveComponent
-                      data={sidebarItem.items}
-                      Component={
-                        (subitem, subitemIndex)=>(
-                          <li className={`${toggleText(subitem.active, 'active', '')}`}>
-                            <button
-                              onClick={()=>{/*this.togglePages(sidebarItem.items, subitem.name, itemIndex)*/}}
-                            >{ subitem.name }</button>
-                          </li>
-                        )
-                      }
-                    />
+                  { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
+                  <ListComponent
+                    data={sidebarItem.items}
+                    Component={
+                      (subitem, subitemIndex)=>(
+                        <li className={`${toggleText(subitem.active, 'active', '')}`}>
+                          <button
+                            onClick={()=>{ togglePages(sidebarItem.items, subitem.name, sidebarItem.id) }}
+                          >{ subitem.name }</button>
+                        </li>
+                      )
+                    }
+                  />
                 </ul>
               }
             </div>

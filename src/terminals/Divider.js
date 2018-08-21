@@ -51,6 +51,7 @@ const Divider = ({
         finalComponent = (<AdminSidebar
           data={sections}
           toggleSidebar={toggleSidebar}
+          togglePages={togglePages}
           className="$$$$$"
         />);
       } else if (name=='content') {

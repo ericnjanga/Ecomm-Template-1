@@ -5,14 +5,14 @@ const AdminContent = ({
   data,
 }) => {
 
-  console.log('data=', data);
+  // console.log('data=', data);
   return (
     // data.map(x => <p>*** ---admin</p>)
     <ListActiveComponent
       data={data}
       Component={
         (elt)=>(
-          <p>--{elt.name}</p>
+          <p>--{elt.title}</p>
         )
       }
     />

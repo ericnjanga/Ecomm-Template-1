@@ -1,5 +1,5 @@
 import React from 'react';
-import getCompDisplayName from './../func/getCompDisplayName.js';
+import {getCompDisplayName} from './../func/mix1.js';
 
 
 /**

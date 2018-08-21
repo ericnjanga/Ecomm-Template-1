@@ -3,7 +3,7 @@ import { tempData } from './settings/temp-data.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
 import Box from './utilities/comps/Box.js';
-import { toggleText } from './utilities/func/mix1.js';
+import { toggleText, toggleCollectionProperty } from './utilities/func/mix1.js';
 import './App.css';
 
 
@@ -17,7 +17,7 @@ class App extends Component {
       screens: [...tempData.screens],
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
-    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
+    this.handleToggleAdminPages = this.handleToggleAdminPages.bind(this);
   }
 
 
@@ -29,8 +29,44 @@ class App extends Component {
   }
 
 
-  handleTogglePages(data, itemId) {
-    console.log('---', data, itemId);
+  
+  
+  /**
+   * Toggle 'active' property of state page collections
+   * - Will toggle active property of "page" or "subpage" collection
+   * - In case of a subpage, use 
+   *
+   * @collection: collection that will be mapped
+   * @collTargetId: string identifying the item we will activate
+   * @subpageIndex: index at which the collection will be replaced in the parent collection (before being replaced in the state)
+  */
+  handleToggleAdminPages(collection, collTargetId, subpageIndex) {
+    let sections = '';
+    const {screens} = this.state;
+    if (typeof subpageIndex !== 'number' && !subpageIndex) {
+      sections = toggleCollectionProperty ({
+        arrCollection: collection, 
+        targetId: collTargetId, 
+        itemIdProp: 'name',
+        itemProp: 'active', 
+        itemVal: true, 
+        itemOppVal: false,
+      });
+    } else {
+      const subsections = toggleCollectionProperty ({
+        arrCollection: collection, 
+        targetId: collTargetId, 
+        itemIdProp: 'name',
+        itemProp: 'active', 
+        itemVal: true, 
+        itemOppVal: false,
+      });
+      sections = this.state.screens[3].sections;
+      console.log('...sections=', sections, sections[subpageIndex], subpageIndex);
+      sections[subpageIndex].items = subsections;   
+    }
+    screens[3].sections = sections;
+    this.setState({ screens });
   }
 
 
@@ -65,7 +101,7 @@ class App extends Component {
                             sections={screen.sections ? [...screen.sections] : []}
                             {...divider}
                             toggleSidebar={this.handleToggleSidebar}
-                            togglePages={this.handleTogglePages}
+                            togglePages={this.handleToggleAdminPages}
                             className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                             // {...screen}
                           />
