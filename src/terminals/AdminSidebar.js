@@ -27,7 +27,7 @@ const AdminSidebar = ({
   toggleSidebar,
 }) => {
 
-  console.log('data=', data);
+  // console.log('data=', data);
   return (
     <React.Fragment>
       <TextAndButton

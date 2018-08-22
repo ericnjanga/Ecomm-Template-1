@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import ListActiveComponent from './../utilities/lists/ListActiveComponent';
+import ListComponent from './../utilities/lists/ListComponent';
+import GetData from './../utilities/funcAsChild/getData.js';
 
 
 const AdminContent = ({
@@ -18,22 +20,35 @@ const AdminContent = ({
       Component={
         (section)=>(
           <React.Fragment>
-            <h2>{section.title}</h2>
+            <h2>
+              {section.title}
+              {
+                section.info &&
+                <small> &nbsp; ({section.info})</small>
+              }
+            </h2>
             <ListActiveComponent
               data={section.items}
               Component={
                 (sectionItem)=>(
                   <React.Fragment>
-                    <h3>--{sectionItem.title}</h3>
-                    <FormPreset
-                      {...sectionItem}
-                      onSubmit={(event)=>handleSubmit({
-                        event: event,
-                        nodeRoot: section.name,
-                        nodeDir1: sectionItem.name,
-                        isSingleRecord: sectionItem.isSingleRecord,
-                      })}
-                    />
+                    <h3>{sectionItem.title}</h3>
+                    <div className="app-row">
+                      <FormInputs className="app-col"
+                        {...sectionItem}
+                        onSubmit={(event)=>handleSubmit({
+                          event: event,
+                          nodeRoot: section.name,
+                          nodeDir1: sectionItem.name,
+                          isSingleRecord: sectionItem.isSingleRecord,
+                        })}
+                      />
+                      <FormOutputs
+                        url={`${section.name}/${sectionItem.name}`}
+                        isActive={sectionItem.previewLiveData}
+                        className="app-col"
+                      />
+                    </div>
                   </React.Fragment>
                 )
               }
@@ -52,22 +67,15 @@ const AdminContent = ({
 export default AdminContent;
 
 
-const FormPreset = ({
+const FormInputs = ({
   name,
   schema,
   uiSchema,
+  formData,
   onSubmit,
+  className,
 }) => {
 
-
-
-// const schema = {
-//   type: 'object',
-//   properties: {
-//     firstName: { type: 'string', default: 'Dan' },
-//     lastName: { type: 'string', default: 'Abramov' },
-//   },
-// }
   if(!schema) {
 
     return <p>{ name }</p>
@@ -75,10 +83,48 @@ const FormPreset = ({
   }
 
   return (
-          <Form
-            schema={schema}
-            uiSchema={uiSchema}
-            onSubmit={onSubmit}
-          />
-        ); //<p>Preset ...</p>;
+    <div className={className}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        formData={formData}
+        onSubmit={onSubmit}
+      />
+    </div>
+  );
+};
+
+
+
+const FormOutputs = ({
+  isActive,
+  url,
+  className,
+}) => {
+
+  if (!isActive) {
+    return false;
+     
+  }
+
+  return (
+    <div className={className}>
+      <GetData url={url}>
+        {
+          (data) => (
+            <ListComponent
+              data={data}
+              Component={
+                (item)=> (
+                  <div>{ item.name} </div>
+                )
+              }
+            />
+            // <div className={className}>vsvsvv</div>
+          )
+        }
+      </GetData>
+    </div>
+  );
+
 };

@@ -24,6 +24,13 @@ class App extends Component {
   }
 
 
+  componentDidMount() {
+
+    //syncWithDatabase
+    
+  }
+
+
   handleToggleSidebar(data, itemId) {
     console.log('---*****');
     const {screens} = this.state;
@@ -34,7 +41,7 @@ class App extends Component {
 
   handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
 
-    console.log('--onsubmit=', nodeRoot, nodeDir1, isSingleRecord );
+    // console.log('--onsubmit=', nodeRoot, nodeDir1, isSingleRecord );
 
 
     // const nodeRoot = 'items';
@@ -46,20 +53,32 @@ class App extends Component {
     let recordId = '';
     record.createdOn = Date.now();
 
-    if(!isSingleRecord) {
-      if (!record.id) { 
-        // Get a key for a new Post.
-        recordId = listRef.push().key; 
-      } 
-      updates[`${recordId}`] = record;
-    } else {
-      updates = record; 
-    }
+    const promiseDataSubmit = new Promise((resolve) => {
 
-    //...
-    // updates[`/${recordId}`] = record; 
-    console.log('....', updates);
-    listRef.update(updates);
+      if(!isSingleRecord) {
+        if (!record.id) { 
+          // Get a key for a new Post.
+          recordId = listRef.push().key; 
+          // save record "key" as "id"
+          record.id = recordId;
+        } 
+        updates[`${recordId}`] = record;
+      } else {
+        updates = record; 
+      }
+
+      //...
+      // updates[`/${recordId}`] = record; 
+      // console.log('....', updates);
+      listRef.update(updates);
+      resolve('done;')
+
+    });// [end] promise
+    
+    promiseDataSubmit.then((data)=> {
+      console.log('resolved---', data)
+    }); 
+      
 
     // return new Promise((resolve) => { 
       // if (!record.id) { 

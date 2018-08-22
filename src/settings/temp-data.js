@@ -72,8 +72,8 @@ export const tempData = {
           id: 0,
           name: 'sidebar',
           active: true,
-          isDrawer: true,
-          isOpen: false,
+          isDrawer: true, // has a drawer behaviour
+          isOpen: true, // opened by default
         },
         {
           id: 1,
@@ -85,7 +85,8 @@ export const tempData = {
         {
           id: 0,
           name: 'site-info',
-          title: `App's basic information`,
+          info: `App's basic information`,
+          title: `Site Info`,
           active: true,
           items: [
             {
@@ -93,13 +94,19 @@ export const tempData = {
               title: 'Administrator',
               name: 'administrator',
               active: true,
-              isSingleRecord: true,
+              isSingleRecord: true, // the same record will be updated each time
+              previewLiveData: false, // should data created be previewed on admin mode?
+              syncWithDatabase: true, // (formData) should feed from database 
               schema: {
                 type: 'object',
                 properties: {
-                  'Username': { type: 'string', default: 'Admin Username' },
-                  'Password': { type: 'string', default: 'Admin Password' },
+                  'username': { type: 'string', title: 'Username' },
+                  'password': { type: 'string', title: 'Password' },
                 },
+              },
+              formData: { // Form default data (shoul match schema)
+                'username': '**Admin Username',
+                'password': '**Admin Password',
               },
             },
             {
@@ -107,18 +114,27 @@ export const tempData = {
               title: 'Brand',
               name: 'brand',
               active: false,
+              isSingleRecord: true, // the same record will be updated each time
+              previewLiveData: false, // should data created be previewed on admin mode?
               schema: {
                 type: 'object',
                 properties: {
-                  'Brand Name': { type: 'string', default: 'Company Brand Name' },
-                  'À Propos': { type: 'string', default: 'Text About the company' },
-                  'Email': { type: 'string', default: 'Company email' },
-                  'Phone1': { type: 'string', default: 'Company Phone (Primary)' },
-                  'Phone2': { type: 'string', default: 'Company Phone (Secondary)' },
+                  'brand-name': { type: 'string', title: 'Brand Name' },
+                  'about': { type: 'string', title: 'À Propos' },
+                  'email': { type: 'string', title: 'Email' },
+                  'phone1': { type: 'string', title: 'Phone1' },
+                  'phone2': { type: 'string', title: 'Phone2' },
                 },
               },
+              formData: { // Form default data (shoul match schema)
+                'brand-name': 'Company Brand Name',
+                'about': '...Text About the company',
+                'email': 'Company email',
+                'phone1': 'Company Phone (Primary)',
+                'phone2': 'Company Phone (Secondary)',
+              },
               uiSchema: {
-                'À Propos': {
+                'about': {
                   "ui:widget": "textarea"
                 },
               },
@@ -128,6 +144,8 @@ export const tempData = {
               title: 'System',
               name: 'system',
               active: false,
+              isSingleRecord: true, // the same record will be updated each time
+              previewLiveData: false, // should data created be previewed on admin mode?
               schema: {
                 type: "array",
                 minItems: 2,
@@ -146,20 +164,25 @@ export const tempData = {
         },
         {
           id: 1,
-          name: 'section BETA',
-          title: 'BETA',
+          name: 'presets',
+          title: 'Presets',
+          info: 'Options used as a complement to other data',
           active: false,
           items: [
             {
               id: 0,
-              name: 'BETA 1',
+              name: 'preset1',
+              title: 'Preset 1',
               active: true,
+              previewLiveData: true, // should data created be previewed on admin mode?
               schema: {
                 type: 'object',
                 properties: {
-                  firstName: { type: 'string', default: 'BETA 1 - item1' },
-                  lastName: { type: 'string', default: 'BETA 1 - item2' },
+                  name: { type: 'string' },
                 },
+              },
+              formData: { // Form default data (shoul match schema)
+                'name': '+++',
               },
             },
             {
@@ -176,25 +199,27 @@ export const tempData = {
         },
         {
           id: 2,
-          name: 'section GAMA',
-          title: 'GAMA',
+          name: 'products',
+          title: 'Products',
+          info: 'Items actually showcased on the main page for purchase',
           active: false,
           items: [
             {
               id: 0,
-              name: 'GAMA 1',
+              name: 'product1',
+              title: 'Product 1',
               active: true,
             },
-            {
-              id: 1,
-              name: 'GAMA 2',
-              active: false,
-            },
-            {
-              id: 2,
-              name: 'GAMA 3',
-              active: false,
-            },
+            // {
+            //   id: 1,
+            //   name: 'GAMA 2',
+            //   active: false,
+            // },
+            // {
+            //   id: 2,
+            //   name: 'GAMA 3',
+            //   active: false,
+            // },
           ],
         },
       ], // pages 
