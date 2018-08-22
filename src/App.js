@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { dbGetNode, dbGetSnapshotData } from './utilities/func/mix1.js';
 import { tempData } from './settings/temp-data.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
@@ -27,7 +28,45 @@ class App extends Component {
   componentDidMount() {
 
     //syncWithDatabase
-    
+    /**
+     * Sync these fields with database so that user can see what info
+     * has been already saved
+     * 
+     * NOTE: THIS CODE MUST BE OPTIMIZED
+     */
+    // site-info/administrator: 
+    // dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
+
+    //   const data = dbGetSnapshotData({ snapshot, singleData: true });
+    //   const { screens } = this.state;
+
+    //   if (data) {
+    //     screens[3].sections[0].items[0].formData = {...data};
+    //     this.setState({ screens });
+    //   }
+    //   // console.log('..data=', data);
+    //   // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
+    //   // this.setState({ data });
+
+    // }); // [end] dbGetNode
+
+    // // site-info/brand: 
+    // dbGetNode(`site-info/brand`).on('value', (snapshot) => {
+
+    //   const data = dbGetSnapshotData({ snapshot, singleData: true });
+    //   const { screens } = this.state;
+
+    //   if (data) {
+    //     screens[3].sections[0].items[1].formData = {...data};
+    //     this.setState({ screens });
+    //   }
+    //   // console.log('..data=', data);
+    //   // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
+    //   // this.setState({ data });
+
+    // }); // [end] dbGetNode
+
+
   }
 
 
@@ -108,6 +147,7 @@ class App extends Component {
    * @subpageIndex: index at which the collection will be replaced in the parent collection (before being replaced in the state)
   */
   handleAdminPageToggle(collection, collTargetId, subpageIndex) {
+    // console.log(collection, collTargetId, subpageIndex)
     let sections = '';
     const {screens} = this.state;
     if (typeof subpageIndex !== 'number' && !subpageIndex) {
@@ -129,10 +169,11 @@ class App extends Component {
         itemOppVal: false,
       });
       sections = this.state.screens[3].sections;
-      console.log('...sections=', sections, sections[subpageIndex], subpageIndex);
+      // console.log('...sections=', sections, sections[subpageIndex], subpageIndex);
       sections[subpageIndex].items = subsections;   
     }
     screens[3].sections = sections;
+    // console.log(screens[3].sections)
     this.setState({ screens });
   }
 

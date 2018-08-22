@@ -1,5 +1,6 @@
 import React from 'react';
-import { database } from './../../settings/basics.js';
+import { dbGetNode, dbGetSnapshotData } from './../func/mix1.js';
+// import { database } from './../../settings/basics.js';
 import Spinner from './../comps/Spinner/Spinner.js';
 
 class GetData extends React.Component {
@@ -10,26 +11,15 @@ class GetData extends React.Component {
 
   componentDidMount() {
 
-    database.ref(`${this.props.url}`).on('value', (snapshot) => {
+    console.log('---componentDidMount');
 
-      const nodeVal = snapshot.val();
-      const tempsItems = [];
-      if (nodeVal) {//Avoid error if there is no DB objects 
-        const itemsMap = new Map(Object.entries(nodeVal));
-        itemsMap.forEach((value) => {
-          const post = Object.assign({}, value);
-          // push values in a regular array
-          tempsItems.push(post);
-        }); // itemsMap
-      }//nodeVal
-      // save array in state
-      const dataReverse = tempsItems.reverse();
-      const data = [...dataReverse];
-      // console.log('.....data=', data)
+    dbGetNode(`${this.props.url}`).on('value', (snapshot) => {
+
+      const data = dbGetSnapshotData({ snapshot });
+      console.log('---this.setState', data);
       this.setState({ data });
 
     }); // [end] items ...
-
 
   }
 
@@ -53,16 +43,3 @@ class GetData extends React.Component {
 }
 
 export default GetData;
-
-
-// const getData = ({
-//   children,
-// }) => {
-
-//   return (
-//     <div>
-//       { children() }
-//     </div>
-//   );
-
-// }

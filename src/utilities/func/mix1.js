@@ -1,5 +1,6 @@
 
 
+import { database } from './../../settings/basics.js';
 
 /**
  * Toggle property of a specific item of a collection (give the opposite value to the rest)
@@ -44,9 +45,68 @@ export const toggleText = (bool, val1, val2) => {
 /**
  * Return the display name of a wrapped component
  */
-
 export const getCompDisplayName = (WrappedComponent) => {
 
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+
+};
+
+
+/**
+ * Returns the node where the @url links
+ */
+export const dbGetNode = (url) => {
+
+  return database.ref(`${url}`);
+
+};
+
+
+/**
+ * Returns the most recent data from a snapshot
+ */
+export const dbGetSnapshotData = ({ snapshot, singleData }) => {
+
+  if (singleData) {
+
+    return _getSingleData(snapshot.val());
+
+  }
+
+  return _getsingleData(snapshot.val());
+
+};
+
+const _getsingleData = (snapshotVal) => { console.log('....multiple')
+
+  let finalResult;
+  if (snapshotVal) {//Avoid error if there is no DB objects 
+    const tempsItems = [];
+    const itemsMap = new Map(Object.entries(snapshotVal));
+    itemsMap.forEach((value) => {
+      const post = Object.assign({}, value);
+      // push values in a regular array
+      tempsItems.push(post);
+    }); // itemsMap
+    // save array in state
+    const dataReverse = tempsItems.reverse();
+    finalResult = [...dataReverse];
+  } // snapshotVal
+  return finalResult;
+
+}
+
+
+/**
+ * Returns the most recent data from a snapshot
+ */
+export const _getSingleData = (snapshotVal) => { console.log('....single')
+
+  let finalResult;
+  if (snapshotVal) {//Avoid error if there is no DB objects
+    const itemsMap = snapshotVal;
+    finalResult = itemsMap;
+  } // snapshotVal
+  return finalResult;
 
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { toggleText } from './../utilities/func/mix1.js';
 import ListComponent from './../utilities/lists/ListComponent.js';
+import GetData from './../utilities/funcAsChild/getData.js';
 
 
 
@@ -30,12 +31,24 @@ const AdminSidebar = ({
   // console.log('data=', data);
   return (
     <React.Fragment>
-      <TextAndButton
-        className="app__brand"
-        text="Brand Name"
-        btnState={true}
-        handleClick={toggleSidebar}
-      />
+
+
+      {/* <GetData url={'site-info/brand/brand-name'}>
+        {
+          (name) => (
+            // <p>...{name}</p>
+            <TextAndButton
+              className="app__brand"
+              text={name}
+              btnState={true}
+              handleClick={toggleSidebar}
+            />
+          )
+        }
+      </GetData> */}
+
+
+      
       { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
       <ListComponent
         data={data}
