@@ -1,4 +1,10 @@
 
+
+export const textCopy = {
+  'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
+};
+
+
 export const brandSetting = {
   name: 'brand',
   title : 'Brand Name ...',

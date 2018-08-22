@@ -1,6 +1,9 @@
 
 
 import { database } from './../../settings/basics.js';
+import { textCopy } from './../../settings/temp-data.js';
+
+
 
 /**
  * Toggle property of a specific item of a collection (give the opposite value to the rest)
@@ -110,3 +113,35 @@ export const _getSingleData = (snapshotVal) => {
   return finalResult;
 
 };
+
+
+
+
+export const dbDeleteRecord = (url) => {
+
+  let deleteOk = window.confirm(textCopy['confirm delete']);
+
+  if (deleteOk) {
+
+    database.ref(url).remove();
+
+  }
+
+  // Delete a post
+  // static remove(id, preset) {
+
+  // let url = `${u}`;
+
+  // if (preset) {
+
+  //   url = `presets/${preset}/${id}`;
+
+  // }
+
+  // return 
+
+  // }
+
+};
+
+  

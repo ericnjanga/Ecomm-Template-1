@@ -16,7 +16,7 @@ class GetData extends React.Component {
 
       const { singleData } = this.props;
       const data = dbGetSnapshotData({ snapshot, singleData });
-      // console.log('---this.setState', data);
+      console.log('---this.props.url', this.props.url);
       this.setState({ data });
 
     }); // [end] items ...

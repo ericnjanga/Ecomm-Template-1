@@ -3,6 +3,8 @@ import Form from 'react-jsonschema-form';
 import ListActiveComponent from './../utilities/lists/ListActiveComponent';
 import ListComponent from './../utilities/lists/ListComponent';
 import GetData from './../utilities/funcAsChild/getData.js';
+import { dbDeleteRecord } from './../utilities/func/mix1.js';
+import Spinner from './../utilities/comps/Spinner/Spinner.js';
 
 
 const AdminContent = ({
@@ -107,20 +109,28 @@ const FormOutputs = ({
      
   }
 
+
   return (
     <div className={className}>
       <GetData url={url}>
         {
           (data) => (
+            data ? 
             <ListComponent
               data={data}
               Component={
                 (item)=> (
-                  <div>{ item.name} </div>
+                  <div className="app-row">
+                    <div className="app-col">{item.name}</div>
+                    <div className="app-col">
+                      <button onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
+                    </div>
+                  </div>
                 )
               }
             />
-            // <div className={className}>vsvsvv</div>
+            :
+            <Spinner />
           )
         }
       </GetData>
