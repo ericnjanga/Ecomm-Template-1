@@ -1,7 +1,7 @@
 import React from 'react';
 import { toggleText } from './../utilities/func/mix1.js';
 import ListComponent from './../utilities/lists/ListComponent.js';
-import GetData from './../utilities/funcAsChild/getData.js';
+import AdminBrandNameAndToggleButton from './AdminBrand';
 
 
 
@@ -26,27 +26,18 @@ const AdminSidebar = ({
   data,
   togglePages,
   toggleSidebar,
+  isOpen,
 }) => {
 
   // console.log('data=', data);
   return (
     <React.Fragment>
-
-
-      {/* <GetData url={'site-info/brand/brand-name'}>
-        {
-          (name) => (
-            // <p>...{name}</p>
-            <TextAndButton
-              className="app__brand"
-              text={name}
-              btnState={true}
-              handleClick={toggleSidebar}
-            />
-          )
-        }
-      </GetData> */}
-
+      
+      <AdminBrandNameAndToggleButton
+        className="app__brand"
+        handleClick={toggleSidebar}
+        active={isOpen}
+      />
 
       
       { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }

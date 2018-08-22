@@ -1,7 +1,6 @@
 import React from 'react';
 import { dbGetNode, dbGetSnapshotData } from './../func/mix1.js';
 // import { database } from './../../settings/basics.js';
-import Spinner from './../comps/Spinner/Spinner.js';
 
 class GetData extends React.Component {
   constructor(props) {
@@ -11,12 +10,13 @@ class GetData extends React.Component {
 
   componentDidMount() {
 
-    console.log('---componentDidMount');
+    // console.log('---componentDidMount');
 
     dbGetNode(`${this.props.url}`).on('value', (snapshot) => {
 
-      const data = dbGetSnapshotData({ snapshot });
-      console.log('---this.setState', data);
+      const { singleData } = this.props;
+      const data = dbGetSnapshotData({ snapshot, singleData });
+      // console.log('---this.setState', data);
       this.setState({ data });
 
     }); // [end] items ...
@@ -25,15 +25,7 @@ class GetData extends React.Component {
 
   render() {
 
-    // Display spinner while data is loading
-    if (!this.state.data) {
-      return (
-        <div style={{ position: 'relative'}}>
-          <Spinner />
-        </div>
-      );
-    }
-
+    // Undefined data will be handled outside
     return (
       <div style={{ position: 'relative'}}>
         { this.props.children(this.state.data) }

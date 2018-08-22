@@ -77,7 +77,7 @@ export const dbGetSnapshotData = ({ snapshot, singleData }) => {
 
 };
 
-const _getsingleData = (snapshotVal) => { console.log('....multiple')
+const _getsingleData = (snapshotVal) => {
 
   let finalResult;
   if (snapshotVal) {//Avoid error if there is no DB objects 
@@ -100,7 +100,7 @@ const _getsingleData = (snapshotVal) => { console.log('....multiple')
 /**
  * Returns the most recent data from a snapshot
  */
-export const _getSingleData = (snapshotVal) => { console.log('....single')
+export const _getSingleData = (snapshotVal) => {
 
   let finalResult;
   if (snapshotVal) {//Avoid error if there is no DB objects

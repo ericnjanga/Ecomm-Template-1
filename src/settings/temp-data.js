@@ -1,4 +1,9 @@
 
+export const brandSetting = {
+  name: 'brand',
+  title : 'Brand Name ...',
+};
+
 export const tempData = {
 
   /**
@@ -6,6 +11,7 @@ export const tempData = {
    * ----------------------
    * (This describes the application's entire structure)
    */
+  
   screens: [
     {
       id: 0,
@@ -112,14 +118,14 @@ export const tempData = {
             {
               id: 1,
               title: 'Brand',
-              name: 'brand',
+              name: brandSetting.name,
               active: false,
               isSingleRecord: true, // the same record will be updated each time
               previewLiveData: false, // should data created be previewed on admin mode?
               schema: {
                 type: 'object',
                 properties: {
-                  'brand-name': { type: 'string', title: 'Brand Name' },
+                  'brand-name': { type: 'string', title: brandSetting.title },
                   'about': { type: 'string', title: 'À Propos' },
                   'email': { type: 'string', title: 'Email' },
                   'phone1': { type: 'string', title: 'Phone1' },

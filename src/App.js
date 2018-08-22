@@ -35,36 +35,36 @@ class App extends Component {
      * NOTE: THIS CODE MUST BE OPTIMIZED
      */
     // site-info/administrator: 
-    // dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
+    dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
 
-    //   const data = dbGetSnapshotData({ snapshot, singleData: true });
-    //   const { screens } = this.state;
+      const data = dbGetSnapshotData({ snapshot, singleData: true });
+      const { screens } = this.state;
 
-    //   if (data) {
-    //     screens[3].sections[0].items[0].formData = {...data};
-    //     this.setState({ screens });
-    //   }
-    //   // console.log('..data=', data);
-    //   // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
-    //   // this.setState({ data });
+      if (data) {
+        screens[3].sections[0].items[0].formData = {...data};
+        this.setState({ screens });
+      }
+      // console.log('..data=', data);
+      // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
+      // this.setState({ data });
 
-    // }); // [end] dbGetNode
+    }); // [end] dbGetNode
 
-    // // site-info/brand: 
-    // dbGetNode(`site-info/brand`).on('value', (snapshot) => {
+    // site-info/brand: 
+    dbGetNode(`site-info/brand`).on('value', (snapshot) => {
 
-    //   const data = dbGetSnapshotData({ snapshot, singleData: true });
-    //   const { screens } = this.state;
+      const data = dbGetSnapshotData({ snapshot, singleData: true });
+      const { screens } = this.state;
 
-    //   if (data) {
-    //     screens[3].sections[0].items[1].formData = {...data};
-    //     this.setState({ screens });
-    //   }
-    //   // console.log('..data=', data);
-    //   // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
-    //   // this.setState({ data });
+      if (data) {
+        screens[3].sections[0].items[1].formData = {...data};
+        this.setState({ screens });
+      }
+      // console.log('..data=', data);
+      // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
+      // this.setState({ data });
 
-    // }); // [end] dbGetNode
+    }); // [end] dbGetNode
 
 
   }

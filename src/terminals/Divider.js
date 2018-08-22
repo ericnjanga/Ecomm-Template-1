@@ -20,6 +20,7 @@ const Divider = ({
   toggleSidebar,
   adminDataSubmit,
   className,
+  isOpen,
 }) => {
 
 
@@ -54,6 +55,7 @@ const Divider = ({
           toggleSidebar={toggleSidebar}
           togglePages={togglePages}
           className="$$$$$"
+          isOpen={isOpen}
         />);
       } else if (name=='content') {
         finalComponent = (<AdminContent
