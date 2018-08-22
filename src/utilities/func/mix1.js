@@ -116,7 +116,10 @@ export const _getSingleData = (snapshotVal) => {
 
 
 
-
+/**
+ * 
+ * @param {*} url 
+ */
 export const dbDeleteRecord = (url) => {
 
   let deleteOk = window.confirm(textCopy['confirm delete']);
@@ -127,21 +130,53 @@ export const dbDeleteRecord = (url) => {
 
   }
 
-  // Delete a post
-  // static remove(id, preset) {
+};
 
-  // let url = `${u}`;
 
-  // if (preset) {
 
-  //   url = `presets/${preset}/${id}`;
+/**
+ * 
+ * @param {*} url 
+ */
+export const dbSaveRecord = ({ url, record, isSingleRecord, isResolved }) => {
+
+  // let deleteOk = window.confirm(textCopy['confirm delete']);
+
+  // if (deleteOk) {
+
+  //   database.ref(url).remove();
 
   // }
 
-  // return 
 
-  // }
+
+  const listRef = database.ref(url);
+  record.createdOn = Date.now();
+
+  return new Promise((resolve) => {
+
+    let updates = {};
+    let recordId = '';
+
+    if(!isSingleRecord) {
+      if (!record.id) { 
+        // Get a key for a new Post.
+        recordId = listRef.push().key; 
+        // save record "key" as "id"
+        record.id = recordId;
+      } 
+      updates[`${recordId}`] = record;
+    } else {
+      updates = record; 
+    }
+
+    //...
+    listRef.update(updates);
+    resolve(isResolved)
+
+  });// [end] promise
 
 };
+
 
   

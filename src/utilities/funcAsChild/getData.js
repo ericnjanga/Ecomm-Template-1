@@ -1,6 +1,5 @@
 import React from 'react';
 import { dbGetNode, dbGetSnapshotData } from './../func/mix1.js';
-// import { database } from './../../settings/basics.js';
 
 class GetData extends React.Component {
   constructor(props) {
@@ -10,13 +9,10 @@ class GetData extends React.Component {
 
   componentDidMount() {
 
-    // console.log('---componentDidMount');
-
     dbGetNode(`${this.props.url}`).on('value', (snapshot) => {
 
       const { singleData } = this.props;
       const data = dbGetSnapshotData({ snapshot, singleData });
-      console.log('---this.props.url', this.props.url);
       this.setState({ data });
 
     }); // [end] items ...

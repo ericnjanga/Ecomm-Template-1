@@ -199,13 +199,35 @@ export const tempData = {
             },
             {
               id: 1,
-              name: 'BETA 2',
+              name: 'preset2',
+              title: 'Preset 2',
               active: false,
+              previewLiveData: true, // should data created be previewed on admin mode?
+              schema: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string' },
+                },
+              },
+              formData: { // Form default data (shoul match schema)
+                'name': '+++',
+              },
             },
             {
               id: 2,
-              name: 'BETA 3',
+              name: 'preset3',
+              title: 'Preset 3',
               active: false,
+              previewLiveData: true, // should data created be previewed on admin mode?
+              schema: {
+                type: 'object',
+                properties: {
+                  name: { type: 'string' },
+                },
+              },
+              formData: { // Form default data (shoul match schema)
+                'name': '+++',
+              },
             },
           ],
         },
@@ -218,20 +240,10 @@ export const tempData = {
           items: [
             {
               id: 0,
-              name: 'product1',
-              title: 'Product 1',
+              name: 'product',
+              title: 'Product',
               active: true,
             },
-            // {
-            //   id: 1,
-            //   name: 'GAMA 2',
-            //   active: false,
-            // },
-            // {
-            //   id: 2,
-            //   name: 'GAMA 3',
-            //   active: false,
-            // },
           ],
         },
       ], // pages 

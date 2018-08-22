@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { dbGetNode, dbGetSnapshotData } from './utilities/func/mix1.js';
+import { dbGetNode, dbGetSnapshotData, dbSaveRecord } from './utilities/func/mix1.js';
 import { tempData } from './settings/temp-data.js';
+import { resetStateForms } from './terminals/func.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
 import Box from './utilities/comps/Box.js';
 import { toggleText, toggleCollectionProperty } from './utilities/func/mix1.js';
 import './App.css';
-
-import { database } from './settings/basics.js';
-
-
 
 
 class App extends Component {
@@ -29,12 +26,13 @@ class App extends Component {
 
     //syncWithDatabase
     /**
-     * Sync these fields with database so that user can see what info
-     * has been already saved
+     * Sync these fields with database
+     * (so that user can see what info has been already saved)
+     * 
+     * - site-info/administrator: 
      * 
      * NOTE: THIS CODE MUST BE OPTIMIZED
      */
-    // site-info/administrator: 
     dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
 
       const data = dbGetSnapshotData({ snapshot, singleData: true });
@@ -44,13 +42,14 @@ class App extends Component {
         screens[3].sections[0].items[0].formData = {...data};
         this.setState({ screens });
       }
-      // console.log('..data=', data);
-      // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
-      // this.setState({ data });
 
     }); // [end] dbGetNode
 
-    // site-info/brand: 
+
+    /**
+     * Sync these fields with database
+     * - site-info/brand:
+     */
     dbGetNode(`site-info/brand`).on('value', (snapshot) => {
 
       const data = dbGetSnapshotData({ snapshot, singleData: true });
@@ -60,16 +59,17 @@ class App extends Component {
         screens[3].sections[0].items[1].formData = {...data};
         this.setState({ screens });
       }
-      // console.log('..data=', data);
-      // console.log('..screens[3].sections[0].items[0].formData=', screens[3].sections[0].items[0].formData);
-      // this.setState({ data });
 
     }); // [end] dbGetNode
 
+  } // [end] componentDidMount
 
-  }
 
-
+  /**
+   * Toggle sibebar visibility
+   * @param {*} data 
+   * @param {*} itemId 
+   */
   handleToggleSidebar(data, itemId) {
     console.log('---*****');
     const {screens} = this.state;
@@ -78,64 +78,28 @@ class App extends Component {
   }
 
 
+  /**
+   * Handle data submission from admin to the database
+   * @param {*} param0 
+   */
   handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
 
-    // console.log('--onsubmit=', nodeRoot, nodeDir1, isSingleRecord );
-
-
-    // const nodeRoot = 'items';
-
-
-    const listRef = database.ref(`${nodeRoot}/${nodeDir1}/`);
-    const record = { ...event.formData };
-    let updates = {};
-    let recordId = '';
-    record.createdOn = Date.now();
-
-    const promiseDataSubmit = new Promise((resolve) => {
-
-      if(!isSingleRecord) {
-        if (!record.id) { 
-          // Get a key for a new Post.
-          recordId = listRef.push().key; 
-          // save record "key" as "id"
-          record.id = recordId;
-        } 
-        updates[`${recordId}`] = record;
-      } else {
-        updates = record; 
-      }
-
-      //...
-      // updates[`/${recordId}`] = record; 
-      // console.log('....', updates);
-      listRef.update(updates);
-      resolve('done;')
-
-    });// [end] promise
+    const dataSubmitted = dbSaveRecord({
+      url:`${nodeRoot}/${nodeDir1}/`,
+      record: { ...event.formData },
+      isSingleRecord,
+      isResolved: nodeRoot,
+    });
     
-    promiseDataSubmit.then((data)=> {
-      console.log('resolved---', data)
-    }); 
-      
+    // Reset state after data is submitted
+    dataSubmitted.then((data)=> {
 
-    // return new Promise((resolve) => { 
-      // if (!record.id) { 
-      //   // Get a key for a new Post.
-      //   record.id = listRef.push().key; 
-      // } 
-      // updates[`/${record.id}`] = record; 
-      // resolve(record); 
-      // return listRef.update(updates);
-    // });// [end] promise
+      resetStateForms.call(this, data);
 
-
-
+    });
 
   } //...
 
-
-  
   
   /**
    * Toggle 'active' property of state page collections
@@ -176,8 +140,6 @@ class App extends Component {
     // console.log(screens[3].sections)
     this.setState({ screens });
   }
-
-
 
   render() {
     return (
@@ -224,15 +186,6 @@ class App extends Component {
             )
           }
         />
-        
-
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
       </div>
     );
   }
