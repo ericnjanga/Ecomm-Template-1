@@ -246,6 +246,21 @@ export const tempData = {
             },
           ],
         },
+        {
+          id: 3,
+          name: 'subscriptions',
+          title: 'Subscriptions',
+          info: 'People who have registered to your site',
+          active: false,
+          items: [
+            {
+              id: 0,
+              name: 'all-subscriptions',
+              title: 'All Subscriptions',
+              active: true,
+            },
+          ],
+        },
       ], // pages 
     }, // admin
   ],
