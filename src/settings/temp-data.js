@@ -243,8 +243,114 @@ export const tempData = {
               name: 'product',
               title: 'Product',
               active: true,
-            },
-          ],
+              previewLiveData: true, // should data created be previewed on admin mode?
+              schema: {
+                type: 'object',
+                properties: {
+                  title: { type: 'string' },
+                  description: { type: 'string' },
+                  price: { type: 'number' },
+                  make: { 
+                    type: 'string',
+                    enum: ["one", "two", "three"],
+                    enumNames: ["one", "two", "three"]
+                  },
+                  year: { 
+                    type: 'number',
+                    enum: [2010,2011,2012],
+                    enumNames: [2010,2011,2012]
+                  },
+                  bodyType: { 
+                    type: 'string',
+                    enum: ['sedan','...','ccc'],
+                    enumNames: ['sedan','...','ccc']
+                  },
+                  color: { 
+                    type: 'string',
+                    enum: ['blue','red','...','sss'],
+                    enumNames: ['blue','red','...','sss']
+                  },
+                  kilometers: { type: 'number' },
+                  transmission: { 
+                    type: 'string',
+                    enum: ['automatic','manual'],
+                    enumNames: ['automatic','manual']
+                  },
+                  nbDoors: { 
+                    type: 'number',
+                    enum: [3,4,5],
+                    enumNames: [3,4,5]
+                  },
+                  fuelType: { 
+                    type: 'string',
+                    enum: ['Gaz', 'Diesel'],
+                    enumNames: ['Gaz', 'Diesel']
+                  },
+                  isVisible: { 
+                    type: 'boolean',
+                    enum: [true, false],
+                    enumNames: ['Gaz', '..']
+                  },
+                  //   isVisible: true,
+                },
+              },
+              formData: { // Form default data (shoul match schema)
+                'title': '',
+                'description': '',
+                'price': 0.0,
+                'make':'one',
+                'year':2011,
+                'bodyType':'sedan',
+                'color':'red',
+                'kilometers': 0.0,
+                'transmission': 'automatic',
+                'fuelType': 'Gaz',
+                'nbDoors': 4,
+                isVisible: true,
+              },
+              uiSchema: {
+                'price': {
+                  "ui:widget": "text"
+                },
+                'description': {
+                  "ui:widget": "textarea"
+                },
+                'make': {
+                  "ui:widget": "select"
+                },
+                'bodyType': {
+                  "ui:widget": "select"
+                },
+                'color': {
+                  "ui:widget": "select"
+                },
+                'transmission': {
+                  "ui:widget": "radio",
+                  "ui:options": {
+                    "inline": true
+                  }
+                },
+                'nbDoors': {
+                  "ui:widget": "radio",
+                  "ui:options": {
+                    "inline": true
+                  }
+                },
+                'fuelType': {
+                  "ui:widget": "radio",
+                  "ui:options": {
+                    "inline": true
+                  }
+                },
+                'isVisible': {
+                  "ui:widget": "radio",
+                  "ui:options": {
+                    "inline": true
+                  }
+                },
+              },
+            }, // product
+          ], // items
         },
         {
           id: 3,
