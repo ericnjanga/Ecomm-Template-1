@@ -70,49 +70,41 @@ export const dbGetNode = (url) => {
  */
 export const dbGetSnapshotData = ({ snapshot, singleData }) => {
 
-  if (singleData) {
+  let snapshotVal = snapshot.val();
 
-    return _getSingleData(snapshot.val());
+  return new Promise((resolve) => {
 
-  }
+    let finalValue = snapshotVal;
 
-  return _getsingleData(snapshot.val());
+    if(finalValue) {
 
-};
+      if (!singleData) {
 
-const _getsingleData = (snapshotVal) => {
+        const tempsItems = [];
+        const itemsMap = new Map(Object.entries(finalValue));
+        itemsMap.forEach((value) => {
+          const post = Object.assign({}, value);
+          // push values in a regular array
+          tempsItems.push(post);
+        }); // itemsMap
+        // save array in state
+        const dataReverse = tempsItems.reverse();
+        finalValue = [...dataReverse];
 
-  let finalResult;
-  if (snapshotVal) {//Avoid error if there is no DB objects 
-    const tempsItems = [];
-    const itemsMap = new Map(Object.entries(snapshotVal));
-    itemsMap.forEach((value) => {
-      const post = Object.assign({}, value);
-      // push values in a regular array
-      tempsItems.push(post);
-    }); // itemsMap
-    // save array in state
-    const dataReverse = tempsItems.reverse();
-    finalResult = [...dataReverse];
-  } // snapshotVal
-  return finalResult;
+      }
 
-}
+    } /*else {
 
+      finalValue = [];
 
-/**
- * Returns the most recent data from a snapshot
- */
-export const _getSingleData = (snapshotVal) => {
+    }*/
 
-  let finalResult;
-  if (snapshotVal) {//Avoid error if there is no DB objects
-    const itemsMap = snapshotVal;
-    finalResult = itemsMap;
-  } // snapshotVal
-  return finalResult;
+    resolve(finalValue);
 
-};
+  });
+
+}; // dbGetSnapshotData
+
 
 
 

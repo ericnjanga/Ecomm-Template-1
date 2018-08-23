@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListActiveComponent from './../utilities/lists/ListActiveComponent.js';
 import AdminSidebar from './AdminSidebar.js';
 import AdminContent from './AdminContent.js';
 import Box from './../utilities/comps/Box.js';
+import GetData from './../utilities/funcAsChild/getData.js';
 
 
 
@@ -31,25 +31,25 @@ const Divider = ({
 
   switch(parentName) {
     case 'home':
-      if(name=='hero'){
+      if(name==='hero'){
         finalComponent = <HomeHero />;
-      } else if (name=='focus') {
+      } else if (name==='focus') {
         finalComponent = <HomeFocus />;
-      } else if (name=='content') {
+      } else if (name==='content') {
         finalComponent = <HomeContent />;
       }
       break;
 
     case 'single':
-      if(name=='hero'){
+      if(name==='hero'){
         finalComponent = <SingleHero />;
-      } else if (name=='content') {
+      } else if (name==='content') {
         finalComponent = <SingleContent />;
       }
       break;
 
     case 'admin':
-      if(name=='sidebar'){
+      if(name==='sidebar'){
         finalComponent = (<AdminSidebar
           data={sections}
           toggleSidebar={toggleSidebar}
@@ -57,7 +57,7 @@ const Divider = ({
           className="$$$$$"
           isOpen={isOpen}
         />);
-      } else if (name=='content') {
+      } else if (name==='content') {
         finalComponent = (<AdminContent
           data={sections}
           handleSubmit={adminDataSubmit}
@@ -106,7 +106,17 @@ const HomeFocus = () => {
   return <h2>DividerHomeFocus</h2>;
 };
 const HomeContent = () => {
-  return <h2>DividerHomeContent</h2>;
+  return (
+    <GetData
+      url={'products/product'}
+    >
+      {
+        (data) => {
+          console.log('----data=', data)
+        }
+      }
+    </GetData>
+  );
 };
 
 

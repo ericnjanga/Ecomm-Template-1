@@ -7,17 +7,43 @@ class GetData extends React.Component {
     this.state = {};
   }
 
+
   componentDidMount() {
+
+    this._ismounted = true;
+
+    // console.log('##1##componentDidMount', this._ismounted);
 
     dbGetNode(`${this.props.url}`).on('value', (snapshot) => {
 
+      // console.log('##1----2##componentDidMount--', this._ismounted);
+
       const { singleData } = this.props;
-      const data = dbGetSnapshotData({ snapshot, singleData });
-      this.setState({ data });
+      dbGetSnapshotData({ snapshot, singleData }).then((data) => {
+
+        // console.log('****data=', data);
+
+        if (this._ismounted) {
+          this.setState({ data });
+        }
+
+        
+
+      });
 
     }); // [end] items ...
 
   }
+
+
+  componentWillUnmount() {
+
+    this._ismounted = false;
+
+    // console.log('--2--componentWillUnmount', this._ismounted);
+    dbGetNode(`${this.props.url}`).off();
+  }
+
 
   render() {
 

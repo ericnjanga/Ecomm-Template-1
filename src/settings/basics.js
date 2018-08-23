@@ -7,7 +7,6 @@
  * - settings
  */
 
-import React from 'react';
 import firebase, { firebaseConfig } from './firebase-configs';
 
 // Initialize Firebase
