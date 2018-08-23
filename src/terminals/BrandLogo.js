@@ -3,10 +3,11 @@ import GetData from './../utilities/funcAsChild/getData.js';
 import { toggleText } from './../utilities/func/mix1.js';
 import { brandSetting } from './../settings/temp-data.js';
 
-const NameAndButton = ({
+const BrandLogo = ({
   className,
   handleClick,
   active,
+  hasToggleButton,
 }) => {
 
   const defaultValue = brandSetting.title;
@@ -26,14 +27,18 @@ const NameAndButton = ({
         </GetData>
       </h1>
       
-      <button onClick={handleClick}>
-        {
-          toggleText(active, 'Close', 'Open') 
-        }
-      </button>
+      {
+        hasToggleButton &&
+        <button onClick={handleClick}>
+          {
+            toggleText(active, 'Close', 'Open') 
+          }
+        </button>
+      }
+      
     </div>
   )
 
 };
 
-export default NameAndButton;
+export default BrandLogo;

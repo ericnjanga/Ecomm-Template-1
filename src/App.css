@@ -102,3 +102,16 @@ ul {
   flex: 1;
   border: 2px solid turquoise;
 }
+
+
+
+
+
+
+
+
+.top-navigation {
+  padding: 10px;
+  /* height: 40px; */
+  background-color: #333;
+}

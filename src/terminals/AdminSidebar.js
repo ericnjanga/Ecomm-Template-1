@@ -1,25 +1,9 @@
 import React from 'react';
 import { toggleText } from './../utilities/func/mix1.js';
 import ListComponent from './../utilities/lists/ListComponent.js';
-import AdminBrandNameAndToggleButton from './AdminBrand';
+import BrandLogo from './BrandLogo.js';
 
-
-
-
-
-// Text and button component with a couple of functionality
-const TextAndButton = ({ className, btnState, text, handleClick }) => {
-  return (
-    <div className={`${toggleText(className, className, '')}`}>
-      <h1 className={`${toggleText(className, className, '')}--text`}>{ text }</h1>
-      <button onClick={handleClick}>
-        {
-          toggleText(btnState, 'Close', 'Open') 
-        }
-      </button>
-    </div>
-  );
-};
+ 
 
 
 const AdminSidebar = ({
@@ -33,10 +17,11 @@ const AdminSidebar = ({
   return (
     <React.Fragment>
       
-      <AdminBrandNameAndToggleButton
+      <BrandLogo
         className="app__brand"
         handleClick={toggleSidebar}
         active={isOpen}
+        hasToggleButton
       />
 
       

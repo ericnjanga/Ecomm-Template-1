@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord } from './utilities/func/mix1.js';
 import { tempData } from './settings/temp-data.js';
+import TopNavigation from './terminals/TopNavigation.js';
 import { resetStateForms } from './terminals/func.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
@@ -152,6 +153,7 @@ class App extends Component {
           Component={
             (screen)=> (
               <Box className={`screen ${screen.name}`}>
+                <TopNavigation />
                 {/*----------------------------*/}
                 {/*--- Each view (or screen ---*/}
                 {/*----------------------------*/}
