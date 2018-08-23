@@ -4,6 +4,7 @@ import AdminSidebar from './AdminSidebar.js';
 import AdminContent from './AdminContent.js';
 import Box from './../utilities/comps/Box.js';
 import GetData from './../utilities/funcAsChild/getData.js';
+import ListComponent from './../utilities/lists/ListComponent';
 
 
 
@@ -111,9 +112,17 @@ const HomeContent = () => {
       url={'products/product'}
     >
       {
-        (data) => {
-          console.log('----data=', data)
-        }
+        (data) => (
+          // console.log('**----data=', data)
+          <ListComponent
+            data={data}
+            Component={
+              (product) => (
+                <div>...{product.title}</div>
+              )
+            }
+          />
+        )
       }
     </GetData>
   );
