@@ -5,6 +5,7 @@ import ListComponent from './../utilities/lists/ListComponent';
 import GetData from './../utilities/funcAsChild/getData.js';
 import { dbDeleteRecord } from './../utilities/func/mix1.js';
 import Spinner from './../utilities/comps/Spinner/Spinner.js';
+import DateFormat from './../utilities/comps/DateFormat.js';
 
 
 const AdminContent = ({
@@ -121,7 +122,10 @@ const FormOutputs = ({
               Component={
                 (item)=> (
                   <div className="app-row">
-                    <div className="app-col">{item.name}</div>
+                    <div className="app-col">
+                      <DateFormat>{item.createdOn}</DateFormat>
+                    </div>
+                    <div className="app-col">{item.title}</div>
                     <div className="app-col">
                       <button onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
                     </div>

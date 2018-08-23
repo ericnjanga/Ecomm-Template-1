@@ -190,11 +190,11 @@ export const tempData = {
               schema: {
                 type: 'object',
                 properties: {
-                  name: { type: 'string' },
+                  title: { type: 'string' },
                 },
               },
               formData: { // Form default data (shoul match schema)
-                'name': '+++',
+                'title': '',
               },
             },
             {
@@ -206,11 +206,11 @@ export const tempData = {
               schema: {
                 type: 'object',
                 properties: {
-                  name: { type: 'string' },
+                  title: { type: 'string' },
                 },
               },
               formData: { // Form default data (shoul match schema)
-                'name': '+++',
+                'title': '',
               },
             },
             {
@@ -222,11 +222,11 @@ export const tempData = {
               schema: {
                 type: 'object',
                 properties: {
-                  name: { type: 'string' },
+                  title: { type: 'string' },
                 },
               },
               formData: { // Form default data (shoul match schema)
-                'name': '+++',
+                'title': '',
               },
             },
           ],
