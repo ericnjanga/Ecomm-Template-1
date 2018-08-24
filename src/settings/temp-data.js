@@ -117,8 +117,8 @@ export const tempData = {
                 },
               },
               formData: { // Form default data (shoul match schema)
-                'username': '**Admin Username',
-                'password': '**Admin Password',
+                'username': '',
+                'password': '',
               },
             },
             {
@@ -131,19 +131,19 @@ export const tempData = {
               schema: {
                 type: 'object',
                 properties: {
-                  'brand-name': { type: 'string', title: brandSetting.title },
-                  'about': { type: 'string', title: 'À Propos' },
-                  'email': { type: 'string', title: 'Email' },
-                  'phone1': { type: 'string', title: 'Phone1' },
-                  'phone2': { type: 'string', title: 'Phone2' },
+                  name: { type: 'string', title: brandSetting.title },
+                  about: { type: 'string', title: 'À Propos' },
+                  email: { type: 'string', title: 'Email' },
+                  phone1: { type: 'string', title: 'Phone1' },
+                  phone2: { type: 'string', title: 'Phone2' },
                 },
               },
               formData: { // Form default data (shoul match schema)
-                'brand-name': 'Company Brand Name',
-                'about': '...Text About the company',
-                'email': 'Company email',
-                'phone1': 'Company Phone (Primary)',
-                'phone2': 'Company Phone (Secondary)',
+                'name': '',
+                'about': '',
+                'email': '',
+                'phone1': '',
+                'phone2': '',
               },
               uiSchema: {
                 'about': {

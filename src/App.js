@@ -36,13 +36,19 @@ class App extends Component {
      */
     dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
 
-      const data = dbGetSnapshotData({ snapshot, singleData: true });
       const { screens } = this.state;
 
-      if (data) {
-        screens[3].sections[0].items[0].formData = {...data};
+      dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
+
+        if(data) {
+          screens[3].sections[0].items[0].formData = {...data};
+        } else {
+          screens[3].sections[0].items[0].formData = {...tempData.screens[3].sections[0].items[0].formData};
+        }
+
         this.setState({ screens });
-      }
+
+      });
 
     }); // [end] dbGetNode
 
@@ -53,13 +59,19 @@ class App extends Component {
      */
     dbGetNode(`site-info/brand`).on('value', (snapshot) => {
 
-      const data = dbGetSnapshotData({ snapshot, singleData: true });
       const { screens } = this.state;
 
-      if (data) {
-        screens[3].sections[0].items[1].formData = {...data};
+      dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
+
+        if(data) {
+          screens[3].sections[0].items[1].formData = {...data};
+        } else {
+          screens[3].sections[0].items[1].formData = {...tempData.screens[3].sections[0].items[1].formData};
+        }
+
         this.setState({ screens });
-      }
+
+      });
 
     }); // [end] dbGetNode
 
