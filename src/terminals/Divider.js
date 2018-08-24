@@ -108,23 +108,25 @@ const HomeFocus = () => {
 };
 const HomeContent = () => {
   return (
-    <GetData
-      url={'products/product'}
-    >
-      {
-        (data) => (
-          // console.log('**----data=', data)
-          <ListComponent
-            data={data}
-            Component={
-              (product) => (
-                <div>...{product.title}</div>
-              )
-            }
-          />
-        )
-      }
-    </GetData>
+    <div className="container">
+      <GetData
+        url={'products/product'}
+      >
+        {
+          (data) => (
+            // console.log('**----data=', data)
+            <ListComponent
+              data={data}
+              Component={
+                (product) => (
+                  <div className="product">...{product.title}</div>
+                )
+              }
+            />
+          )
+        }
+      </GetData>
+    </div>
   );
 };
 
