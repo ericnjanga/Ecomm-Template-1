@@ -1,0 +1,26 @@
+/**
+ * LAYOUTS
+ * Every custom layouts of the application
+*/
+
+
+.Et1 .screen.home,
+.Et1 .screen.single {
+  flex-direction: column;
+} 
+
+
+/**
+ * Cause child columns (.col) to be wrapped and create multiple rows of elements
+*/
+.row.multi-rows > .col {
+  margin-bottom: 30px;
+  min-width: 280px;
+  max-width: 280px;
+}
+
+
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}

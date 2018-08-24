@@ -152,7 +152,7 @@ class App extends Component {
           data={this.state.screens}
           Component={
             (screen)=> (
-              <Box className={`screen ${screen.name}`}>
+              <Box className={`screen ${screen.name} overflow-y-scroll`}>
                 <TopNavigation />
                 {/*----------------------------*/}
                 {/*--- Each view (or screen ---*/}

@@ -33,11 +33,13 @@ body {
 }
 
 
+@import 'css/layouts.css';
 @import 'css/product.css';
 @import 'css/auth.css';
 @import 'css/home.css';
 @import 'css/single.css';
 @import 'css/admin.css';
+@import 'css/theme.css';
 
 
 

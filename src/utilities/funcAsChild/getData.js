@@ -49,9 +49,9 @@ class GetData extends React.Component {
 
     // Undefined data will be handled outside
     return (
-      <div style={{ position: 'relative'}}>
+      <React.Fragment>
         { this.props.children(this.state.data) }
-      </div>
+      </React.Fragment>
     );
   }
 }
