@@ -1,8 +1,45 @@
+import { activeLang } from './basics';
 
-
-export const textCopy = {
+export const appTextCopy = {
   'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
+
+  en: {
+    auth: {
+      title: 'Welcome',
+      paragraph: '[en] Veuillez entrer votre contact pour que nous puissions vous contacter',
+      submit: 'Enter the site',
+    },
+    form: {
+      email: 'Email',
+      emailPlaceholder: 'Your@rmail.com',
+      password: 'Password',
+      phone: 'Phone',
+      phonePlaceholder: '123456789',
+      remember: 'Remember',
+      rememberLabel: '***Remember',
+
+    },
+  },
+  fr: {
+    auth: {
+      title: 'Bienvenue',
+      paragraph: 'Veuillez entrer votre contact pour que nous puissions vous contacter',
+      submit: 'Acceder au site',
+    },
+    form: {
+      email: '[fr] Email',
+      emailPlaceholder: 'votre@rmail.com',
+      password: 'Mot de passe',
+      phone: 'Téléphone',
+      phonePlaceholder: '123456789',
+      remember: '[fr] Remember',
+      rememberLabel: '[fr] ***Remember',
+    },
+  },  
 };
+
+export const textCopy = {...appTextCopy[activeLang]};
+
 
 
 export const brandSetting = {
@@ -26,6 +63,13 @@ export const tempData = {
       active: true,
       info1: 'info1',
       info2: 'info2',
+      dividers: [
+        {
+          id: 0,
+          name: 'content',
+          active: true,
+        }
+      ],
     }, // auth
     {
       id: 1,

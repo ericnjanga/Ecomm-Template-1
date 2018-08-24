@@ -4,10 +4,28 @@
 */
 
 
+/* .Et1 .screen.auth {
+  flex-direction: row;
+} */
+
+.Et1 .screen.auth,
 .Et1 .screen.home,
 .Et1 .screen.single {
   flex-direction: column;
 } 
+
+
+.Et1 .screen.auth .container {
+  max-width: 400px;
+  width: 100%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  position: relative;
+  top: 200px;
+}
+.Et1 .screen.auth [for="root_remember-auth"] {
+  display: none;
+}
 
 
 /**

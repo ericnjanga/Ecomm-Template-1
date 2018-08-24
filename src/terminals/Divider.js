@@ -7,6 +7,7 @@ import Box from './../utilities/comps/Box.js';
 import HomeHero from './../terminals/pageContents/HomeHero.js';
 import HomeFocus from './../terminals/pageContents/HomeFocus.js';
 import HomeContent from './../terminals/pageContents/HomeContent.js';
+import AuthContent from './../terminals/pageContents/AuthContent.js';
 
 
 
@@ -28,12 +29,15 @@ const Divider = ({
 }) => {
 
 
-  // console.log('>>>>parentName=', parentName);
-
-
   let finalComponent;
 
   switch(parentName) {
+    case 'auth':
+      if(name==='content'){
+        finalComponent = <AuthContent />;
+      }
+      break;
+
     case 'home':
       if(name==='hero'){
         finalComponent = <HomeHero />;

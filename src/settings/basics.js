@@ -22,7 +22,9 @@ export const storage = firebase.storage(); // images and ...
 // export const AdminContext = React.createContext({}); // Admin Context
 
 
-
+// Default language
+const lang = ['en', 'fr'];
+export const activeLang = lang[1];
 
 // settings
 const settings = {};
