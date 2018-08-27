@@ -8,6 +8,7 @@ export const appTextCopy = {
       title: 'Welcome',
       paragraph: '[en] Veuillez entrer votre contact pour que nous puissions vous contacter',
       submit: 'Enter the site',
+      name: 'Your name',
     },
     form: {
       email: 'Email',
@@ -25,10 +26,11 @@ export const appTextCopy = {
       title: 'Bienvenue',
       paragraph: 'Veuillez entrer votre contact pour que nous puissions vous contacter',
       submit: 'Acceder au site',
+      name: 'Votre nom',
     },
     form: {
       email: '[fr] Email',
-      emailPlaceholder: 'votre@rmail.com',
+      emailPlaceholder: 'votre@email.com',
       password: 'Mot de passe',
       phone: 'Téléphone',
       phonePlaceholder: '123456789',
