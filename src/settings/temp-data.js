@@ -11,14 +11,16 @@ export const appTextCopy = {
       name: 'Your name',
     },
     form: {
-      email: 'Email',
+      email: 'Your email',
       emailPlaceholder: 'Your@rmail.com',
-      password: 'Password',
-      phone: 'Phone',
+      phone: 'Your phone',
       phonePlaceholder: '123456789',
-      remember: 'Remember',
-      rememberLabel: '***Remember',
-
+      rememberLabel: 'Remember login',
+      errors: {
+        minLength: 'should NOT be shorter than 3 characters',
+        email: 'Please enter an email like: your@email.something',
+        phone: 'Please enter a phone number like: 123456789',
+      },
     },
   },
   fr: {
@@ -29,13 +31,16 @@ export const appTextCopy = {
       name: 'Votre nom',
     },
     form: {
-      email: '[fr] Email',
+      email: 'Votre mail',
       emailPlaceholder: 'votre@email.com',
-      password: 'Mot de passe',
-      phone: 'Téléphone',
+      phone: 'Votre numero téléphonique',
       phonePlaceholder: '123456789',
-      remember: '[fr] Remember',
-      rememberLabel: '[fr] ***Remember',
+      rememberLabel: 'Sauvegarder les détails',
+      errors: {
+        minLength: 'Ne devrait PAS être en dessous de 3 charactères',
+        email: 'Veuillez saisir une addresse email du genre: votre@email.qqchose',
+        phone: 'Veuillez saisir un numero téléphonique du genre: 123456789',
+      },
     },
   },  
 };

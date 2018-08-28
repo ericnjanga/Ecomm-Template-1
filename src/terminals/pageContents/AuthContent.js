@@ -1,49 +1,9 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import { textCopy } from './../../settings/temp-data.js';
+import { authForm } from './../../settings/forms/authForm.js';
 
-
-const schema = {
-  type: 'object',
-  properties: {
-    'name': { type: 'string', title: textCopy.auth.name },
-    'email': { type: 'string', title: textCopy.form.email },
-    'telephone': { type: 'string', title: textCopy.form.phone },
-    'remember-auth' : {
-      type: "array",
-      minItems: 1,
-      title: textCopy.form.rememberLabel,
-      items: {
-        type: 'string',
-        enum: [textCopy.form.remember],
-      },
-      uniqueItems: true,
-    },
-  },
-};
-const formData = {
-  'name': '',
-  'email': '',
-  'telephone': '',
-  // 'remember-auth': true,
-};
-
-// remember-auth
-const uiSchema = {
-  'name': {
-    'ui:placeholder': textCopy.auth.name,
-  },
-  'email': {
-    'ui:placeholder': textCopy.form.emailPlaceholder,
-  },
-  'telephone': {
-    'ui:placeholder': textCopy.form.phonePlaceholder,
-  },
-  'remember-auth': {
-    'ui:widget': 'checkboxes',
-  },
-};
-
+      
 
 
 
@@ -52,12 +12,12 @@ const AuthContent = ({
 }) => {
   return (
     <div className="container">
-      <h2>{textCopy.auth.title}</h2>
-      <p>{textCopy.auth.paragraph}</p>
       <Form
-        schema={schema}
-        uiSchema={uiSchema}
-        formData={formData}
+        // liveValidate
+        noHtml5Validate
+        {...authForm.data}
+        transformErrors={authForm.transformErrors}
+        validate={authForm.validate}
         onSubmit={(event)=>handleLogin({
           event: event,
           nodeRoot: 'users'
