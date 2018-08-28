@@ -7,26 +7,30 @@
  * - settings
  */
 
+import React from 'react';
 import firebase, { firebaseConfig } from './firebase-configs';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig.dev);
 
+// Application prefix
+export const APP_PREFIX = 'Et1';
+
 // Get Firebase references
-export const provider = new firebase.auth.GoogleAuthProvider(); // provider
-export const database = firebase.database(); // database
-export const auth = firebase.auth(); // auth
-export const storage = firebase.storage(); // images and ...
+export const PROVIDER = new firebase.auth.GoogleAuthProvider(); // provider
+export const DATABASE = firebase.database(); // database
+export const AUTH = firebase.auth(); // auth
+export const STORAGE = firebase.storage(); // images and ...
 
-
-// export const AdminContext = React.createContext({}); // Admin Context
+// Global context
+export const GlobalContext = React.createContext({}); // Global Context
 
 
 // Default language
-const lang = ['en', 'fr'];
-export const activeLang = lang[1];
+const LANG = ['en', 'fr'];
+export const ACTIVE_LANG = LANG[1];
 
 // settings
-const settings = {};
+const SETTINGS = {};
 
-export default settings;
+export default SETTINGS;

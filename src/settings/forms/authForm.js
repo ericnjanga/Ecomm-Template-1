@@ -5,10 +5,21 @@
  * - Create
  * - Generate custom error messages
  * - Custom validate
+ * - Autofill form with data saved in localStorage 
  */
 
 import { textCopy } from './../temp-data.js';
 import { emailPattern } from './../utils.js';
+import { localStorageGetItem } from './../../utilities/func/mix1.js';
+import { APP_PREFIX } from './../basics.js';
+
+
+// Get user credentials saved in the DB
+const FORM_AUTOFILL = {
+  name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : '',
+  email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : '',
+  phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : '',
+};
 
 
 const data = {
@@ -36,9 +47,9 @@ const data = {
 
   // formData
   formData: {
-    'name': '',
-    'email': '',
-    'phone': '',
+    'name': FORM_AUTOFILL.name,
+    'email': FORM_AUTOFILL.email,
+    'phone': FORM_AUTOFILL.phone,
   },
   
   // uiSchema
@@ -72,15 +83,9 @@ let transformErrors = function(errors) {
     if (error.name === 'minLength') {
       msgErr = textCopy.form.errors[error.name];
     } else if (error.property === '.email') {
-      // console.log('>>error.name=', error.property)
       msgErr = textCopy.form.errors.email;
-      // console.log('>>=', textCopy.form.errors.email)
-      // console.log('>>error.message=', error )
     } else if (error.property === '.phone') {
-      // console.log('>>error.name=', error.property)
       msgErr = textCopy.form.errors.phone;
-      // console.log('>>=', textCopy.form.errors.email)
-      // console.log('>>error.message=', error )
     }
     error.message = msgErr;
     error.stack = `${error.property}: ${msgErr}`;

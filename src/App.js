@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
+import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { tempData } from './settings/temp-data.js';
-import TopNavigation from './terminals/TopNavigation.js';
+import AppPresentation from './AppPresentation.js';
 import { resetStateForms } from './terminals/func.js';
-import PreviewBox from './terminals/widgets/PreviewBox.js';
-import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
-import Divider from './terminals/Divider.js';
-import Box from './utilities/comps/Box.js';
-import { toggleText, toggleCollectionProperty } from './utilities/func/mix1.js';
+import { toggleCollectionProperty, localStorageSave } from './utilities/func/mix1.js';
 import './App.css';
 
 
@@ -104,13 +101,12 @@ class App extends Component {
       url:`${nodeRoot}/${nodeDir1}/`,
       record: { ...event.formData },
       isSingleRecord,
-      isResolved: nodeRoot,
     });
     
     // Reset state after data is submitted
     dataSubmitted.then((data)=> {
 
-      resetStateForms.call(this, data);
+      resetStateForms.call(this, 'presets');
 
     });
 
@@ -120,26 +116,21 @@ class App extends Component {
   /**
    * Handle data submission from admin to the database
    * ---------
-   * 1) If "auth crendentials" are in local storage, insert them in "formData"
-   * 2) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
-   * 3) Save DB "auth crendentials" in user object
+   * 1) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
+   * 2) Save DB "auth crendentials" in user object
    * 3) If "remember" is checked, save "auth crendentials" in local storage
-   * 4) Clear form 
+   * 5) Clear form 
    * @param {*} param0 
    */
   handleUserLogin({ event, nodeRoot }) {
 
-    console.log('user login', event);
-    let newUser = event.formData;
+    let newUser = event.formData; // newly processed user data
+    let userInDB;       // user in database
+    let dataSubmitted;  // record submitted to DB
 
-    // 2) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
-    // ------------------
     dbGetNode(`users`).once('value', (snapshot) => {
 
       dbGetSnapshotData({ snapshot }).then((usersCollection) => {
-
-        let userInDB;       // user in database
-        let dataSubmitted;  // record submitted to DB
 
         // Find-out if this user exist in the DB
         if (usersCollection) {
@@ -149,7 +140,10 @@ class App extends Component {
           });
 
         }
-        
+
+
+        // 1) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
+        // ------------------
         // [Create new record]:
         // (This "new user doesn't exist" or "there is no users at all")
         if (!usersCollection || (userInDB && !userInDB.length)){
@@ -157,7 +151,6 @@ class App extends Component {
           dataSubmitted = dbSaveRecord({
             url:`${nodeRoot}/`,
             record: { ...newUser },
-            isResolved: newUser,
           });
 
         } // [Create new record]
@@ -173,23 +166,28 @@ class App extends Component {
 
         } // [Create new record]
 
-        // Reset state after data is submitted
-        dataSubmitted.then((data)=> {
 
-          console.log('data has been submitted =', data);
-          // resetStateForms.call(this, data);
+        // 2) Save DB "auth crendentials" in user object
+        // 3) If "remember" is checked, save "auth crendentials" in local storage
+        // ------------------
+        dataSubmitted.then((user)=> {
+
+          this.setState({ user });
+          if (user['remember-auth']) {
+
+            localStorageSave({ 
+              prefix:`${APP_PREFIX}-`,
+              collection: Object.entries(user),
+            });
+          }
 
         });
-
         
-
       });
 
     }); // [end] dbGetNode
 
-
-
-  } //...
+  } // handleUserLogin
 
   
   /**
@@ -234,53 +232,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="Et1">
-        {/*------------------------*/}
-        {/*--- application root ---*/}
-        {/*------------------------*/}
-        <ListActiveComponent
-          data={this.state.screens}
-          Component={
-            (screen)=> (
-              <Box className={`screen ${screen.name} overflow-y-scroll`}>
-                <TopNavigation />
-                {/*----------------------------*/}
-                {/*--- Each view (or screen ---*/}
-                {/*----------------------------*/}
-                <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{screen.title}</p>
-                <PreviewBox />
-                {
-                  screen.dividers && 
-                  <ListActiveComponent
-                    data={screen.dividers}
-                    Component={
-                      (divider)=> (
-                        <React.Fragment>
-                          {/*--------------------*/}
-                          {/*--- Each divider ---*/}
-                          {/*--------------------*/}
-                          <Divider
-                            parentName={screen.name}
-                            sections={screen.sections ? [...screen.sections] : []}
-                            {...divider}
-                            toggleSidebar={this.handleToggleSidebar}
-                            togglePages={this.handleAdminPageToggle}
-                            handleLogin={this.handleUserLogin}
-                            adminDataSubmit={this.handleAdminDataSubmit}
-                            className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
-                            // {...screen}
-                          />
-                          {/* <p>{item.name} - {divider.name}</p> */}
-                        </React.Fragment>
-                      )
-                    }
-                  />
-                }
-              </Box>
-            )
-          }
-        />
-      </div>
+      <AppPresentation
+        {...this.state}
+        handleToggleSidebar={this.handleToggleSidebar}
+        handleAdminPageToggle={this.handleAdminPageToggle}
+        handleUserLogin={this.handleUserLogin}
+        handleAdminDataSubmit={this.handleAdminDataSubmit}
+      />
     );
   }
 }

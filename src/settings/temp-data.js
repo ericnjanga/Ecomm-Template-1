@@ -1,4 +1,4 @@
-import { activeLang } from './basics';
+import { ACTIVE_LANG } from './basics';
 
 export const appTextCopy = {
   'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
@@ -45,7 +45,7 @@ export const appTextCopy = {
   },  
 };
 
-export const textCopy = {...appTextCopy[activeLang]};
+export const textCopy = {...appTextCopy[ACTIVE_LANG]};
 
 
 

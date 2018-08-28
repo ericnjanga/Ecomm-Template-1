@@ -44,7 +44,7 @@ body {
 
 
 .screen.auth {
-  background: lime;
+  background: #ccc;
 }
 .screen.home {
   background: #999;

@@ -1,6 +1,6 @@
 
 
-import { database } from './../../settings/basics.js';
+import { DATABASE } from './../../settings/basics.js';
 import { textCopy } from './../../settings/temp-data.js';
 
 
@@ -60,7 +60,7 @@ export const getCompDisplayName = (WrappedComponent) => {
  */
 export const dbGetNode = (url) => {
 
-  return database.ref(`${url}`);
+  return DATABASE.ref(`${url}`);
 
 };
 
@@ -118,7 +118,7 @@ export const dbDeleteRecord = (url) => {
 
   if (deleteOk) {
 
-    database.ref(url).remove();
+    DATABASE.ref(url).remove();
 
   }
 
@@ -130,19 +130,9 @@ export const dbDeleteRecord = (url) => {
  * 
  * @param {*} url 
  */
-export const dbSaveRecord = ({ url, record, isSingleRecord, isResolved }) => {
+export const dbSaveRecord = ({ url, record, isSingleRecord }) => {
 
-  // let deleteOk = window.confirm(textCopy['confirm delete']);
-
-  // if (deleteOk) {
-
-  //   database.ref(url).remove();
-
-  // }
-
-
-
-  const listRef = database.ref(url);
+  const listRef = DATABASE.ref(url);
   record.createdOn = Date.now();
 
   return new Promise((resolve) => {
@@ -168,7 +158,7 @@ export const dbSaveRecord = ({ url, record, isSingleRecord, isResolved }) => {
         // The write failed...
       } else {
         // Data saved successfully!
-        resolve(isResolved);
+        resolve(record);
       }
     });
 
@@ -188,15 +178,51 @@ export const dbUpdateRecord = ({ url, record }) => {
     data[url] = {...record};
     data[url].createdOn = Date.now();
     console.log('..updating record=', record);
-    database.ref().update(data, function(error) {
+    DATABASE.ref().update(data, function(error) {
       if (error) {
         // The write failed...
       } else {
         // Data saved successfully!
-        resolve(record);
+        resolve(data[url]);
       }
     }); 
 
   });
 
 };
+
+
+/**
+ * Save data in localStorage
+ * @param {*} collection (2 dimensions array, each cell containing a array [key, val])
+ * (Array [Array [key, val], Array [key, val], Array [key, val]]) 
+ */
+export const localStorageSave = ({
+  prefix,
+  collection,
+}) => {
+
+  for( let i=0, l=collection.length ; i < l ; i++) {
+    const collItem = collection[i];
+    localStorage.setItem(`${prefix}${String(collItem[0])}`, collItem[1]);
+  }
+
+};
+
+
+/**
+ * Save data in localStorage
+ * @param {*} collection (2 dimensions array, each cell containing a array [key, val])
+ * (Array [Array [key, val], Array [key, val], Array [key, val]]) 
+ */
+export const localStorageGetItem = ({
+  prefix,
+  name,
+}) => {
+
+  return localStorage.getItem(`${prefix}${name}`);
+
+};
+
+
+
