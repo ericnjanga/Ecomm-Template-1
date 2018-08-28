@@ -6,6 +6,7 @@ import { textCopy } from './../../settings/temp-data.js';
 const schema = {
   type: 'object',
   properties: {
+    'name': { type: 'string', title: textCopy.auth.name },
     'email': { type: 'string', title: textCopy.form.email },
     'telephone': { type: 'string', title: textCopy.form.phone },
     'remember-auth' : {
@@ -27,6 +28,9 @@ const formData = {
 
 // remember-auth
 const uiSchema = {
+  'name': {
+    'ui:placeholder': textCopy.auth.name,
+  },
   'email': {
     'ui:placeholder': textCopy.form.emailPlaceholder,
   },
@@ -41,7 +45,9 @@ const uiSchema = {
 
 
 
-const AuthContent = () => {
+const AuthContent = ({
+  handleLogin,
+}) => {
   return (
     <div className="container">
       <h2>{textCopy.auth.title}</h2>
@@ -50,10 +56,13 @@ const AuthContent = () => {
         schema={schema}
         uiSchema={uiSchema}
         formData={formData}
-        // onSubmit={onSubmit}
+        onSubmit={handleLogin}
       >
         <div>
-          <button className="btn btn-primary" type="submit">{textCopy.auth.submit}</button>
+          <button
+            className="btn btn-primary"
+            type="submit"
+          >{textCopy.auth.submit}</button>
         </div>
       </Form>
     </div>

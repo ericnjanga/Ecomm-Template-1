@@ -23,6 +23,7 @@ const Divider = ({
   sections,
   togglePages,
   toggleSidebar,
+  handleLogin,
   adminDataSubmit,
   className,
   isOpen,
@@ -34,7 +35,7 @@ const Divider = ({
   switch(parentName) {
     case 'auth':
       if(name==='content'){
-        finalComponent = <AuthContent />;
+        finalComponent = <AuthContent handleLogin={handleLogin} />;
       }
       break;
 

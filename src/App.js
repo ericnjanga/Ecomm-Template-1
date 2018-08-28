@@ -19,6 +19,7 @@ class App extends Component {
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
+    this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
   }
 
@@ -113,6 +114,31 @@ class App extends Component {
 
   } //...
 
+
+  /**
+   * Handle data submission from admin to the database
+   * @param {*} param0 
+   */
+  handleUserLogin({ event, nodeRoot, nodeDir1, isSingleRecord }) {
+
+    console.log('user login')
+
+    // const dataSubmitted = dbSaveRecord({
+    //   url:`${nodeRoot}/${nodeDir1}/`,
+    //   record: { ...event.formData },
+    //   isSingleRecord,
+    //   isResolved: nodeRoot,
+    // });
+    
+    // // Reset state after data is submitted
+    // dataSubmitted.then((data)=> {
+
+    //   resetStateForms.call(this, data);
+
+    // });
+
+  } //...
+
   
   /**
    * Toggle 'active' property of state page collections
@@ -186,6 +212,7 @@ class App extends Component {
                             {...divider}
                             toggleSidebar={this.handleToggleSidebar}
                             togglePages={this.handleAdminPageToggle}
+                            handleLogin={this.handleUserLogin}
                             adminDataSubmit={this.handleAdminDataSubmit}
                             className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                             // {...screen}
