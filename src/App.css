@@ -12,7 +12,7 @@
 /* Bootstrap framework */
 @import 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css';
 /* Fonts in use */
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -124,4 +124,10 @@ ul {
   padding: 10px;
   /* height: 40px; */
   background-color: #333;
+}
+.PreviewBox {
+  font-size: 0.7rem;
+}
+.PreviewBox p {
+  margin: 0;
 }

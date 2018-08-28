@@ -3,6 +3,7 @@ import { dbGetNode, dbGetSnapshotData, dbSaveRecord } from './utilities/func/mix
 import { tempData } from './settings/temp-data.js';
 import TopNavigation from './terminals/TopNavigation.js';
 import { resetStateForms } from './terminals/func.js';
+import PreviewBox from './terminals/widgets/PreviewBox.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
 import Box from './utilities/comps/Box.js';
@@ -119,7 +120,7 @@ class App extends Component {
    * Handle data submission from admin to the database
    * ---------
    * 1) If "auth crendentials" are in local storage, insert them in "formData"
-   * 2) Register user in DB if it wasn't the case before. Otherwise, update "auth crendentials" in DB and move on
+   * 2) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
    * 3) Save DB "auth crendentials" in user object
    * 3) If "remember" is checked, save "auth crendentials" in local storage
    * 4) Clear form 
@@ -202,6 +203,7 @@ class App extends Component {
                 {/*--- Each view (or screen ---*/}
                 {/*----------------------------*/}
                 <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{screen.title}</p>
+                <PreviewBox />
                 {
                   screen.dividers && 
                   <ListActiveComponent
