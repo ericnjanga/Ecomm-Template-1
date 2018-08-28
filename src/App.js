@@ -117,6 +117,12 @@ class App extends Component {
 
   /**
    * Handle data submission from admin to the database
+   * ---------
+   * 1) If "auth crendentials" are in local storage, insert them in "formData"
+   * 2) Register user in DB if it wasn't the case before. Otherwise, update "auth crendentials" in DB and move on
+   * 3) Save DB "auth crendentials" in user object
+   * 3) If "remember" is checked, save "auth crendentials" in local storage
+   * 4) Clear form 
    * @param {*} param0 
    */
   handleUserLogin({ event, nodeRoot }) {
