@@ -21,6 +21,16 @@ const AppPresentation = ({
       {
         (globals) => (
           <div className="Et1">
+            <h1>1) ... setup routes</h1>
+            <h1>1-b) ... display toast after user has loggedIn (transform PreviewBox) (x)</h1>
+            <ul>
+              <li>unhauth: root/login</li> 
+              <li>home (default): root/items</li>
+              <li>item single: root/items/itemID</li>
+              <li>admin: root/admin</li>
+            </ul>
+            <h1>2) ... hide login for now</h1>
+            <h1>3) ... trigger modal only when user navites to root/items/itemID</h1>
             {/*------------------------*/}
             {/*--- application root ---*/}
             {/*------------------------*/}
