@@ -22,8 +22,10 @@ const schema = {
   },
 };
 const formData = {
+  'name': '',
   'email': '',
   'telephone': '',
+  // 'remember-auth': true,
 };
 
 // remember-auth
@@ -56,7 +58,10 @@ const AuthContent = ({
         schema={schema}
         uiSchema={uiSchema}
         formData={formData}
-        onSubmit={handleLogin}
+        onSubmit={(event)=>handleLogin({
+          event: event,
+          nodeRoot: 'users'
+        })}
       >
         <div>
           <button

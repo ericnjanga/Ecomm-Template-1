@@ -119,23 +119,23 @@ class App extends Component {
    * Handle data submission from admin to the database
    * @param {*} param0 
    */
-  handleUserLogin({ event, nodeRoot, nodeDir1, isSingleRecord }) {
+  handleUserLogin({ event, nodeRoot }) {
 
-    console.log('user login')
+    console.log('user login', event);
 
-    // const dataSubmitted = dbSaveRecord({
-    //   url:`${nodeRoot}/${nodeDir1}/`,
-    //   record: { ...event.formData },
-    //   isSingleRecord,
-    //   isResolved: nodeRoot,
-    // });
+    const dataSubmitted = dbSaveRecord({
+      url:`${nodeRoot}/`,
+      record: { ...event.formData },
+      isResolved: nodeRoot,
+    });
     
-    // // Reset state after data is submitted
-    // dataSubmitted.then((data)=> {
+    // Reset state after data is submitted
+    dataSubmitted.then((data)=> {
 
-    //   resetStateForms.call(this, data);
+      console.log('data=', data);
+      // resetStateForms.call(this, data);
 
-    // });
+    });
 
   } //...
 
