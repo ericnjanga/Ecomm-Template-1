@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { dbGetNode, dbGetSnapshotData, dbSaveRecord } from './utilities/func/mix1.js';
+import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
 import { tempData } from './settings/temp-data.js';
 import TopNavigation from './terminals/TopNavigation.js';
 import { resetStateForms } from './terminals/func.js';
@@ -86,10 +86,11 @@ class App extends Component {
    * @param {*} itemId 
    */
   handleToggleSidebar(data, itemId) {
-    console.log('---*****');
+  
     const {screens} = this.state;
     screens[3].dividers[0].isOpen = !screens[3].dividers[0].isOpen;
     this.setState({ screens });
+  
   }
 
 
@@ -129,20 +130,64 @@ class App extends Component {
   handleUserLogin({ event, nodeRoot }) {
 
     console.log('user login', event);
+    let newUser = event.formData;
 
-    const dataSubmitted = dbSaveRecord({
-      url:`${nodeRoot}/`,
-      record: { ...event.formData },
-      isResolved: nodeRoot,
-    });
-    
-    // Reset state after data is submitted
-    dataSubmitted.then((data)=> {
+    // 2) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
+    // ------------------
+    dbGetNode(`users`).once('value', (snapshot) => {
 
-      console.log('data=', data);
-      // resetStateForms.call(this, data);
+      dbGetSnapshotData({ snapshot }).then((usersCollection) => {
 
-    });
+        let userInDB;       // user in database
+        let dataSubmitted;  // record submitted to DB
+
+        // Find-out if this user exist in the DB
+        if (usersCollection) {
+
+          userInDB = usersCollection.filter(currUser => {
+            return (currUser.name===newUser.name && currUser.email===newUser.email && currUser.phone===newUser.phone);
+          });
+
+        }
+        
+        // [Create new record]:
+        // (This "new user doesn't exist" or "there is no users at all")
+        if (!usersCollection || (userInDB && !userInDB.length)){
+
+          dataSubmitted = dbSaveRecord({
+            url:`${nodeRoot}/`,
+            record: { ...newUser },
+            isResolved: newUser,
+          });
+
+        } // [Create new record]
+        
+        // [Update current record]:
+        // (user exists in DB)
+        if (userInDB && userInDB.length) {
+
+          dataSubmitted = dbUpdateRecord({
+            url: `users/${userInDB[0].id}`,
+            record: { ...userInDB[0] },
+          });
+
+        } // [Create new record]
+
+        // Reset state after data is submitted
+        dataSubmitted.then((data)=> {
+
+          console.log('data has been submitted =', data);
+          // resetStateForms.call(this, data);
+
+        });
+
+        
+
+      });
+
+    }); // [end] dbGetNode
+
+
 
   } //...
 

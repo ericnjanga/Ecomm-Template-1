@@ -163,12 +163,40 @@ export const dbSaveRecord = ({ url, record, isSingleRecord, isResolved }) => {
     }
 
     //...
-    listRef.update(updates);
-    resolve(isResolved)
+    listRef.update(updates, function(error) {
+      if (error) {
+        // The write failed...
+      } else {
+        // Data saved successfully!
+        resolve(isResolved);
+      }
+    });
 
   });// [end] promise
 
 };
 
 
-  
+
+export const dbUpdateRecord = ({ url, record }) => {
+
+  return new Promise((resolve) => {
+
+    console.log('url=', url);
+
+    let data = {};
+    data[url] = {...record};
+    data[url].createdOn = Date.now();
+    console.log('..updating record=', record);
+    database.ref().update(data, function(error) {
+      if (error) {
+        // The write failed...
+      } else {
+        // Data saved successfully!
+        resolve(record);
+      }
+    }); 
+
+  });
+
+};
