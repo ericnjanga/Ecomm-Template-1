@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       screens: [...tempData.screens],
+      globals: {},
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
@@ -172,7 +173,9 @@ class App extends Component {
         // ------------------
         dataSubmitted.then((user)=> {
 
-          this.setState({ user });
+          const { globals } = this.state;
+          globals.user = { ...user };
+          this.setState({ globals });
           if (user['remember-auth']) {
 
             localStorageSave({ 
@@ -232,13 +235,15 @@ class App extends Component {
 
   render() {
     return (
-      <AppPresentation
-        {...this.state}
-        handleToggleSidebar={this.handleToggleSidebar}
-        handleAdminPageToggle={this.handleAdminPageToggle}
-        handleUserLogin={this.handleUserLogin}
-        handleAdminDataSubmit={this.handleAdminDataSubmit}
-      />
+      <GlobalContext.Provider value={{...this.state.globals}}>
+        <AppPresentation
+          {...this.state}
+          handleToggleSidebar={this.handleToggleSidebar}
+          handleAdminPageToggle={this.handleAdminPageToggle}
+          handleUserLogin={this.handleUserLogin}
+          handleAdminDataSubmit={this.handleAdminDataSubmit}
+        />
+      </GlobalContext.Provider>
     );
   }
 }

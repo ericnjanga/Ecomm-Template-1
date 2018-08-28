@@ -6,12 +6,14 @@ const PreviewBox = ({
   email,
   phone,
 }) => {
+
   return (
     <div className="PreviewBox">
       <p>Bienvenue <b>{name}</b></p>
       <p>[Logo] vous contactera bientot au <b>{email}</b> ou <b>{phone}</b></p>
     </div>
   );
+
 };
 
 
@@ -19,13 +21,13 @@ const PreviewBox = ({
 PreviewBox.propTypes = {
   name: PropTypes.string,
   email: PropTypes.string,
-  phone: PropTypes.string,
+  phone: PropTypes.number,
 };
 
 PreviewBox.defaultProps = {
   name: 'username',
   email: 'useremail',
-  phone: 'userphone',
+  phone: 0,
 };
 
 
