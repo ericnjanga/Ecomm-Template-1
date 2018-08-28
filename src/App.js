@@ -23,6 +23,13 @@ class App extends Component {
   }
 
 
+  /**
+   * APP INIT
+   * ------------------------
+   * get Admin saved data (admin info, brand, ...)
+   * @param {*} data 
+   * @param {*} itemId 
+   */
   componentDidMount() {
 
     //syncWithDatabase
@@ -79,6 +86,8 @@ class App extends Component {
 
 
   /**
+   * LOGIN SYSTEM
+   * ------------------------
    * Toggle sibebar visibility
    * @param {*} data 
    * @param {*} itemId 
@@ -93,6 +102,8 @@ class App extends Component {
 
 
   /**
+   * [ADMIN] APP DATA (Admin saved data)
+   * ------------------------
    * Handle data submission from admin to the database
    * @param {*} param0 
    */
@@ -115,8 +126,8 @@ class App extends Component {
 
 
   /**
-   * Handle data submission from admin to the database
-   * ---------
+   * LOGIN SYSTEM
+   * ------------------------
    * 1) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
    * 2) Save DB "auth crendentials" in user object
    * 3) If "remember" is checked, save "auth crendentials" in local storage
@@ -194,6 +205,8 @@ class App extends Component {
 
   
   /**
+   * [ADMIN] TOGGLE PAGES VISIBILITY ON/OFF (when user switches from 1 tab to another)
+   * ------------------------
    * Toggle 'active' property of state page collections
    * - Will toggle active property of "page" or "subpage" collection
    * - In case of a subpage, use 
@@ -232,6 +245,7 @@ class App extends Component {
     // console.log(screens[3].sections)
     this.setState({ screens });
   }
+
 
   render() {
     return (
