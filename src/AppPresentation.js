@@ -10,10 +10,6 @@ import TopNavigation from './terminals/TopNavigation.js';
 import { toggleText } from './utilities/func/mix1.js';
 
 
-const Test111 = () => {
-  return <h1>Test111 on items</h1>;
-}
-
 const AppPresentation = ({
   screens,
   handleToggleSidebar,
@@ -23,78 +19,78 @@ const AppPresentation = ({
 }) => {
 
   return(
+
     <Router>
-      <GlobalContext.Consumer>
-        {
-          (globals) => (
-            <div className="Et1">
-              {/* <Route path="/items" component={Test111} /> */}
-
-              {/* Home page loads the list of items */}
-              <Redirect exact from="/" to="/items" />
-
- 
-              {/* <h1>2) ... hide login for now</h1>
-              <h1>3) ... trigger modal only when user navites to root/items/itemID</h1> */}
-              {/*------------------------*/}
-              {/*--- application root ---*/}
-              {/*------------------------*/}
-              <div>
-              <TopNavigation />
-              </div>
+      <div className="Et1">
+        {/* Home page loads the list of items */}
+        {/* <Redirect exact from="/" to="/items" /> */}
 
 
-              <ListActiveComponent
-                data={screens}
-                Component={
-                  (screen)=> (
-                    <React.Fragment>
-                      <Route path={screen.path} render={() => (
-                        <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
-                          {/*----------------------------*/}
-                          {/*--- Each view (or screen ---*/}
-                          {/*----------------------------*/}
-                          <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{screen.title}</p>
-                          <PreviewBox
-                            {...globals.user}
-                          />
-                          {
-                            screen.dividers && 
-                            <ListActiveComponent
-                              data={screen.dividers}
-                              Component={
-                                (divider)=> (
-                                  <React.Fragment>
-                                    {/*--------------------*/}
-                                    {/*--- Each divider ---*/}
-                                    {/*--------------------*/}
-                                    <Divider
-                                      parentName={screen.name}
-                                      sections={screen.sections ? [...screen.sections] : []}
-                                      {...divider}
-                                      toggleSidebar={handleToggleSidebar}
-                                      togglePages={handleAdminPageToggle}
-                                      handleLogin={handleUserLogin}
-                                      adminDataSubmit={handleAdminDataSubmit}
-                                      className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
-                                      // {...screen}
-                                    />
-                                    {/* <p>{item.name} - {divider.name}</p> */}
-                                  </React.Fragment>
-                                )
-                              }
-                            />
-                          }
-                        </Box>
-                      )} />
-                    </React.Fragment>
-                  )
-                }
-              />
-            </div>
-          )
-        }
-      </GlobalContext.Consumer>
+        {/* <h1>2) ... hide login for now</h1>
+        <h1>3) ... trigger modal only when user navites to root/items/itemID</h1> */}
+        {/*------------------------*/}
+        {/*--- application root ---*/}
+        {/*------------------------*/}
+        
+        <TopNavigation />
+
+
+        <ListActiveComponent
+          data={screens}
+          Component={
+            (screen)=> (
+              <React.Fragment>
+                <Route path={screen.path} render={(props) => (
+                  <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
+                    {/*----------------------------*/}
+                    {/*--- Each view (or screen ---*/}
+                    {/*----------------------------*/}
+                    <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{screen.title}</p>
+
+                    <GlobalContext.Consumer>
+                      {
+                        (globals) => (
+                        <PreviewBox
+                          {...globals.user}
+                        />)
+                      }
+                    </GlobalContext.Consumer>
+                    
+
+                    {
+                      screen.dividers && 
+                      <ListActiveComponent
+                        data={screen.dividers}
+                        Component={
+                          (divider)=> (
+                            <React.Fragment>
+                              {/*--------------------*/}
+                              {/*--- Each divider ---*/}
+                              {/*--------------------*/}
+                              <Divider
+                                parentName={screen.name}
+                                sections={screen.sections ? [...screen.sections] : []}
+                                {...divider}
+                                toggleSidebar={handleToggleSidebar}
+                                togglePages={handleAdminPageToggle}
+                                handleLogin={handleUserLogin}
+                                adminDataSubmit={handleAdminDataSubmit}
+                                className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
+                                // {...screen}
+                              />
+                              {/* <p>{item.name} - {divider.name}</p> */}
+                            </React.Fragment>
+                          )
+                        }
+                      />
+                    }
+                  </Box>
+                )} />
+              </React.Fragment>
+            )
+          }
+        />
+      </div>  
     </Router>
   );
 

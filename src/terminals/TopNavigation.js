@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import BrandLogo from './BrandLogo.js';
 
 const TopNavigation = () => {
@@ -10,13 +10,13 @@ const TopNavigation = () => {
   
       <ul className="list-inline">
         <li className="list-inline-item">
-          <Link to={`/`}>Home</Link>
+          <NavLink to={`/items`}>Home</NavLink>
         </li>
         <li className="list-inline-item">
-          <Link to={`/`}>Single</Link>
+          <NavLink to={`/`}>Single</NavLink>
         </li>
         <li className="list-inline-item">
-          <Link to={`/admin`}>Admin</Link>
+          <NavLink to={`/admin`}>Admin</NavLink>
         </li>
       </ul>
     </div>
