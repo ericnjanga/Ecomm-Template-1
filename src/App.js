@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
-import { tempData } from './settings/app-structure.js';
+import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
 import { resetStateForms } from './terminals/func.js';
 import { toggleCollectionProperty, localStorageSave } from './utilities/func/mix1.js';
@@ -13,7 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      screens: [...tempData.screens],
+      screens: [...appStructure.screens],
       globals: {},
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
@@ -50,7 +50,7 @@ class App extends Component {
         if(data) {
           screens[2].sections[0].items[0].formData = {...data};
         } else {
-          screens[2].sections[0].items[0].formData = {...tempData.screens[3].sections[0].items[0].formData};
+          screens[2].sections[0].items[0].formData = {...appStructure.screens[3].sections[0].items[0].formData};
         }
 
         this.setState({ screens });
@@ -73,7 +73,7 @@ class App extends Component {
         if(data) {
           screens[2].sections[0].items[1].formData = {...data};
         } else {
-          screens[2].sections[0].items[1].formData = {...tempData.screens[3].sections[0].items[1].formData};
+          screens[2].sections[0].items[1].formData = {...appStructure.screens[3].sections[0].items[1].formData};
         }
 
         this.setState({ screens });

@@ -5,7 +5,7 @@ export const brandSetting = {
   title : 'Brand Name ...',
 };
 
-export const tempData = {
+export const appStructure = {
 
   /**
    * App structure
