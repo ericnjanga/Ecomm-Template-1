@@ -26,10 +26,6 @@ export const STORAGE = firebase.storage(); // images and ...
 export const GlobalContext = React.createContext({}); // Global Context
 
 
-// Default language
-const LANG = ['en', 'fr'];
-export const ACTIVE_LANG = LANG[1];
-
 // settings
 const SETTINGS = {};
 

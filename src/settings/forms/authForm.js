@@ -8,7 +8,7 @@
  * - Autofill form with data saved in localStorage 
  */
 
-import { textCopy } from './../temp-data.js';
+import { TEXT_COPY } from './../language-and-text.js';
 import { emailPattern } from './../utils.js';
 import { localStorageGetItem } from './../../utilities/func/mix1.js';
 import { APP_PREFIX } from './../basics.js';
@@ -25,8 +25,8 @@ const FORM_AUTOFILL = {
 const data = {
   // schema ...
   schema: {
-    title: textCopy.auth.title, // form title
-    description: textCopy.auth.paragraph, // form description
+    title: TEXT_COPY.auth.title, // form title
+    description: TEXT_COPY.auth.paragraph, // form description
     type: 'object',
     required: [
       'name',
@@ -34,12 +34,12 @@ const data = {
       'phone',
     ],
     properties: {
-      'name': { type: 'string', title: textCopy.auth.name, 'minLength': 3, },
-      'email': { type: 'string', title: textCopy.form.email, },
-      'phone': { type: 'number', title: textCopy.form.phone },
+      'name': { type: 'string', title: TEXT_COPY.auth.name, 'minLength': 3, },
+      'email': { type: 'string', title: TEXT_COPY.form.email, },
+      'phone': { type: 'number', title: TEXT_COPY.form.phone },
       'remember-auth' : {
         type: "boolean",
-        title: textCopy.form.rememberLabel,
+        title: TEXT_COPY.form.rememberLabel,
         default: true,
       },
     },
@@ -55,19 +55,19 @@ const data = {
   // uiSchema
   uiSchema: {
     'name': {
-      'ui:placeholder': textCopy.auth.name,
+      'ui:placeholder': TEXT_COPY.auth.name,
     },
     'email': {
       'ui:options': {
         inputType: 'email',
       },
-      'ui:placeholder': textCopy.form.emailPlaceholder,
+      'ui:placeholder': TEXT_COPY.form.emailPlaceholder,
     },
     'phone': {
       'ui:options': {
         inputType: 'tel',
       },
-      'ui:placeholder': textCopy.form.phonePlaceholder,
+      'ui:placeholder': TEXT_COPY.form.phonePlaceholder,
     },
   },
 };
@@ -81,11 +81,11 @@ let transformErrors = function(errors) {
   return errors.map(error => {
     let msgErr = '';
     if (error.name === 'minLength') {
-      msgErr = textCopy.form.errors[error.name];
+      msgErr = TEXT_COPY.form.errors[error.name];
     } else if (error.property === '.email') {
-      msgErr = textCopy.form.errors.email;
+      msgErr = TEXT_COPY.form.errors.email;
     } else if (error.property === '.phone') {
-      msgErr = textCopy.form.errors.phone;
+      msgErr = TEXT_COPY.form.errors.phone;
     }
     error.message = msgErr;
     error.stack = `${error.property}: ${msgErr}`;
@@ -101,7 +101,7 @@ let transformErrors = function(errors) {
  */
 let validate = function (formData, errors) {
   if (!emailPattern.test(formData.email)) {
-    errors.email.addError(textCopy.form.errors.email);
+    errors.email.addError(TEXT_COPY.form.errors.email);
   }
   return errors;
 }

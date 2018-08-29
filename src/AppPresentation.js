@@ -22,14 +22,8 @@ const AppPresentation = ({
   return(
     <Router>
       <div className="Et1">
-        {/* <h1>2) ... hide login for now</h1>
-        <h1>3) ... trigger modal only when user navites to root/items/itemID</h1> */}
-        {/*------------------------*/}
-        {/*--- application root ---*/}
-        {/*------------------------*/}
         
         <TopNavigation />
-
 
         <ListActiveComponent
           data={screens}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
-import { textCopy } from './../../settings/temp-data.js';
+import { TEXT_COPY } from './../../settings/language-and-text.js';
 import { authForm } from './../../settings/forms/authForm.js';
 
       
@@ -27,7 +27,7 @@ const AuthContent = ({
           <button
             className="btn btn-primary"
             type="submit"
-          >{textCopy.auth.submit}</button>
+          >{TEXT_COPY.auth.submit}</button>
         </div>
       </Form>
     </div>

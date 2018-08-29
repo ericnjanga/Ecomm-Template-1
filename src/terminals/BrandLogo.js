@@ -1,7 +1,7 @@
 import React from 'react';
 import GetData from './../utilities/funcAsChild/getData.js';
 import { toggleText } from './../utilities/func/mix1.js';
-import { brandSetting } from './../settings/temp-data.js';
+import { brandSetting } from './../settings/app-structure.js';
 
 const BrandLogo = ({
   className,

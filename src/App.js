@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
-import { tempData } from './settings/temp-data.js';
+import { tempData } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
 import { resetStateForms } from './terminals/func.js';
 import { toggleCollectionProperty, localStorageSave } from './utilities/func/mix1.js';

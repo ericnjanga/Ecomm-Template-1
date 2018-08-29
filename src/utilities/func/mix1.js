@@ -1,7 +1,7 @@
 
 
 import { DATABASE } from './../../settings/basics.js';
-import { textCopy } from './../../settings/temp-data.js';
+import { TEXT_COPY } from './../../settings/language-and-text.js';
 
 
 
@@ -114,7 +114,7 @@ export const dbGetSnapshotData = ({ snapshot, singleData }) => {
  */
 export const dbDeleteRecord = (url) => {
 
-  let deleteOk = window.confirm(textCopy['confirm delete']);
+  let deleteOk = window.confirm(TEXT_COPY['confirm delete']);
 
   if (deleteOk) {
 
