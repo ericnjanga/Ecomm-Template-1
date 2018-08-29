@@ -70,6 +70,7 @@ export const tempData = {
       active: true,
       info1: 'info1',
       info2: 'info2',
+      path: '/',
       dividers: [
         {
           id: 0,
@@ -85,6 +86,7 @@ export const tempData = {
       active: true,
       info1: 'info1',
       info2: 'info2',
+      path: '/items',
       dividers: [
         {
           id: 0,
@@ -133,6 +135,7 @@ export const tempData = {
       active: true,
       info1: 'info1',
       info2: 'info2',
+      path: '/admin',
       dividers: [
         {
           id: 0,
