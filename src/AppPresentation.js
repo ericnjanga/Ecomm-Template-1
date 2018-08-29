@@ -5,6 +5,7 @@ import { GlobalContext } from './settings/basics.js';
 import PreviewBox from './terminals/widgets/PreviewBox.js';
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
+import ItemDetail from './terminals/widgets/itemDetail.js';
 import Box from './utilities/comps/Box.js';
 import TopNavigation from './terminals/TopNavigation.js';
 import { toggleText } from './utilities/func/mix1.js';
@@ -19,13 +20,8 @@ const AppPresentation = ({
 }) => {
 
   return(
-
     <Router>
       <div className="Et1">
-        {/* Home page loads the list of items */}
-        {/* <Redirect exact from="/" to="/items" /> */}
-
-
         {/* <h1>2) ... hide login for now</h1>
         <h1>3) ... trigger modal only when user navites to root/items/itemID</h1> */}
         {/*------------------------*/}
@@ -39,8 +35,13 @@ const AppPresentation = ({
           data={screens}
           Component={
             (screen)=> (
-              <React.Fragment>
-                <Route path={screen.path} render={(props) => (
+              <Route path={screen.path} render={(props) => (
+                <React.Fragment>
+                  {
+                    screen.name === 'home' &&
+                    <Route path={`${screen.path}/:itemId`} component={ItemDetail}
+                    />
+                  }
                   <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
@@ -85,11 +86,15 @@ const AppPresentation = ({
                       />
                     }
                   </Box>
-                )} />
-              </React.Fragment>
+                </React.Fragment>
+              )} />
             )
           }
         />
+
+
+        {/* Home page loads the list of items */}
+        {/* <Redirect exact from="/" to="/items" /> */}
       </div>  
     </Router>
   );
