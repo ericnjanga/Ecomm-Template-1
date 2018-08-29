@@ -33,7 +33,9 @@ const AppPresentation = ({
             {/*------------------------*/}
             {/*--- application root ---*/}
             {/*------------------------*/}
-                    <TopNavigation />
+            <div>
+            <TopNavigation />
+            </div>
             <ListActiveComponent
               data={screens}
               Component={
