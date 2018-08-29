@@ -1,31 +1,44 @@
 
 
-Ecommerce Template boilerplate in ReactJS.
+Product showcasing template in ReactJS.
 
 
 ## Table of Contents
 
-- [Philosophy](#philosophy)
-  - [Login](#login)
-  - [How login works](#how-login-works)
+- [Basic Flow](#basic-flow)
+  - [Visitor flow](#visitor-flow)
+  - [Administrator flow](#administrator-flow)
 - [App tructure](#app-structure)
   - [Layout structure](#layout-structure)
   - [Text and Language](#text-and-language)
   - [Routes](#routes)
   - [Context](#context)
 - [Code tructure](#code-structure)
-  - [Terminals](#context)
+  - [Terminals](#terminals)
   - [Utilities](#utilities)
 - [App at runtime](#app-at-runtime)
   - [What happens when the app boots?](#what-happens-when-the-app-boots?)
+  - [How login works](#how-login-works)
  
 
 
 
 
-## Philosophy
+## Basic Flow
 
-How the app work and how the different components relate together
+### Visitor flow
+
+Visitor opens up the app:
+- Sees a welcome login screen (asking for contact info). This screen is transparent enough to see the products listed behind
+- Visitor provides information and have full access to products
+- Visitor clicks on a product. A modal shows up and displays the full info about the product
+
+### Administrator flow
+The admin can do everything a visitor does and has access to an admin panel where he/she can:
+- Customize the app's basic info (brand name, some text copy)
+- Manage products (create, edit, delete products)
+- Manage product's presets (information used to create products: `colors` or `make` for instance)
+- Manage visitor's information
 
 
 
@@ -34,15 +47,6 @@ How the app work and how the different components relate together
 ### Login
 
 The login panel (auth panel) is a fixed transparent panel that is visible only when the `user object` is not existant in the `global context` object (this means the user hasn't logged in).
-
-### How login works
-
-- After data submitted from the form is submitted, a query is made in firebase to search for the `user object`.
-- If found, the object  `creation date` property is updated.
-- If not found, a new record is created in the database.
-- If "remember" option has been checked, user name, email and phone are saved in localStorage (these values will be later used to autofill login form)
-- logged user object is saved in the `global context`
-- `login panel` is hidden
 
 
 
@@ -65,7 +69,7 @@ The login panel (auth panel) is a fixed transparent panel that is visible only w
 - Nested routes: In ["AppPresentation.js"](https://g????app-presentation.js), created a route within `home screen` to display item details (`${screen.path}/:itemId`)
 
 ### Context
-The `context consumer` isn't used globally (by wrapping the entire `<App/>`) because it interfier with route changes (especially when it wraps `<Route/>`). `context consumer` is therefore used to wrap specific components which needs it.
+The `context consumer` isn't used globally (by wrapping the entire `<App/>`) because it interfere with route changes (especially when it wraps `<Route/>`). `context consumer` is therefore used to wrap specific components which needs it.
 
 
 
@@ -92,3 +96,12 @@ The `context consumer` isn't used globally (by wrapping the entire `<App/>`) bec
 ### Rendering the initial layout
 The initial layout is rendered in ["AppPresentation.js"](https://g????app-presentation.js) by looping inside the `screen` object and rendering subsequent components.
 - ... more later ...
+
+### How login works
+
+- After data submitted from the form is submitted, a query is made in firebase to search for the `user object`.
+- If found, the object  `creation date` property is updated.
+- If not found, a new record is created in the database.
+- If "remember" option has been checked, user name, email and phone are saved in localStorage (these values will be later used to autofill login form)
+- logged user object is saved in the `global context`
+- `login panel` is hidden
