@@ -33,12 +33,12 @@ const AppPresentation = ({
             {/*------------------------*/}
             {/*--- application root ---*/}
             {/*------------------------*/}
+                    <TopNavigation />
             <ListActiveComponent
               data={screens}
               Component={
                 (screen)=> (
                   <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
-                    <TopNavigation />
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
                     {/*----------------------------*/}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Link } from "react-router-dom";
 import BrandLogo from './BrandLogo.js';
 
 const TopNavigation = () => (
@@ -7,16 +8,16 @@ const TopNavigation = () => (
 
     <ul className="list-inline">
       <li className="list-inline-item">
-        <a href="#">Auth</a>
+        <Link to={`/`}>Auth</Link>
       </li>
       <li className="list-inline-item">
-        <a href="#">Home</a>
+        <Link to={`/`}>Home</Link>
       </li>
       <li className="list-inline-item">
-        <a href="#">Single</a>
+        <Link to={`/`}>Single</Link>
       </li>
       <li className="list-inline-item">
-        <a href="#">Admin</a>
+        <Link to={`/`}>Admin</Link>
       </li>
     </ul>
   </div>

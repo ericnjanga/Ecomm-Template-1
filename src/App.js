@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { tempData } from './settings/temp-data.js';
@@ -255,13 +256,18 @@ class App extends Component {
   render() {
     return (
       <GlobalContext.Provider value={{...this.state.globals}}>
-        <AppPresentation
-          {...this.state}
-          handleToggleSidebar={this.handleToggleSidebar}
-          handleAdminPageToggle={this.handleAdminPageToggle}
-          handleUserLogin={this.handleUserLogin}
-          handleAdminDataSubmit={this.handleAdminDataSubmit}
-        />
+        <Router>
+          <React.Fragment>
+            <Link to={`/`}>vsvsvsdvrwgwrgrw</Link>
+            <AppPresentation
+              {...this.state}
+              handleToggleSidebar={this.handleToggleSidebar}
+              handleAdminPageToggle={this.handleAdminPageToggle}
+              handleUserLogin={this.handleUserLogin}
+              handleAdminDataSubmit={this.handleAdminDataSubmit}
+            />
+          </React.Fragment>
+        </Router>
       </GlobalContext.Provider>
     );
   }
