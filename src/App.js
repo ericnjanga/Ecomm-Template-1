@@ -181,12 +181,17 @@ class App extends Component {
 
         // 2) Save DB "auth crendentials" in user object
         // 3) If "remember" is checked, save "auth crendentials" in local storage
+        // *) Hide "auth page"
         // ------------------
         dataSubmitted.then((user)=> {
 
-          const { globals } = this.state;
+          const { globals, screens } = this.state;
           globals.user = { ...user };
-          this.setState({ globals });
+
+          // Hide "auth page"
+          screens[0].active = false;
+
+          this.setState({ globals, screens });
           if (user['remember-auth']) {
 
             localStorageSave({ 
