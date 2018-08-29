@@ -49,14 +49,6 @@ const Divider = ({
       }
       break;
 
-    case 'single':
-      if(name==='hero'){
-        finalComponent = <SingleHero />;
-      } else if (name==='content') {
-        finalComponent = <SingleContent />;
-      }
-      break;
-
     case 'admin':
       if(name==='sidebar'){
         finalComponent = (<AdminSidebar
@@ -110,14 +102,6 @@ export default Divider;
 
 
 
-
-
-const SingleHero = () => {
-  return <h2>DividerSingleHero</h2>;
-};
-const SingleContent = () => {
-  return <h2>DividerSingleContent</h2>;
-};
 
 
 

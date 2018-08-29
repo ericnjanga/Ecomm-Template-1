@@ -5,6 +5,9 @@ Product showcasing template in ReactJS.
 
 ## Table of Contents
 
+- [Todo](#todo)
+  - [Item 1](#item-1)
+  - [Item 2](#item-2)
 - [Basic Flow](#basic-flow)
   - [Visitor flow](#visitor-flow)
   - [Administrator flow](#administrator-flow)
@@ -19,6 +22,21 @@ Product showcasing template in ReactJS.
 - [App at runtime](#app-at-runtime)
   - [What happens when the app boots?](#what-happens-when-the-app-boots?)
   - [How login works](#how-login-works)
+
+
+
+
+## Todo
+
+What remains to be done before releasing the application
+
+### Item 1
+
+Return to `root/items` when `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js).
+
+### Item 2
+
+Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js) to refresh when [auth panel - handleSubmit](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/App.js) is hidden (`componentShouldUpdate` maybe?).
  
 
 
