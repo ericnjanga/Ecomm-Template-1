@@ -37,7 +37,7 @@ const AppPresentation = ({
               data={screens}
               Component={
                 (screen)=> (
-                  <Box className={`screen ${screen.name} overflow-y-scroll`}>
+                  <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
                     <TopNavigation />
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}

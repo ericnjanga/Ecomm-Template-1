@@ -103,6 +103,8 @@ export const tempData = {
         },
       ],
     }, // home
+    /*
+    -- HIDDING SINGLE FOR NOW
     {
       id: 2,
       name: 'single',
@@ -123,6 +125,7 @@ export const tempData = {
         },
       ],
     }, // single
+    */
     {
       id: 3,
       name: 'admin',

@@ -48,9 +48,9 @@ class App extends Component {
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
         if(data) {
-          screens[3].sections[0].items[0].formData = {...data};
+          screens[2].sections[0].items[0].formData = {...data};
         } else {
-          screens[3].sections[0].items[0].formData = {...tempData.screens[3].sections[0].items[0].formData};
+          screens[2].sections[0].items[0].formData = {...tempData.screens[3].sections[0].items[0].formData};
         }
 
         this.setState({ screens });
@@ -71,9 +71,9 @@ class App extends Component {
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
         if(data) {
-          screens[3].sections[0].items[1].formData = {...data};
+          screens[2].sections[0].items[1].formData = {...data};
         } else {
-          screens[3].sections[0].items[1].formData = {...tempData.screens[3].sections[0].items[1].formData};
+          screens[2].sections[0].items[1].formData = {...tempData.screens[3].sections[0].items[1].formData};
         }
 
         this.setState({ screens });
