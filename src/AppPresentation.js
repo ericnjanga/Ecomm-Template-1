@@ -33,14 +33,15 @@ const AppPresentation = ({
                 <React.Fragment>
                   {
                     screen.name === 'home' &&
-                    <Route path={`${screen.path}/:itemId`} component={ItemDetail}
+                    <Route
+                      path={`${screen.path}/:itemId`}
+                      component={ItemDetail}
                     />
                   }
                   <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
                     {/*----------------------------*/}
-                    <p style={{ position:'absolute', top:0, left:0, background:'lime' }}>{screen.title}</p>
 
                     <GlobalContext.Consumer>
                       {

@@ -50,7 +50,7 @@ class App extends Component {
         if(data) {
           screens[2].sections[0].items[0].formData = {...data};
         } else {
-          screens[2].sections[0].items[0].formData = {...appStructure.screens[3].sections[0].items[0].formData};
+          screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
         }
 
         this.setState({ screens });
@@ -73,7 +73,7 @@ class App extends Component {
         if(data) {
           screens[2].sections[0].items[1].formData = {...data};
         } else {
-          screens[2].sections[0].items[1].formData = {...appStructure.screens[3].sections[0].items[1].formData};
+          screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
         }
 
         this.setState({ screens });
@@ -95,7 +95,7 @@ class App extends Component {
   handleToggleSidebar(data, itemId) {
   
     const {screens} = this.state;
-    screens[3].dividers[0].isOpen = !screens[3].dividers[0].isOpen;
+    screens[2].dividers[0].isOpen = !screens[2].dividers[0].isOpen;
     this.setState({ screens });
   
   }
@@ -242,12 +242,12 @@ class App extends Component {
         itemVal: true, 
         itemOppVal: false,
       });
-      sections = this.state.screens[3].sections;
+      sections = this.state.screens[2].sections;
       // console.log('...sections=', sections, sections[subpageIndex], subpageIndex);
       sections[subpageIndex].items = subsections;   
     }
-    screens[3].sections = sections;
-    // console.log(screens[3].sections)
+    screens[2].sections = sections;
+    // console.log(screens[2].sections)
     this.setState({ screens });
   }
 

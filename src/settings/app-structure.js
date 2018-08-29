@@ -256,6 +256,12 @@ export const appStructure = {
                 type: 'object',
                 properties: {
                   title: { type: 'string' },
+                  dealOfTheWeek: { 
+                    title: 'Deal Of The Week',
+                    type: 'boolean',
+                    enum: [true, false],
+                    enumNames: ['Gaz', '..']
+                  },
                   description: { type: 'string' },
                   price: { type: 'number' },
                   make: { 
@@ -299,7 +305,6 @@ export const appStructure = {
                     enum: [true, false],
                     enumNames: ['Gaz', '..']
                   },
-                  //   isVisible: true,
                 },
               },
               formData: { // Form default data (shoul match schema)

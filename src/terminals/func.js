@@ -11,7 +11,7 @@ export function resetStateForms (dataNode) {
     const { screens } = this.state;
 
     if (dataNode) {
-      screens[3].sections[1].items[0].formData = { name: '' };
+      screens[2].sections[1].items[0].formData = { name: '' };
       this.setState({ screens });
     }
 

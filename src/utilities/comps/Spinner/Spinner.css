@@ -36,8 +36,10 @@
   -webkit-animation: app-spinner linear 1s infinite;
   animation: app-spinner linear 1s infinite;
   background: rgba(0, 108, 175);
-  width: 12px;
+  /* width: 12px;
+  height: 24px; */
   height: 24px;
+  width: 6px;
   border-radius: 40%;
   -webkit-transform-origin: 6px 52px;
   transform-origin: 6px 52px;
@@ -115,8 +117,11 @@
   animation-delay: 0s;
 }
 .app-spinner {
-  width: 178px !important;
-  height: 178px !important;
-  -webkit-transform: translate(-89px, -89px) scale(0.89) translate(89px, 89px);
-  transform: translate(-89px, -89px) scale(0.89) translate(89px, 89px);
+  width: 100px !important;
+  height: 100px !important;
+  /* -webkit-transform: translate(-89px, -89px) scale(0.89) translate(89px, 89px);
+  transform: translate(-89px, -89px) scale(0.89) translate(89px, 89px); */
+
+  -webkit-transform: translate(-89px, 0.59) scale(0.89) translate(89px, 89px);
+  transform: translate(-89px, -89px) scale(0.59) translate(89px, 89px)
 }

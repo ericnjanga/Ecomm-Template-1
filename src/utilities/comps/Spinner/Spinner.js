@@ -50,7 +50,7 @@ Spinner.defaultProps = {
   active: true,
   style: { // Default styles
     container: {
-      position: 'absolute',
+      position: 'relative',
       top: '0',
       left: '0',
       width: '100%',
