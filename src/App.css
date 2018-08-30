@@ -113,10 +113,16 @@ ul {
 
 
 
-
-
+/**
+ * Top Nav styles
+ * ----------------------
+*/
+.Et1 > .screen {
+  padding-top: 50px;
+}
 .top-navigation {
   position: fixed;
+  top: 0;
   z-index: 11;
   width: 100%;
   display: flex;

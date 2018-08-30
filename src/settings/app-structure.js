@@ -54,6 +54,11 @@ export const appStructure = {
           name: 'content',
           active: true,
         },
+        {
+          id: 3,
+          name: 'footer',
+          active: true,
+        },
       ],
     }, // home
     /*

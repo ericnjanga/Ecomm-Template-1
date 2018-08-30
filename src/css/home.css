@@ -6,3 +6,10 @@
 .Et1 .screen.home {
   /* flex-direction: column; */
 }
+
+.Et1 .screen.home.hero,
+.Et1 .screen.home.focus,
+.Et1 .screen.home.content,
+.Et1 .screen.home.footer {
+  display: block;
+}

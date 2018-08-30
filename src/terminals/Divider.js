@@ -7,6 +7,7 @@ import Box from './../utilities/comps/Box.js';
 import HomeHero from './../terminals/pageContents/HomeHero.js';
 import HomeFocus from './../terminals/pageContents/HomeFocus.js';
 import HomeContent from './../terminals/pageContents/HomeContent.js';
+import HomeFooter from './../terminals/pageContents/HomeFooter.js';
 import AuthContent from './../terminals/pageContents/AuthContent.js';
 
 
@@ -46,6 +47,8 @@ const Divider = ({
         finalComponent = <HomeFocus />;
       } else if (name==='content') {
         finalComponent = <HomeContent />;
+      } else if (name==='footer') {
+        finalComponent = <HomeFooter />;
       }
       break;
 
