@@ -18,6 +18,7 @@ const HomeContent = () => {
       <div className="row multi-rows">
         <GetData
           url={'products/product'}
+          defaultVal={null}
         >
           {
             (data) => (

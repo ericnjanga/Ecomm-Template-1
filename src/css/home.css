@@ -13,3 +13,34 @@
 .Et1 .screen.home.footer {
   display: block;
 }
+
+
+/**
+ * Layouts
+ * ----------------------
+*/
+.Et1 .screen.home.hero {    
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.Et1 .screen.home.hero .title {    
+  margin-bottom: 20px;
+}
+.Et1 .screen.home.hero .btn {    
+  margin-bottom: 0;
+}
+
+
+/**
+ * Theme
+ * ----------------------
+*/
+.Et1 .screen.home.hero {
+  color: #fff;
+  background: #333;
+}
+.Et1 .screen.home.hero .card {
+  background: #333;
+  border: 0px;
+}

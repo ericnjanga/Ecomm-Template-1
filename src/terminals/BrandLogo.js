@@ -9,8 +9,6 @@ const BrandLogo = ({
   active,
   hasToggleButton,
 }) => {
-
-  const defaultValue = brandSetting.title;
   
   return (
     <div className={`${toggleText(className, className, '')}`}>
@@ -18,10 +16,11 @@ const BrandLogo = ({
         <GetData
           url={'site-info/brand'}
           singleData
+          defaultVal={brandSetting.title}
         >
           {
             (brand) => (
-              brand ? brand['brand-name'] : defaultValue
+              brand.name
             )
           }
         </GetData>

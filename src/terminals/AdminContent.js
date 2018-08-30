@@ -113,7 +113,10 @@ const FormOutputs = ({
 
   return (
     <div className={className}>
-      <GetData url={url}>
+      <GetData
+        url={url}
+        defaultVal={null}
+      >
         {
           (data) => (
             data ? 

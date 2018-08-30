@@ -21,7 +21,7 @@ class GetData extends React.Component {
       const { singleData } = this.props;
       dbGetSnapshotData({ snapshot, singleData }).then((data) => {
 
-        // console.log('****data=', data);
+        console.log('****data=', data);
 
         if (this._ismounted) {
           this.setState({ data });
@@ -46,6 +46,15 @@ class GetData extends React.Component {
 
 
   render() {
+    console.log('--2--this.state.datat', this.state.data);
+
+    if (!this.state.data) {
+      return (
+        <React.Fragment>
+          { this.props.children(this.props.defaultVal) }
+        </React.Fragment>
+      );
+    }
 
     // Undefined data will be handled outside
     return (

@@ -10,6 +10,11 @@ import React from 'react';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 
 
+
+const getBtnLabel = (val, labelColl) => {
+  return val?labelColl[1]:labelColl[0];
+}
+
 class CollapsePanelPresentation extends React.Component {
   constructor(props) {
     super(props);
@@ -17,25 +22,44 @@ class CollapsePanelPresentation extends React.Component {
     this.state = { collapse: false };
   }
 
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
+
+  componentDidMount() {
+
+    let { btnLabel } = this.props;
+    const { collapse } = this.state;
+    btnLabel = getBtnLabel(collapse, btnLabel);
+    
+    this.setState({ btnLabel });
   }
 
+
+  toggle() {
+
+    let { btnLabel } = this.props;
+    const { collapse } = this.state;
+
+    this.setState({ 
+      collapse: !collapse
+    }, function(){
+      btnLabel = getBtnLabel(!collapse, btnLabel);
+      this.setState({ btnLabel });
+    });
+
+  }
+
+  
   render() {
     return (
-      <div>
-        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+      <React.Fragment>
         <Collapse isOpen={this.state.collapse}>
-          <Card style={{ height: '400px' }}>
+          <Card>
             <CardBody>
-            Anim pariatur cliche reprehenderit,
-             enim eiusmod high life accusamus terry richardson ad squid. Nihil
-             anim keffiyeh helvetica, craft beer labore wes anderson cred
-             nesciunt sapiente ea proident.
+              {this.props.children}
             </CardBody>
           </Card>
         </Collapse>
-      </div>
+        <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>{this.state.btnLabel}</Button>
+      </React.Fragment>
     );
   }
 }
