@@ -37,6 +37,11 @@ Return to `root/items` when `ItemDetail` [modal](https://github.com/ericnjanga/E
 ### Item 2
 
 Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js) to refresh when [auth panel - handleSubmit](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/App.js) is hidden (`componentShouldUpdate` maybe?).
+
+### Item 2
+
+- Eliminate that `jumping effect` happening each time user clicks on  `ItemDetail` preview button (`componentShouldUpdate` maybe?).
+- Page shouldn't scroll when modal appears
  
 
 
