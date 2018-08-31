@@ -1,4 +1,4 @@
-
+import { TEXT_COPY } from './language-and-text';
 
 export const brandSetting = {
   name: 'brand',
@@ -262,7 +262,7 @@ export const appStructure = {
                 properties: {
                   title: { type: 'string' },
                   onSpotlight: { // Products which will receive more exposure than the rest
-                    title: 'Deal Of The Week',
+                    title: TEXT_COPY.admin.onSpotlight,
                     type: 'boolean',
                     enum: [true, false],
                     enumNames: ['Gaz', '..']

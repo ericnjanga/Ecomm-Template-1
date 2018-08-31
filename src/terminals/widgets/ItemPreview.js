@@ -1,6 +1,9 @@
 
 /**
  * ItemPreview
+ * (SHowcasing a product sample without revealing everything)
+ * 
+ * - @modeCondended: Don't display "title" and "description"
  * -------------------------------
  */
 
@@ -12,21 +15,16 @@ import { Link } from "react-router-dom";
 
 const ItemPreview = ({
   data,
-  hasDescription,
+  modeCondended,
 }) => {
   return (
     <div className="card">
       <img className="card-img-top" src="https://via.placeholder.com/268x180" alt={data.title} />
       <div className="card-body">
-        <h5 className="card-title">{data.title}</h5>
-        {
-          hasDescription && 
-          <p className="card-text">
-            <TextTrim length={40}>{data.description}</TextTrim>
-          </p>
-        }
-        
-        
+        <DisplayText
+          data={data}
+          modeCondended={modeCondended}
+        />
         <div>
           <Link to={`/items/${data.id}`} className="btn btn-primary">More details</Link>
         </div>
@@ -39,11 +37,11 @@ const ItemPreview = ({
 // Props validation
 ItemPreview.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  hasDescription: PropTypes.bool,
+  modeCondended: PropTypes.bool,
 };
 
 ItemPreview.defaultProps = {
-  hasDescription: true,
+  modeCondended: false,
 };
 
 
@@ -70,3 +68,18 @@ const TextTrim = ({ length, children }) => (
     }
   </React.Fragment>
 );
+
+const DisplayText = ({ data, modeCondended }) => {
+  // console.log('>>>>modeCondended=', modeCondended)
+  if(modeCondended) {
+    return false;
+  }
+  return (
+    <React.Fragment>
+      <h5 className="card-title">{data.title}</h5>
+      <p className="card-text">
+        <TextTrim length={40}>{data.description}</TextTrim>
+      </p>
+    </React.Fragment>
+  );
+};

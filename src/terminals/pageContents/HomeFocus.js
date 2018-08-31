@@ -2,6 +2,7 @@ import React from 'react';
 import GetData from './../../utilities/funcAsChild/getData.js';
 import ListComponent from './../../utilities/lists/ListComponent';
 import ItemPreview from './../widgets/ItemPreview.js';
+import { TEXT_COPY } from './../../settings/language-and-text';
 
 
 const HomeFocus = () => {
@@ -9,6 +10,7 @@ const HomeFocus = () => {
 
   return (
     <div className="container">
+      <h2 className="text-center">{ TEXT_COPY.admin.onSpotlight }</h2>
       <div className="row multi-rows">
         <GetData
           endpoint={'products/product'}
@@ -24,6 +26,7 @@ const HomeFocus = () => {
                     <div className="col">
                       <ItemPreview
                         data={product}
+                        modeCondended
                       />
                     </div>
                   )
