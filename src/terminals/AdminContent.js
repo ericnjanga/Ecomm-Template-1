@@ -114,7 +114,7 @@ const FormOutputs = ({
   return (
     <div className={className}>
       <GetData
-        url={url}
+        endpoint={url}
         defaultVal={null}
       >
         {

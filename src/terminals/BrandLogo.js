@@ -14,7 +14,7 @@ const BrandLogo = ({
     <div className={`${toggleText(className, className, '')}`}>
       <h1 className={`${toggleText(className, className, '')}--text`}>
         <GetData
-          url={'site-info/brand'}
+          endpoint={'site-info/brand'}
           singleData
           defaultVal={brandSetting.title}
         >

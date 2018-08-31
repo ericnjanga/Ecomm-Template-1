@@ -12,6 +12,7 @@ export const ACTIVE_LANG = LANG[1];
 export const appTextCopy = {
   'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
 
+  // English copy --------------------------------------------------------------------------
   en: {
     auth: {
       title: 'Welcome',

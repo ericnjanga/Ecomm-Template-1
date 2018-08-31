@@ -1,5 +1,16 @@
+/**
+ * - Search in firebase database for data located at the provided @endpoint
+ * - Conduct additional filtering on the resulting data if a @filter object is provided
+ * 
+ * - @endpoint
+ * - @filter
+ * -------------------------------------------------------------
+ */
+
 import React from 'react';
+import PropTypes from 'prop-types';
 import { dbGetNode, dbGetSnapshotData } from './../func/mix1.js';
+
 
 class GetData extends React.Component {
   constructor(props) {
@@ -14,20 +25,30 @@ class GetData extends React.Component {
 
     // console.log('##1##componentDidMount', this._ismounted);
 
-    dbGetNode(`${this.props.url}`).on('value', (snapshot) => {
+    dbGetNode(`${this.props.endpoint}`).on('value', (snapshot) => {
 
       // console.log('##1----2##componentDidMount--', this._ismounted);
 
       const { singleData } = this.props;
-      dbGetSnapshotData({ snapshot, singleData }).then((data) => {
+      dbGetSnapshotData({ snapshot, singleData }).then((resultData) => {
 
-        console.log('****data=', data);
+        // console.log('****resultData=', resultData);
 
         if (this._ismounted) {
+          const { filter } = this.props;
+          let data = resultData;
+
+          // Filter resulting data if a @filter object has been provided
+          if (filter) {
+            const filterKey = Object.keys(filter)[0];
+            const filterValue = Object.values(filter)[0];
+            data = data.filter(dataItem => dataItem[filterKey]===filterValue);
+            // console.log('****data=', data); 
+          }
+
+          // Save resulting data for rendering
           this.setState({ data });
         }
-
-        
 
       });
 
@@ -41,12 +62,12 @@ class GetData extends React.Component {
     this._ismounted = false;
 
     // console.log('--2--componentWillUnmount', this._ismounted);
-    dbGetNode(`${this.props.url}`).off();
+    dbGetNode(`${this.props.endpoint}`).off();
   }
 
 
   render() {
-    console.log('--2--this.state.datat', this.state.data);
+    // console.log('--2--this.state.datat', this.state.data);
 
     if (!this.state.data) {
       return (
@@ -64,5 +85,17 @@ class GetData extends React.Component {
     );
   }
 }
+
+
+// Props validation
+GetData.propTypes = {
+  endpoint: PropTypes.string.isRequired,
+  filter: PropTypes.shape({}),
+};
+
+GetData.defaultProps = {
+  filter: null,
+};
+
 
 export default GetData;

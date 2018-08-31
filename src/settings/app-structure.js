@@ -261,7 +261,7 @@ export const appStructure = {
                 type: 'object',
                 properties: {
                   title: { type: 'string' },
-                  dealOfTheWeek: { 
+                  onSpotlight: { // Products which will receive more exposure than the rest
                     title: 'Deal Of The Week',
                     type: 'boolean',
                     enum: [true, false],

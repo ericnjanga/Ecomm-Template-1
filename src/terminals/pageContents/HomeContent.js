@@ -6,7 +6,6 @@
 
 
 import React from 'react';
-import { Link } from "react-router-dom";
 import GetData from './../../utilities/funcAsChild/getData.js';
 import ListComponent from './../../utilities/lists/ListComponent';
 import ItemPreview from './../widgets/ItemPreview.js';
@@ -17,7 +16,7 @@ const HomeContent = () => {
     <div className="container">
       <div className="row multi-rows">
         <GetData
-          url={'products/product'}
+          endpoint={'products/product'}
           defaultVal={null}
         >
           {

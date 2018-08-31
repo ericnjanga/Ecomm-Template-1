@@ -9,7 +9,7 @@ const HomeHero = () => {
     <React.Fragment>
       <h1 className="title">
         <GetData
-            url={'site-info/brand'}
+            endpoint={'site-info/brand'}
             singleData
             defaultVal={brandSetting}
           >
