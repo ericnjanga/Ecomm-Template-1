@@ -38,7 +38,7 @@ const AppPresentation = ({
                       component={ItemDetail}
                     />
                   }
-                  <Box className={`${screen.name!=='auth'?`screen ${screen.name} overflow-y-scroll`:``}`}>
+                  <Box className={screen.className}>
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
                     {/*----------------------------*/}
@@ -71,7 +71,7 @@ const AppPresentation = ({
                                 togglePages={handleAdminPageToggle}
                                 handleLogin={handleUserLogin}
                                 adminDataSubmit={handleAdminDataSubmit}
-                                className={`screen ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
+                                className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                                 // {...screen}
                               />
                               {/* <p>{item.name} - {divider.name}</p> */}

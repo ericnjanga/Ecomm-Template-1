@@ -21,12 +21,13 @@ export const appStructure = {
       active: true,
       info1: 'info1',
       info2: 'info2',
-      path: '/',
+      path: '/', 
       dividers: [
         {
           id: 0,
           name: 'content',
           active: true,
+          className: 'full-screen',
         }
       ],
     }, // auth
@@ -38,6 +39,7 @@ export const appStructure = {
       info1: 'info1',
       info2: 'info2',
       path: '/items',
+      className: 'screen overflow-y-scroll',
       dividers: [
         {
           id: 0,
