@@ -7,12 +7,12 @@
   /* flex-direction: column; */
 }
 
-.Et1 .screen.home.hero,
+/* .Et1 .screen.home.hero,
 .Et1 .screen.home.focus,
 .Et1 .screen.home.content,
 .Et1 .screen.home.footer {
   display: block;
-}
+} */
 
 
 /**
@@ -35,6 +35,14 @@
 }
 
 
+.Et1 .screen.home.focus,
+.Et1 .screen.home.content,
+.Et1 .screen.home.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+
 /**
  * Theme
  * ----------------------
@@ -46,4 +54,9 @@
 .Et1 .screen.home.hero .card {
   background: #333;
   border: 0px;
+}
+
+
+.Et1 .screen.home.footer {    
+  background: #999;
 }
