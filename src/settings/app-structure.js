@@ -94,6 +94,7 @@ export const appStructure = {
       info1: 'info1',
       info2: 'info2',
       path: '/admin',
+      className: 'screen admin full-screen overflow-y-scroll',
       dividers: [
         {
           id: 0,

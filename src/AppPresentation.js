@@ -43,14 +43,14 @@ const AppPresentation = ({
                     {/*--- Each view (or screen ---*/}
                     {/*----------------------------*/}
 
-                    <GlobalContext.Consumer>
+                    {/* <GlobalContext.Consumer>
                       {
                         (globals) => (
                         <PreviewBox
                           {...globals.user}
                         />)
                       }
-                    </GlobalContext.Consumer>
+                    </GlobalContext.Consumer> */}
                     
 
                     {

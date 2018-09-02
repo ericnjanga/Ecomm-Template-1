@@ -1,5 +1,9 @@
 
 
+.Et1 .screen.admin {
+  display: flex;
+}
+
 
 /**
  * SIDEBAR
@@ -44,6 +48,7 @@
 .Et1 .screen.admin.content {
   flex-direction: column;
   padding: 30px;
+  width: 100%;
 }
 
 
