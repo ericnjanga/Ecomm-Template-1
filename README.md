@@ -8,6 +8,8 @@ Product showcasing template in ReactJS.
 - [Todo](#todo)
   - [Item 1](#item-1)
   - [Item 2](#item-2)
+  - [Item 3](#item-3)
+  - [Item 4](#item-4)
 - [Basic Flow](#basic-flow)
   - [Visitor flow](#visitor-flow)
   - [Administrator flow](#administrator-flow)
@@ -38,10 +40,14 @@ Return to `root/items` when `ItemDetail` [modal](https://github.com/ericnjanga/E
 
 Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js) to refresh when [auth panel - handleSubmit](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/App.js) is hidden (`componentShouldUpdate` maybe?).
 
-### Item 2
+### Item 3
 
 - Eliminate that `jumping effect` happening each time user clicks on  `ItemDetail` preview button (`componentShouldUpdate` maybe?).
 - Page shouldn't scroll when modal appears
+
+### Item 4
+
+- `Band name` changed in `admin` isn't directly reflected on the home page
  
 
 

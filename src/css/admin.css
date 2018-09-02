@@ -73,7 +73,6 @@
 .Et1 .admin.sidebar.isOpen .app__brand {
   padding: 40px 20px;
   color: #fff;
-  text-transform: uppercase;
   font-size: 1.7rem;
 }
 .Et1 .admin.sidebar.isOpen .app__brand button {

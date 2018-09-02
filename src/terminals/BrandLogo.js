@@ -12,7 +12,7 @@ const BrandLogo = ({
   
   return (
     <div className={`${toggleText(className, className, '')}`}>
-      <h1 className={`${toggleText(className, className, '')}--text`}>
+      <h1 className={`${toggleText(className, className, '')}--text text-uppercase`}>
         <GetData
           endpoint={'site-info/brand'}
           singleData
