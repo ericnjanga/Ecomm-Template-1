@@ -11,6 +11,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import ItemPrices from './ItemPrices.js';
+
+
 
 
 const ItemPreview = ({
@@ -18,15 +21,24 @@ const ItemPreview = ({
   modeCondended,
 }) => {
   return (
-    <div className="card">
+    <div className="card box-shadow-hover">
       <img className="card-img-top" src="https://via.placeholder.com/268x180" alt={data.title} />
       <div className="card-body">
+
+        <h3 className="modal-itemDetail__title">
+          <small>
+          <ItemPrices
+            price={data.price}
+          />
+          </small>
+        </h3>
+
         <DisplayText
           data={data}
           modeCondended={modeCondended}
         />
-        <div>
-          <Link to={`/items/${data.id}`} className="btn btn-primary">More details</Link>
+        <div className="text-center">
+          <Link to={`/items/${data.id}`} className="link">More details</Link> {/*btn btn-primary*/}
         </div>
       </div>
     </div>

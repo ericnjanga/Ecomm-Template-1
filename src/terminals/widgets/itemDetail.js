@@ -5,13 +5,12 @@
  */
 
 import React from 'react';
-import Currency from 'react-currency-formatter';
-import {  GlobalContext } from './../../settings/basics.js';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
-// import { BrowserRouter as Redirect } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
+
+import ItemPrices from './ItemPrices.js';
 
 
 
@@ -77,18 +76,7 @@ export default ItemDetail;
 
 
 
-
-
-/**
- * Helps for making code more readable
- * @param {*} param0 
- */
-const PriceXaf = ({ price, quotient }) => (
-  <Currency
-    quantity={ quotient * price }
-    currency="XAF"
-  />
-);
+ 
 
 const ModalTop = ({ item, handleToggle }) => (
   <React.Fragment>
@@ -120,24 +108,9 @@ const ModalTop = ({ item, handleToggle }) => (
             }
 
             <h3 className="modal-itemDetail__title">
-              <span className="block txt-highlight">
-                <Currency
-                  quantity={item.price}
-                  currency="CAD"
-                />
-              </span>
-              <span className="block txt-grayed title-size4">
-                <GlobalContext.Consumer>
-                  {
-                    (global) => (
-                      global.curr_cdn_to_xaf &&
-                      <React.Fragment>
-                        <PriceXaf price={item.price} quotient={global.curr_cdn_to_xaf} />
-                      </React.Fragment>
-                    )
-                  }
-                </GlobalContext.Consumer>
-              </span>
+              <ItemPrices
+                price={item.price}
+              />
             </h3>
             
             <article className="modal-itemDetail__article">
