@@ -13,6 +13,8 @@ export const appTextCopy = {
   'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
 
   // English copy ******************************************************************************
+  // ******************************************************************************************
+  // ******************************************************************************************
   en: {
     // Auth screen -----------------------------------------------------------------
     auth: {
@@ -41,9 +43,28 @@ export const appTextCopy = {
       onSpotlight: 'Deals Of the week',
     },
     // Admin area -----------------------------------------------------------------
+    // itemDetail -----------------------------------------------------------------
+    itemDetail: {
+      onSpotlight: 'Deal Of The Week',
+      mileage: 'Mileage',
+      colors: 'Colors',
+      bodyType: 'Body Style',
+      fuelType: 'Fuel Type',
+      year: 'Year',
+      make: 'Make',
+      nbDoors: 'Doors',
+      transmission: 'Transmission',
+      interested: 'Interested?',
+      cancel: 'Cancel',
+    },
+    // itemDetail -----------------------------------------------------------------
   },
 
+
+
   // French copy ******************************************************************************
+  // ******************************************************************************************
+  // ******************************************************************************************
   fr: {
     // Auth screen -----------------------------------------------------------------
     auth: {
@@ -71,7 +92,21 @@ export const appTextCopy = {
     admin: {
       onSpotlight: 'Bonnes affaires de la semaine',
     },
-    // Admin area -----------------------------------------------------------------
+    // itemDetail -----------------------------------------------------------------
+    itemDetail: {
+      onSpotlight: 'Affaire De La Semaine',
+      mileage: 'kilométrage',
+      colors: 'Couleurs',
+      bodyType: 'Style de carrosserie',
+      fuelType: 'Type de carburant',
+      year: 'Année',
+      make: 'Marque',
+      nbDoors: 'Nombre de portes',
+      transmission: 'Transmission',
+      interested: 'Intéressé?',
+      cancel: 'Annuller',
+    },
+    // itemDetail -----------------------------------------------------------------
   },  
 };
 

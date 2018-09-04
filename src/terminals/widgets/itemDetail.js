@@ -6,7 +6,9 @@
 
 import React from 'react';
 import Currency from 'react-currency-formatter';
-import { BrowserRouter as Redirect } from "react-router-dom";
+import {  GlobalContext } from './../../settings/basics.js';
+import { TEXT_COPY } from './../../settings/language-and-text.js';
+// import { BrowserRouter as Redirect } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
@@ -51,18 +53,16 @@ class ItemDetail extends React.Component {
   render() {
 
     return (
-      <div>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalTop
-            item={this.state.item}
-            handleToggle={this.toggle}
-          />
-          <ModalBottom
-            item={this.state.item}
-            handleToggle={this.toggle}
-          />
-        </Modal>
-      </div>
+      <Modal isOpen={this.state.modal} toggle={this.toggle} className={`${this.props.className} modal-itemDetail`}>
+        <ModalTop
+          item={this.state.item}
+          handleToggle={this.toggle}
+        />
+        <ModalBottom
+          item={this.state.item}
+          handleToggle={this.toggle}
+        />
+      </Modal>
     );
 
   } //[end] render
@@ -83,6 +83,13 @@ export default ItemDetail;
  * Helps for making code more readable
  * @param {*} param0 
  */
+const PriceXaf = ({ price, quotient }) => (
+  <Currency
+    quantity={ quotient * price }
+    currency="XAF"
+  />
+);
+
 const ModalTop = ({ item, handleToggle }) => (
   <React.Fragment>
     {
@@ -100,49 +107,60 @@ const ModalTop = ({ item, handleToggle }) => (
         <ModalHeader toggle={handleToggle}>{item.title}</ModalHeader>
         <ModalBody>
           <img
-            className="card-img-top"
+            className="card-img-top modal-itemDetail__image"
             src="https://via.placeholder.com/500x250"
             alt={item.title}
             style={{marginBottom: '20px'}}
           />
-          <h3>
-            <Currency
-              quantity={item.price}
-              currency="CAD"
-            />
-
-            /
-
-            
           
-          {/* {item.price}  {item.price} */}
-          </h3>
-          <p>{item.description}</p>
+          <div style={{ position:'relative' }}>
+            {
+              item.onSpotlight &&
+              <span className="badge badge-primary">{ TEXT_COPY.itemDetail.onSpotlight }</span>
+            }
 
-          <div className="container">
-            <div className="row">
-              <ul className="col-sm-6">
-                <li>{item.kilometers}</li>
-                <li>{item.colors}</li>
-              </ul>
-              <ul className="col-sm-6">
-                <li>{item.kilometers}</li>
-                <li>{item.colors}</li>
-              </ul>
+            <h3 className="modal-itemDetail__title">
+              <span className="block txt-highlight">
+                <Currency
+                  quantity={item.price}
+                  currency="CAD"
+                />
+              </span>
+              <span className="block txt-grayed title-size4">
+                <GlobalContext.Consumer>
+                  {
+                    (global) => (
+                      global.curr_cdn_to_xaf &&
+                      <React.Fragment>
+                        <PriceXaf price={item.price} quotient={global.curr_cdn_to_xaf} />
+                      </React.Fragment>
+                    )
+                  }
+                </GlobalContext.Consumer>
+              </span>
+            </h3>
+            
+            <article className="modal-itemDetail__article">
+              <p>{item.description}</p>
+            </article>
+
+            <div className="container modal-itemDetail__addinfo txt-grayed">
+              <div className="row">
+                <ul className="col-sm-6">
+                  <li>{ TEXT_COPY.itemDetail.mileage }: <span className="txt-dark">{item.kilometers}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.colors }: <span className="txt-dark">{item.colors}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.bodyType }: <span className="txt-dark">{item.bodyType}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.fuelType }: <span className="txt-dark">{item.fuelType}</span></li>
+                </ul>
+                <ul className="col-sm-6">
+                  <li>{ TEXT_COPY.itemDetail.year }: <span className="txt-dark">{item.year}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.make }: <span className="txt-dark">{item.make}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.nbDoors }: <span className="txt-dark">{item.nbDoors}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.transmission }: <span className="txt-dark">{item.transmission}</span></li>
+                </ul>
+              </div>
             </div>
           </div>
-
-          {/* <div>
-
-                'make':'one',
-                'year':2011,
-                'bodyType':'sedan',
-                'color':'red',
-                'kilometers': 0.0,
-                'transmission': 'automatic',
-                'fuelType': 'Gaz',
-                'nbDoors': 4,
-          </div> */}
         </ModalBody>
       </React.Fragment>
     }
@@ -150,7 +168,7 @@ const ModalTop = ({ item, handleToggle }) => (
 );
 
 const ModalBottom = ({ item, handleToggle }) => (
-  <ModalFooter>
+  <ModalFooter className="modal-itemDetail__footer">
     <Button color="primary" onClick={handleToggle} disabled={!item}>Interested?</Button>{' '}
     <Button color="secondary" onClick={handleToggle}>Cancel</Button>
   </ModalFooter>

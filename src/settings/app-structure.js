@@ -187,7 +187,7 @@ export const appStructure = {
               schema: {
                 type: 'object',
                 properties: {
-                  curr_cdn_to_xaf: { type: 'number', title: 'Combient $1 Canadien coûte en CFA?' },
+                  curr_cdn_to_xaf: { type: 'number', title: 'Combient $1 Canadien coûte en CFA? (cette valeur servira à la conversion en temps réel du prix des voitures en CFA' },
                   // about: { type: 'string', title: 'À Propos' },
                   // email: { type: 'string', title: 'Email' },
                   // phone1: { type: 'string', title: 'Phone1' },

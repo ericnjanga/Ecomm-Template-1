@@ -14,7 +14,10 @@ class App extends Component {
     super(props);
     this.state = {
       screens: [...appStructure.screens],
-      globals: {},
+      globals: {
+        // curr_cdn_to_xaf
+        // user
+      },
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
@@ -47,8 +50,12 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        console.log('>>>>>data=',data);
-        alert('Finish here!');
+        // console.log('>>>>>data=',data);
+        // alert('Finish here!');
+
+        /**
+         * OPTMIZE THIS PROCESS LATER
+         */
         if (data.administrator) {
           screens[2].sections[0].items[0].formData = {...data.administrator};
         } else {
@@ -57,9 +64,23 @@ class App extends Component {
 
 
         if (data.brand) {
-          screens[2].sections[0].items[0].formData = {...data.brand};
+          screens[2].sections[0].items[1].formData = {...data.brand};
         } else {
-          screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
+          screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
+        }
+
+
+        if (data.system) {
+          screens[2].sections[0].items[2].formData = {...data.system};
+          
+          // Save 'currency CDN/XAF to global
+          if (data.system.curr_cdn_to_xaf) {
+            const { globals } = this.state;
+            globals.curr_cdn_to_xaf = data.system.curr_cdn_to_xaf;
+            this.setState({ globals });
+          }
+        } else {
+          screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
         }
 
         
@@ -103,23 +124,23 @@ class App extends Component {
      * Sync these fields with database
      * - site-info/brand:
      */
-    dbGetNode(`site-info/brand`).on('value', (snapshot) => {
+    // dbGetNode(`site-info/brand`).on('value', (snapshot) => {
 
-      const { screens } = this.state;
+    //   const { screens } = this.state;
 
-      dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
+    //   dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        if(data) {
-          screens[2].sections[0].items[1].formData = {...data};
-        } else {
-          screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
-        }
+    //     if(data) {
+    //       screens[2].sections[0].items[1].formData = {...data};
+    //     } else {
+    //       screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
+    //     }
 
-        this.setState({ screens });
+    //     this.setState({ screens });
 
-      });
+    //   });
 
-    }); // [end] dbGetNode
+    // }); // [end] dbGetNode
 
   } // [end] componentDidMount
 

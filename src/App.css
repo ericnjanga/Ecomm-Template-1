@@ -77,6 +77,18 @@ ul {
 .text-danger {
   background: #e8cccf!important;
 }
+.txt-highlight {
+  color: #007bff;
+}
+.txt-dark {
+  color: #000;
+}
+.txt-grayed {
+  color: #666;
+}
+.block {
+  display: block;
+}
 
 
 
@@ -92,6 +104,9 @@ ul {
 .app-row .app-col {
   flex: 1;
   border: 2px solid turquoise;
+}
+.title-size4 {
+  font-size: 1.3rem;
 }
 
 
@@ -123,3 +138,39 @@ ul {
 .PreviewBox p {
   margin: 0;
 }
+
+
+
+
+
+
+/**
+ * modal-itemDetail
+ * ----------------------
+*/
+.modal-itemDetail .modal-title {
+  text-transform: capitalize;
+}
+.modal-itemDetail .badge.badge-primary {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modal-itemDetail__image,
+.modal-itemDetail__title,
+.modal-itemDetail__article {
+  margin-bottom: 1.5rem;
+}
+.modal-itemDetail__addinfo {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.modal-itemDetail__footer {
+  background: #ddd;
+  border-bottom-right-radius: .3rem;
+  border-bottom-left-radius: .3rem;
+}
+
+
+/* .modal-body  */
