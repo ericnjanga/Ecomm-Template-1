@@ -68,6 +68,15 @@ ul {
   width: 100%;
   height: 100vh;
 }
+.panel.panel-danger.errors {
+  color: #dc3545!important;
+}
+.panel.panel-danger.errors .panel-title {
+  font-size: 1.3rem;
+}
+.text-danger {
+  background: #e8cccf!important;
+}
 
 
 

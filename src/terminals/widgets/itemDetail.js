@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import Currency from 'react-currency-formatter';
 import { BrowserRouter as Redirect } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
@@ -104,7 +105,44 @@ const ModalTop = ({ item, handleToggle }) => (
             alt={item.title}
             style={{marginBottom: '20px'}}
           />
+          <h3>
+            <Currency
+              quantity={item.price}
+              currency="CAD"
+            />
+
+            /
+
+            
+          
+          {/* {item.price}  {item.price} */}
+          </h3>
           <p>{item.description}</p>
+
+          <div className="container">
+            <div className="row">
+              <ul className="col-sm-6">
+                <li>{item.kilometers}</li>
+                <li>{item.colors}</li>
+              </ul>
+              <ul className="col-sm-6">
+                <li>{item.kilometers}</li>
+                <li>{item.colors}</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* <div>
+
+                'make':'one',
+                'year':2011,
+                'bodyType':'sedan',
+                'color':'red',
+                'kilometers': 0.0,
+                'transmission': 'automatic',
+                'fuelType': 'Gaz',
+                'nbDoors': 4,
+          </div> */}
         </ModalBody>
       </React.Fragment>
     }

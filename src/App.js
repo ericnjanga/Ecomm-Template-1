@@ -37,27 +37,66 @@ class App extends Component {
      * Sync these fields with database
      * (so that user can see what info has been already saved)
      * 
-     * - site-info/administrator: 
+     * - site-info: 
      * 
      * NOTE: THIS CODE MUST BE OPTIMIZED
      */
-    dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
+    dbGetNode(`site-info`).on('value', (snapshot) => {
 
       const { screens } = this.state;
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        if(data) {
-          screens[2].sections[0].items[0].formData = {...data};
+        console.log('>>>>>data=',data);
+        alert('Finish here!');
+        if (data.administrator) {
+          screens[2].sections[0].items[0].formData = {...data.administrator};
         } else {
           screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
         }
 
-        this.setState({ screens });
+
+        if (data.brand) {
+          screens[2].sections[0].items[0].formData = {...data.brand};
+        } else {
+          screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
+        }
+
+        
 
       });
 
     }); // [end] dbGetNode
+
+
+
+
+    //syncWithDatabase
+    /**
+     * Sync these fields with database
+     * (so that user can see what info has been already saved)
+     * 
+     * - site-info/administrator: 
+     * 
+     * NOTE: THIS CODE MUST BE OPTIMIZED
+     */
+    // dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
+
+    //   const { screens } = this.state;
+
+    //   dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
+
+    //     if(data) {
+    //       screens[2].sections[0].items[0].formData = {...data};
+    //     } else {
+    //       screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
+    //     }
+
+    //     this.setState({ screens });
+
+    //   });
+
+    // }); // [end] dbGetNode
 
 
     /**

@@ -37,7 +37,8 @@ const AdminContent = ({
                   <React.Fragment>
                     <h3>{sectionItem.title}</h3>
                     <div className="app-row">
-                      <FormInputs className="app-col"
+                      <FormInputs
+                        className="app-col"
                         {...sectionItem}
                         onSubmit={(event)=>handleSubmit({
                           event: event,
@@ -75,6 +76,7 @@ const FormInputs = ({
   schema,
   uiSchema,
   formData,
+  validate,
   onSubmit,
   className,
 }) => {
@@ -87,12 +89,24 @@ const FormInputs = ({
 
   return (
     <div className={className}>
+    {
+      validate ? 
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        validate={validate}
+        formData={formData}
+        onSubmit={onSubmit}
+      />
+      :
       <Form
         schema={schema}
         uiSchema={uiSchema}
         formData={formData}
         onSubmit={onSubmit}
       />
+    }
+      
     </div>
   );
 };

@@ -174,19 +174,43 @@ export const appStructure = {
               active: false,
               isSingleRecord: true, // the same record will be updated each time
               previewLiveData: false, // should data created be previewed on admin mode?
+              // schema: {
+              //   type: "array",
+              //   minItems: 2,
+              //   title: "A multiple-choice list",
+              //   items: {
+              //     type: 'string',
+              //     enum: ['Login Panel', 'User Can Contact Admin', '*******', '######'],
+              //   },
+              //   uniqueItems: true,
+              // },
               schema: {
-                type: "array",
-                minItems: 2,
-                title: "A multiple-choice list",
-                items: {
-                  type: 'string',
-                  enum: ['Login Panel', 'User Can Contact Admin', '*******', '######'],
+                type: 'object',
+                properties: {
+                  curr_cdn_to_xaf: { type: 'number', title: 'Combient $1 Canadien coûte en CFA?' },
+                  // about: { type: 'string', title: 'À Propos' },
+                  // email: { type: 'string', title: 'Email' },
+                  // phone1: { type: 'string', title: 'Phone1' },
+                  // phone2: { type: 'string', title: 'Phone2' },
                 },
-                uniqueItems: true,
+              },
+              formData: { // Form default data (shoul match schema)
+                'curr_cdn_to_xaf': 0,
+                'about': '',
+                'email': '',
+                'phone1': '',
+                'phone2': '',
               },
               uiSchema: {
                 "ui:widget": "checkboxes"
               },
+              // validate: function(formData, errors){
+              //   console.log('validation', typeof formData.curr_cdn_to_xaf);
+              //   if (typeof formData.curr_cdn_to_xaf !== 'number') {
+              //     errors.curr_cdn_to_xaf.addError('Vous devez entrer un nombre comme 12.5');
+              //   }
+              //   return errors;
+              // },
             },
           ],
         },
