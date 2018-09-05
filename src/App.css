@@ -85,6 +85,9 @@ ul {
 .txt-dark {
   color: #000;
 }
+.txt-light {
+  color: #f5f5f5;
+}
 .txt-grayed {
   color: #666;
 }

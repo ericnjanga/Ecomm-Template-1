@@ -7,7 +7,7 @@ import CollapsePanelPres from './../../utilities/comps/CollapsePanelPresentation
 const HomeHero = () => {
   return (
     <React.Fragment>
-      <h1 className="title">
+      <h1 className="title txt-light">
         <GetData
             endpoint={'site-info/brand'}
             singleData
@@ -22,7 +22,7 @@ const HomeHero = () => {
       </h1>
       <CollapsePanelPres btnLabel={['Learn more','Read Less']}>
         <div className="container">
-          <div className="col-md-6 offset-3">
+          <div className="col-md-6 offset-3 txt-light">
             <p>*** -Anim pariatur cliche reprehenderit,
              enim eiusmod high life accusamus terry richardson ad squid. Nihil
              anim keffiyeh helvetica, craft beer labore wes anderson cred

@@ -38,8 +38,8 @@
 .Et1 .screen.home.focus,
 .Et1 .screen.home.content,
 .Et1 .screen.home.footer {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .Et1 .screen.home.footer h1,
@@ -52,7 +52,6 @@
  * ----------------------
 */
 .Et1 .screen.home.hero {
-  color: #fff;
   background: #333;
 }
 .Et1 .screen.home.hero .card {
@@ -61,7 +60,8 @@
 }
 
 
-.Et1 .screen.home.footer {    
+.Et1 .screen.home.footer {  
+  color: #f5f5f5;  
   background: #999;
 }
 
@@ -70,4 +70,8 @@
 }
 .Et1 .screen.home.footer h3 {
   font-size: 1.45rem;
+}
+
+.Et1 .screen.home.footer ul {    
+  padding-left: 20px;
 }
