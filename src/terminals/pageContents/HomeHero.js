@@ -15,7 +15,7 @@ const HomeHero = () => {
             </h1>
             <CollapsePanelPres btnLabel={['Learn more','Read Less']}>
               <div className="container">
-                <div className="col-md-6 offset-3 txt-light">
+                <div className="col-md-6 offset-md-3 txt-light">
                   <p>{ global.brand.about }</p>
                 </div>
               </div>

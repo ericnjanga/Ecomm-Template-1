@@ -10,7 +10,7 @@ const HomeFocus = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center text-uppercase txt-light">{ TEXT_COPY.admin.onSpotlight }</h2>
+      <h2 className="title-section text-center text-uppercase txt-light">{ TEXT_COPY.admin.onSpotlight }</h2>
       <div className="row multi-rows">
         <GetData
           endpoint={'products/product'}
