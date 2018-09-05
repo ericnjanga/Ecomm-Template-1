@@ -127,7 +127,7 @@ ul {
  * ----------------------
 */
 .Et1 > .screen {
-  padding-top: 50px;
+  padding-top: 56px; /* Bootstrap navbar's height (collapsed) */
 }
 .top-navigation {
   position: fixed;
