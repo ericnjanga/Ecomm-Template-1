@@ -57,20 +57,28 @@ class App extends Component {
          * OPTMIZE THIS PROCESS LATER
          */
         if (data.administrator) {
+          // Save autofill admin form
           screens[2].sections[0].items[0].formData = {...data.administrator};
         } else {
           screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
         }
 
 
+        // Save brand globally
         if (data.brand) {
+          // Save autofill admin form
           screens[2].sections[0].items[1].formData = {...data.brand};
+          const { globals } = this.state;
+          globals.brand = data.brand;
+          this.setState({ globals });
+
         } else {
           screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
         }
 
 
         if (data.system) {
+          // Save autofill admin form
           screens[2].sections[0].items[2].formData = {...data.system};
           
           // Save 'currency CDN/XAF to global

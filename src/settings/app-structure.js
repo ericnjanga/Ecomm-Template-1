@@ -148,7 +148,7 @@ export const appStructure = {
                 type: 'object',
                 properties: {
                   name: { type: 'string', title: brandSetting.title },
-                  about: { type: 'string', title: 'À Propos' },
+                  about: { type: 'string', title: 'À Propos (La section "À Propos" sera absente si cette information est inexistente)' },
                   email: { type: 'string', title: 'Email' },
                   phone1: { type: 'string', title: 'Phone1' },
                   phone2: { type: 'string', title: 'Phone2' },
@@ -188,10 +188,6 @@ export const appStructure = {
                 type: 'object',
                 properties: {
                   curr_cdn_to_xaf: { type: 'number', title: 'Combient $1 Canadien coûte en CFA? (cette valeur servira à la conversion en temps réel du prix des voitures en CFA' },
-                  // about: { type: 'string', title: 'À Propos' },
-                  // email: { type: 'string', title: 'Email' },
-                  // phone1: { type: 'string', title: 'Phone1' },
-                  // phone2: { type: 'string', title: 'Phone2' },
                 },
               },
               formData: { // Form default data (shoul match schema)
