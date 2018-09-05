@@ -96,7 +96,7 @@ ul {
 }
 .block {
   display: block;
-}
+} 
 
 
 
@@ -159,11 +159,6 @@ ul {
 .modal-itemDetail .modal-title {
   text-transform: capitalize;
 }
-.modal-itemDetail .badge.badge-primary {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 .modal-itemDetail__image,
 .modal-itemDetail__title,
 .modal-itemDetail__article {
@@ -180,6 +175,9 @@ ul {
   border-bottom-left-radius: .3rem;
 }
 
+.modal-itemDetail__title {
+  position: relative;
+}
 .modal-itemDetail__title small {
   font-size: 1rem;
 }

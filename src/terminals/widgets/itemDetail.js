@@ -10,7 +10,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
 
-import ItemPrices from './ItemPrices.js';
+import ItemInfo1 from './ItemInfo1.js';
 
 
 
@@ -102,16 +102,12 @@ const ModalTop = ({ item, handleToggle }) => (
           />
           
           <div style={{ position:'relative' }}>
-            {
-              item.onSpotlight &&
-              <span className="badge badge-primary">{ TEXT_COPY.itemDetail.onSpotlight }</span>
-            }
-
-            <h3 className="modal-itemDetail__title">
-              <ItemPrices
-                price={item.price}
-              />
-            </h3>
+            
+            
+            <ItemInfo1
+              {...item}
+              style={{ marginBottom:'1.5rem' }}
+            />
             
             <article className="modal-itemDetail__article">
               <p>{item.description}</p>

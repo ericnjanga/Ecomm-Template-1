@@ -11,7 +11,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import ItemPrices from './ItemPrices.js';
+import ItemInfo1 from './ItemInfo1.js';
 
 
 
@@ -25,13 +25,11 @@ const ItemPreview = ({
       <img className="card-img-top" src="https://via.placeholder.com/268x180" alt={data.title} />
       <div className="card-body">
 
-        <h3 className="modal-itemDetail__title">
-          <small>
-          <ItemPrices
-            price={data.price}
-          />
-          </small>
-        </h3>
+        <ItemInfo1
+          {...data}
+          isSmall
+          truncate
+        />
 
         <DisplayText
           data={data}
