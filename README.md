@@ -10,6 +10,9 @@ Product showcasing template in ReactJS.
   - [Item 2](#item-2)
   - [Item 3](#item-3)
   - [Item 4](#item-4)
+- [Inspiration](#inspiration)
+  - [All Inspirations](#all-inspirations)
+  - [Administrator flow](#administrator-flow)
 - [Basic Flow](#basic-flow)
   - [Visitor flow](#visitor-flow)
   - [Administrator flow](#administrator-flow)
@@ -51,6 +54,19 @@ Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob
  
 
 
+
+
+## Inspiration
+
+### All Inspirations
+ 
+- [Scheme](https://www.pinterest.ca/pin/102527328994964813/)
+- [Layout](https://www.pinterest.ca/pin/360780620132182510/)
+- [Admin](https://www.pinterest.ca/pin/326370304220578446/)
+ 
+            
+
+ 
 
 
 ## Basic Flow

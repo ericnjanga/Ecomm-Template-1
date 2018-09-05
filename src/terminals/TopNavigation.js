@@ -42,12 +42,6 @@ export default class TopNavigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="https://www.pinterest.ca/pin/360780620132182510/" target="_blank">Layout Inspiration</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://www.pinterest.ca/pin/326370304220578446/" target="_blank">Admin Inspiration</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
