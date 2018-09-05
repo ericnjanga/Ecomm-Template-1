@@ -30,7 +30,8 @@
 .Et1 .screen.home.hero .btn {    
   margin-bottom: 0;
 }
-.Et1 .screen.home.focus .row {
+.Et1 .screen.home.focus .row,
+.Et1 .screen.home.content .row {
   justify-content: center;
 }
 
