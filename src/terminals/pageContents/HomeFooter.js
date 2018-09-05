@@ -13,7 +13,7 @@ const HomeFooter = () => {
         <div className="col">
           <BrandLogo />
         </div>
-        <div className="col-md-3">
+        <div className="col-lg-3">
           <h3>Links</h3>
           <ul>
             <li>Anim pariatur cliche</li>
@@ -22,7 +22,7 @@ const HomeFooter = () => {
             <li>Nihil anim keffiyeh helvetica</li>
           </ul>
         </div>
-        <div className="col-md-3">
+        <div className="col-lg-3">
           <h3>Info additionnelle</h3>
           <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
         </div>
