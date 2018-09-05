@@ -42,25 +42,44 @@ export default class TopNavigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/admin">admin</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="/items">items</NavLink>
               </NavItem>
+
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  Make
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
+                    Make 1
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    Make 2
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    Make 3
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Colours
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Make 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Make 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Make 3
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
