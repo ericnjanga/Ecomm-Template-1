@@ -50,8 +50,7 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        // console.log('>>>>>data=',data);
-        // alert('Finish here!');
+        alert('Hide auth panel is data is present in localstorage');
 
         /**
          * OPTMIZE THIS PROCESS LATER
