@@ -18,8 +18,8 @@ const HomeContent = () => {
         <GetData
           endpoint={'products/product'}
           defaultVal={null}
-          filter={{ onSpotlight: false }}
-          filterType='not'
+          filter={{ onSpotlight: true }}
+          filterType='exclude'
         >
           {
             (data) => (

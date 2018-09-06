@@ -44,7 +44,7 @@ class GetData extends React.Component {
             const filterKey = Object.keys(filter)[0];
             const filterValue = Object.values(filter)[0];
 
-            if(filterType && filterType==='not') { // Data without filter
+            if(filterType && filterType==='exclude') { // Data without filter
               data = data.filter(dataItem => !dataItem[filterKey]);
             } else { // Data with filter
               data = data.filter(dataItem => dataItem[filterKey]===filterValue);

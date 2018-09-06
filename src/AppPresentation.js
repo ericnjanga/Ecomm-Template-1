@@ -42,17 +42,6 @@ const AppPresentation = ({
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
                     {/*----------------------------*/}
-
-                    {/* <GlobalContext.Consumer>
-                      {
-                        (globals) => (
-                        <PreviewBox
-                          {...globals.user}
-                        />)
-                      }
-                    </GlobalContext.Consumer> */}
-                    
-
                     {
                       screen.dividers && 
                       <ListActiveComponent

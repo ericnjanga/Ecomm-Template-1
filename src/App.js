@@ -91,64 +91,9 @@ class App extends Component {
           screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
         }
 
-        
-
       });
 
     }); // [end] dbGetNode
-
-
-
-
-    //syncWithDatabase
-    /**
-     * Sync these fields with database
-     * (so that user can see what info has been already saved)
-     * 
-     * - site-info/administrator: 
-     * 
-     * NOTE: THIS CODE MUST BE OPTIMIZED
-     */
-    // dbGetNode(`site-info/administrator`).on('value', (snapshot) => {
-
-    //   const { screens } = this.state;
-
-    //   dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
-
-    //     if(data) {
-    //       screens[2].sections[0].items[0].formData = {...data};
-    //     } else {
-    //       screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
-    //     }
-
-    //     this.setState({ screens });
-
-    //   });
-
-    // }); // [end] dbGetNode
-
-
-    /**
-     * Sync these fields with database
-     * - site-info/brand:
-     */
-    // dbGetNode(`site-info/brand`).on('value', (snapshot) => {
-
-    //   const { screens } = this.state;
-
-    //   dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
-
-    //     if(data) {
-    //       screens[2].sections[0].items[1].formData = {...data};
-    //     } else {
-    //       screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
-    //     }
-
-    //     this.setState({ screens });
-
-    //   });
-
-    // }); // [end] dbGetNode
 
   } // [end] componentDidMount
 
