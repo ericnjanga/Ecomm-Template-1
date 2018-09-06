@@ -46,6 +46,9 @@
   min-width: 280px;
   max-width: 280px;
 }
+.multi-rows .card {
+  border: 0px solid;
+}
 
 
 

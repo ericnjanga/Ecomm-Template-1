@@ -39,7 +39,7 @@ export const appStructure = {
       info1: 'info1',
       info2: 'info2',
       path: '/items',
-      className: 'screen overflow-y-scroll',
+      className: 'screen',
       dividers: [
         {
           id: 0,
