@@ -27,10 +27,27 @@ body {
  * .......
  * -------------------------------
  * DARK 1: #21162A
+ * PRIMARY: #47BDA7   rgba(71, 189, 167, 1)
  * LIGHT 1: #f5f5f5;  rgba(245, 245, 245, 1)
 */
+.btn-primary {
+  background-color: #47BDA7;
+  border-color: #47BDA7;
+}
+.btn-primary.focus, .btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(71, 189, 167,.5);
+}
 
-
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #47BDA7;
+}
+.badge-primary,
+.dropdown-item:focus, .dropdown-item:hover {
+  /* color: #16181b;
+  text-decoration: none; */
+  background-color: #47BDA7;
+}
 
 
 

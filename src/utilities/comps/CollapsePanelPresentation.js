@@ -51,7 +51,10 @@ class CollapsePanelPresentation extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse
+          isOpen={this.state.collapse}
+          style={this.props.style}
+        >
           <Card>
             <CardBody>
               {this.props.children}

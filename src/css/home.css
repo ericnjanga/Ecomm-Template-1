@@ -6,14 +6,7 @@
 .Et1 .screen.home {
   /* flex-direction: column; */
 }
-
-/* .Et1 .screen.home.hero,
-.Et1 .screen.home.focus,
-.Et1 .screen.home.content,
-.Et1 .screen.home.footer {
-  display: block;
-} */
-
+ 
 
 /**
  * Layouts
@@ -71,6 +64,7 @@
 
 .navbar, 
 .Et1 .screen.home.hero, 
+.Et1 .screen.home.footer,
 .Et1 .screen.home.hero .card {
   background-color:#21162A;
 }
@@ -78,11 +72,14 @@
 
 .Et1 .screen.home.footer {  
   color: #f5f5f5;  
-  background: #999;
 }
 
 .Et1 .screen.home.footer h1 {
   font-size: 2rem;
+  color: #47BDA7;
+}
+.Et1 .screen.home.footer h3 {
+  color: #999;
 }
 .Et1 .screen.home.footer h3 {
   font-size: 1.45rem;

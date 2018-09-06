@@ -13,7 +13,10 @@ const HomeHero = () => {
             <h1 className="title h3 text-uppercase txt-light">
             { global.brand.name }
             </h1>
-            <CollapsePanelPres btnLabel={['Learn more','Read Less']}>
+            <CollapsePanelPres
+              btnLabel={['Learn more','Read Less']}
+              style={{ marginBottom:'5px'}}
+              >
               <div className="container">
                 <div className="col-md-6 offset-md-3 txt-light">
                   <p>{ global.brand.about }</p>
