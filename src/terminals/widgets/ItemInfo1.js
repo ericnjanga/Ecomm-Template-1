@@ -34,7 +34,7 @@ const ItemInfo1 = ({
     ...(truncate?{width:'60px'}:{}),
   };
 
-  console.log('>>>>truncate=', truncate, badgeStyle)
+  // console.log('>>>>truncate=', truncate, badgeStyle)
 
   return (
     <section style={cstyle}>

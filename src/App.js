@@ -4,7 +4,7 @@ import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
 import { resetStateForms } from './terminals/func.js';
-import { toggleCollectionProperty, localStorageSave } from './utilities/func/mix1.js';
+import { toggleCollectionProperty, localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
 import './App.css';
 
 
@@ -35,14 +35,43 @@ class App extends Component {
    */
   componentDidMount() {
 
-    //syncWithDatabase
+
     /**
+     * -----------------------------------------------------------------
+     * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
+     * -----------------------------------------------------------------
+     */
+    const savedUserInfo = {
+      name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : null,
+      email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : null,
+      phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
+    };
+
+    if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
+      const { screens } = this.state;
+      screens[0].dividers[0].active = false;
+      this.setState({ screens });
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * -----------------------------------------------------------------
      * Sync these fields with database
      * (so that user can see what info has been already saved)
      * 
      * - site-info: 
      * 
      * NOTE: THIS CODE MUST BE OPTIMIZED
+     * -----------------------------------------------------------------
      */
     dbGetNode(`site-info`).on('value', (snapshot) => {
 
@@ -50,10 +79,12 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        alert('Hide auth panel is data is present in localstorage');
+        // alert('Hide auth panel is data is present in localstorage');
 
         /**
+         * ---------------------------
          * OPTMIZE THIS PROCESS LATER
+         * ---------------------------
          */
         if (data.administrator) {
           // Save autofill admin form
@@ -89,6 +120,11 @@ class App extends Component {
         } else {
           screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
         }
+        /**
+         * ---------------------------
+         * OPTMIZE THIS PROCESS LATER
+         * ---------------------------
+         */
 
       });
 

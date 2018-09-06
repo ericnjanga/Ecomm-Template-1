@@ -10,6 +10,7 @@ import { authForm } from './../../settings/forms/authForm.js';
 const AuthContent = ({
   handleLogin,
 }) => {
+
   return (
     <div className="container">
       <Form
