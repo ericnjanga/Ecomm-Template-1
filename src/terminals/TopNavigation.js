@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalContext } from './../settings/basics.js';
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -8,7 +8,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -37,7 +37,7 @@ export default class TopNavigation extends React.Component {
         expand="md"
       >
         <div className="container">
-          <NavbarBrand href="/" className="text-uppercase">
+          <NavLink to="/items" className="text-uppercase navbar-brand">
             <GlobalContext.Consumer>
               {
                 (global) => (
@@ -45,16 +45,19 @@ export default class TopNavigation extends React.Component {
                 )
               }
             </GlobalContext.Consumer>
-          </NavbarBrand>
+          </NavLink>
 
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/admin">admin</NavLink>
+              </NavItem> */}
+              <NavItem>
+                <NavLink to="/admin">admin</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/items">items</NavLink>
+                <NavLink to="/items">items</NavLink>
               </NavItem>
 
               <UncontrolledDropdown nav inNavbar>

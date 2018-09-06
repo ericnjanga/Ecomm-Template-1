@@ -40,8 +40,10 @@ body {
 
 .card .link:hover,
 .navbar-dark .navbar-brand,
+.navbar-collapse .nav-item a:hover, /* react-router links */
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #47BDA7;
+  text-decoration: none; /* for react-router links */
 }
 .badge-primary,
 .dropdown-item:focus, .dropdown-item:hover {
@@ -254,6 +256,16 @@ ul {
   border-color: rgba(245, 245, 245, 1)!important;
 }
 
+/* Adapting react-router links to bootstrap's */
+@media (min-width: 768px) {
+  .navbar-collapse .nav-item a {
+    color: rgba(255,255,255,.5);
+    display: block;
+    padding: .5rem 1rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+}
 
 
 

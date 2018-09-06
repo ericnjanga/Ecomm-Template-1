@@ -11,6 +11,8 @@ Product showcasing template in ReactJS.
   - [Item 3](#item-3)
   - [Item 4](#item-4)
   - [Item 5](#item-5)
+- [Fixes After release](#fixes-after-release)
+  - [Stage 2 Item 1](#stage-2-item-1)
 - [Inspiration](#inspiration)
   - [All Inspirations](#all-inspirations)
   - [Administrator flow](#administrator-flow)
@@ -55,7 +57,17 @@ Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob
 
 ### Item 5
 
-- Page shouldn't entirely reload when changing routes (very bad experience). This is supposed to be a `single page app`.
+- *[Fixed]* ~~Page shouldn't entirely reload when changing routes (very bad experience). This is supposed to be a `single page app`.~~ 
+- *What caused the issue:* I Was still using `react-strap`'s `NavLink` tags (which use `href` attribute) instead of using `react-router-dom` `NavLink` (which are using `to` attribute and prevent's page reload)
+
+
+
+
+## Fixes After release
+
+### Stage 2 Item 1
+
+Re-engineer `Brand Logo` component (the current version is not optimal at all)
  
 
 
