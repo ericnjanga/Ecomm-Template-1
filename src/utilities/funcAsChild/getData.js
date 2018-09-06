@@ -4,6 +4,7 @@
  * 
  * - @endpoint
  * - @filter
+ * - @filterType (Used to determine if we return result not containing the filter)
  * -------------------------------------------------------------
  */
 
@@ -35,14 +36,19 @@ class GetData extends React.Component {
         // console.log('****resultData=', resultData);
 
         if (this._ismounted) {
-          const { filter } = this.props;
+          const { filter, filterType } = this.props;
           let data = resultData;
 
           // Filter resulting data if a @filter object has been provided
           if (filter) {
             const filterKey = Object.keys(filter)[0];
             const filterValue = Object.values(filter)[0];
-            data = data.filter(dataItem => dataItem[filterKey]===filterValue);
+
+            if(filterType && filterType==='not') { // Data without filter
+              data = data.filter(dataItem => !dataItem[filterKey]);
+            } else { // Data with filter
+              data = data.filter(dataItem => dataItem[filterKey]===filterValue);
+            }
             // console.log('****data=', data); 
           }
 
@@ -91,10 +97,12 @@ class GetData extends React.Component {
 GetData.propTypes = {
   endpoint: PropTypes.string.isRequired,
   filter: PropTypes.shape({}),
+  filterType: PropTypes.string,
 };
 
 GetData.defaultProps = {
   filter: null,
+  filterType: null,
 };
 
 
