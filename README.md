@@ -5,11 +5,12 @@ Product showcasing template in ReactJS.
 
 ## Table of Contents
 
-- [Todo](#todo)
+- [Fixes before release](#fixes-before-release)
   - [Item 1](#item-1)
   - [Item 2](#item-2)
   - [Item 3](#item-3)
   - [Item 4](#item-4)
+  - [Item 5](#item-5)
 - [Inspiration](#inspiration)
   - [All Inspirations](#all-inspirations)
   - [Administrator flow](#administrator-flow)
@@ -31,7 +32,7 @@ Product showcasing template in ReactJS.
 
 
 
-## Todo
+## Fixes before release
 
 What remains to be done before releasing the application
 
@@ -51,6 +52,10 @@ Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob
 ### Item 4
 
 - `Band name` changed in `admin` isn't directly reflected on the home page
+
+### Item 5
+
+- Page shouldn't entirely reload when changing routes (very bad experience). This is supposed to be a `single page app`.
  
 
 
