@@ -1,7 +1,6 @@
 import React from 'react';
-import GetData from './../utilities/funcAsChild/getData.js';
 import { toggleText } from './../utilities/func/mix1.js';
-import { brandSetting } from './../settings/app-structure.js';
+import { GlobalContext } from './../settings/basics.js';
 
 const BrandLogo = ({
   className,
@@ -13,17 +12,13 @@ const BrandLogo = ({
   return (
     <div className={`${toggleText(className, className, '')}`}>
       <h1 className={`${toggleText(className, className, '')}--text text-uppercase`}>
-        <GetData
-          endpoint={'site-info/brand'}
-          singleData
-          defaultVal={brandSetting.title}
-        >
+        <GlobalContext.Consumer>
           {
-            (brand) => (
-              brand.name
+            (global) => (
+              global.brand && global.brand.name
             )
           }
-        </GetData>
+        </GlobalContext.Consumer>
       </h1>
       
       {

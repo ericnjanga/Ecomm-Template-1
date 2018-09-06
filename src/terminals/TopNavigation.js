@@ -1,6 +1,6 @@
 import React from 'react';
+import { GlobalContext } from './../settings/basics.js';
 // import { NavLink } from "react-router-dom";
-import BrandLogo from './BrandLogo.js';
 import {
   Collapse,
   Navbar,
@@ -30,14 +30,23 @@ export default class TopNavigation extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar
-          color="light"
-          light
-          fixed="top"
-          expand="md"
-        >
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar
+        // color="light"
+        dark
+        fixed="top"
+        expand="md"
+      >
+        <div className="container">
+          <NavbarBrand href="/" className="text-uppercase">
+            <GlobalContext.Consumer>
+              {
+                (global) => (
+                  global.brand && global.brand.name
+                )
+              }
+            </GlobalContext.Consumer>
+          </NavbarBrand>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -85,8 +94,8 @@ export default class TopNavigation extends React.Component {
               </UncontrolledDropdown>
             </Nav>
           </Collapse>
-        </Navbar>
-      </div>
+        </div>
+      </Navbar>
     );
   }
 }

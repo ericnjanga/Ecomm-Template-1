@@ -63,12 +63,16 @@
  * Theme
  * ----------------------
 */
-.Et1 .screen.home.hero {
-  background: #333;
+.Et1 .screen.home.hero { 
 }
-.Et1 .screen.home.hero .card {
-  background: #333;
+.Et1 .screen.home.hero .card { 
   border: 0px;
+}
+
+.navbar, 
+.Et1 .screen.home.hero, 
+.Et1 .screen.home.hero .card {
+  background-color:#21162A;
 }
 
 
