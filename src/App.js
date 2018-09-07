@@ -34,7 +34,7 @@ class App extends Component {
    * @param {*} itemId 
    */
   componentDidMount() {
-
+    console.log('-1- App mounted');
 
     /**
      * -----------------------------------------------------------------

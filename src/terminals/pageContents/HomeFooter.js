@@ -1,8 +1,5 @@
 import React from 'react';
 import BrandLogo from './../BrandLogo.js';
-import moment from 'moment';
-import GetData from './../../utilities/funcAsChild/getData.js';
-import ListComponent from './../../utilities/lists/ListComponent';
 import DateFormat from './../../utilities/comps/DateFormat.js';
 
 

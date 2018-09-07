@@ -12,8 +12,6 @@ const AdminContent = ({
   data,
   handleSubmit,
 }) => {
-
-  const onSubmit = ({formData}) => console.log("Data submitted: ",  formData);
   // console.log('handleSubmit=', handleSubmit);
 
   return (

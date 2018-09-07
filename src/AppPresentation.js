@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { GlobalContext } from './settings/basics.js';
-import PreviewBox from './terminals/widgets/PreviewBox.js';
+import { BrowserRouter as Router, Route/*, Redirect*/ } from "react-router-dom";
 import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
 import Divider from './terminals/Divider.js';
 import ItemDetail from './terminals/widgets/itemDetail.js';
