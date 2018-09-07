@@ -57,15 +57,6 @@ class App extends Component {
     }
 
 
-
-
-
-
-
-
-
-
-
     /**
      * -----------------------------------------------------------------
      * Sync these fields with database
@@ -77,8 +68,6 @@ class App extends Component {
      * -----------------------------------------------------------------
      */
     dbGetNode(`site-info`).on('value', (snapshot) => {
-
-      // const { screens, globals } = this.state;
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
@@ -94,7 +83,6 @@ class App extends Component {
           screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
         }
 
-
         // Save brand globally
         if (data.brand) {
           // Save autofill admin form
@@ -103,7 +91,6 @@ class App extends Component {
         } else {
           screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
         }
-
 
         if (data.system) {
           // Save autofill admin form
@@ -121,7 +108,6 @@ class App extends Component {
          * OPTMIZE THIS PROCESS LATER
          * ---------------------------
          */
-
 
         this.setState({ screens, globals }, ()=>{ console.log('** 1 - a ** [App mounted] screens / update globals (brand, currency) '); });
 
