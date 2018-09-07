@@ -83,8 +83,6 @@ const ItemInfo1 = ({
 
 
 
-{/* <h3 className="modal-itemDetail__title">
-</h3> */}
 // Props validation
 ItemInfo1.propTypes = {
   price: PropTypes.number.isRequired,

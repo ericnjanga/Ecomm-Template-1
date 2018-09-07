@@ -4,6 +4,9 @@ import DateFormat from './../../utilities/comps/DateFormat.js';
 
 
 const HomeFooter = () => {
+
+  console.log('-4- HomeFooter');
+
   return (
     <div className="container">
       <div className="row">

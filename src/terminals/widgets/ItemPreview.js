@@ -10,7 +10,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import ItemInfo1 from './ItemInfo1.js';
 
 
@@ -20,6 +20,9 @@ const ItemPreview = ({
   data,
   modeCondended,
 }) => {
+
+  console.log('-5- ItemPreview rendered');
+
   return (
     <div className="card box-shadow-hover">
       <img className="card-img-top" src="https://via.placeholder.com/268x180" alt={data.title} />
@@ -36,7 +39,9 @@ const ItemPreview = ({
           modeCondended={modeCondended}
         />
         <div className="text-center">
-          <Link to={`/items/${data.id}`} className="link">More details</Link> {/*btn btn-primary*/}
+          {/* <button>??????</button> */}
+          {/* <NavLink to={`/items/${data.id}`} className="link">More details</NavLink> */}
+          <NavLink to={`/admin`} className="link">More details</NavLink>
         </div>
       </div>
     </div>

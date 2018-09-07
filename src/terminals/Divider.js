@@ -31,6 +31,8 @@ const Divider = ({
 }) => {
 
 
+  console.log('-3- Divider');
+
   let finalComponent;
 
   switch(parentName) {

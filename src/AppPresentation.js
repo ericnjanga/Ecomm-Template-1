@@ -17,6 +17,9 @@ const AppPresentation = ({
   handleAdminDataSubmit,
 }) => {
 
+
+  console.log('-2- AppPresentation mounted');
+
   return(
     <Router>
       <div className="Et1">

@@ -34,7 +34,9 @@ class App extends Component {
    * @param {*} itemId 
    */
   componentDidMount() {
-    console.log('-1- App mounted');
+
+    const { screens, globals } = this.state;
+    console.log('**1** App mounted');
 
     /**
      * -----------------------------------------------------------------
@@ -48,9 +50,10 @@ class App extends Component {
     };
 
     if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
-      const { screens } = this.state;
+      // const { screens } = this.state;
       screens[0].dividers[0].active = false;
-      this.setState({ screens });
+      // console.log('** 1 - ---a ** [App mounted] set state ');
+      // this.setState({ screens }, ()=>{ console.log('** 1 - a ** [App mounted] screens updated (hide auth panel) '); });
     }
 
 
@@ -75,11 +78,9 @@ class App extends Component {
      */
     dbGetNode(`site-info`).on('value', (snapshot) => {
 
-      const { screens } = this.state;
+      // const { screens, globals } = this.state;
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
-
-        // alert('Hide auth panel is data is present in localstorage');
 
         /**
          * ---------------------------
@@ -98,10 +99,7 @@ class App extends Component {
         if (data.brand) {
           // Save autofill admin form
           screens[2].sections[0].items[1].formData = {...data.brand};
-          const { globals } = this.state;
           globals.brand = data.brand;
-          this.setState({ globals });
-
         } else {
           screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
         }
@@ -113,9 +111,7 @@ class App extends Component {
           
           // Save 'currency CDN/XAF to global
           if (data.system.curr_cdn_to_xaf) {
-            const { globals } = this.state;
             globals.curr_cdn_to_xaf = data.system.curr_cdn_to_xaf;
-            this.setState({ globals });
           }
         } else {
           screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
@@ -126,11 +122,32 @@ class App extends Component {
          * ---------------------------
          */
 
-      });
+
+        this.setState({ screens, globals }, ()=>{ console.log('** 1 - a ** [App mounted] screens / update globals (brand, currency) '); });
+
+      }); // [end] dbGetSnapshotData
 
     }); // [end] dbGetNode
 
   } // [end] componentDidMount
+
+
+
+
+  shouldComponentUpdate(nextProps, nextState) {
+
+    console.log('-shouldComponentUpdate: [nextProps]=', nextProps);
+    console.log('-shouldComponentUpdate: [nextState]=', nextState);
+    // if (this.props.color !== nextProps.color) {
+    //   return true;
+    // }
+    // if (this.state.count !== nextState.count) {
+    //   return true;
+    // }
+    return true;
+    // return false;
+  }
+
 
 
   /**
