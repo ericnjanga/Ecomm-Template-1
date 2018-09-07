@@ -56,10 +56,10 @@ export default class TopNavigation extends React.Component {
                 <NavLink href="/admin">admin</NavLink>
               </NavItem> */}
               <NavItem>
-                <NavLink to="/admin">admin</NavLink>
+                <NavLink to="/admin" activeClassName="selected">admin</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/items">items</NavLink>
+                <NavLink to="/items" activeClassName="selected">items</NavLink>
               </NavItem>
 
               <UncontrolledDropdown nav inNavbar>
