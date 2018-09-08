@@ -9,6 +9,7 @@ import React from 'react';
 import GetData from './../../utilities/funcAsChild/getData.js';
 import ListComponent from './../../utilities/lists/ListComponent';
 import ItemPreview from './../widgets/ItemPreview.js';
+import AppPagination from './../../utilities/comps/AppPagination.js';
 
 
 const HomeContent = () => {
@@ -38,6 +39,10 @@ const HomeContent = () => {
             )
           }
         </GetData>
+      </div>{/* row multi-rows */}
+
+      <div className="row" style={{ marginTop:'20px'}}>
+        <AppPagination />
       </div>
     </div>
   );
