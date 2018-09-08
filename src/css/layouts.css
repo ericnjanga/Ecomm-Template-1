@@ -50,6 +50,25 @@
   border: 0px solid;
 }
 
+/* When contained within the owl slider:
+ - Center item and limit the width on screen sizes below 600px
+*/
+@media (max-width: 600px) {
+  .owl-carousel .col.item {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+
+/**
+ * owl slider
+*/
+.owl-dots .owl-dot.active span {
+  background-color: #47BDA7!important;
+}
 
 
 .overflow-y-scroll {
