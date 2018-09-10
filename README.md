@@ -5,14 +5,19 @@ Product showcasing template in ReactJS.
 
 ## Table of Contents
 
-- [Fixes before release](#fixes-before-release)
+- [Phase 1 release](#phase-1--release)
+  - [Item 1](#item-1)
+- [Phase 2 resealse](#phase-2-release)
+  - Admin:
+    - [Auth](#admin-auth)
+    - [Upload process: Improve look and feel](#item-1)
+    - [Delete product: Improve look and feel](#item-1)
   - [Item 1](#item-1)
   - [Item 2](#item-2)
   - [Item 3](#item-3)
   - [Item 4](#item-4)
   - [Item 5](#item-5)
   - [Item 6](#item-6)
-- [Fixes After release](#fixes-after-release)
   - [Stage 2 Item 1](#stage-2-item-1)
 - [Inspiration](#inspiration)
   - [All Inspirations](#all-inspirations)
@@ -35,9 +40,22 @@ Product showcasing template in ReactJS.
 
 
 
-## Fixes before release
+## Phase 1 release
 
 What remains to be done before releasing the application
+
+### Admin Auth
+
+Secure DB by making admin first authenticate to firebase before managing records.
+Restaure these rules in `firebase storage`:
+`service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+`
 
 ### Item 1
 
@@ -68,7 +86,7 @@ Prevent `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob
 
 
 
-## Fixes After release
+## Phase 2 resealse
 
 ### Stage 2 Item 1
 

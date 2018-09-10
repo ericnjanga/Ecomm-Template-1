@@ -283,14 +283,15 @@ export const appStructure = {
               schema: {
                 type: 'object',
                 properties: {
-                  title: { type: 'string' },
+                  image: { type: 'string' }, //, format: "data-url" },
+                  title: { type: 'string' }, //, minLength: 3 },
                   onSpotlight: { // Products which will receive more exposure than the rest
                     title: TEXT_COPY.admin.onSpotlight,
                     type: 'boolean',
                     enum: [true, false],
                     enumNames: ['Gaz', '..']
                   },
-                  description: { type: 'string' },
+                  description: { type: 'string' }, //, minLength: 10 },
                   price: { type: 'number' },
                   make: { 
                     type: 'string',
@@ -350,6 +351,9 @@ export const appStructure = {
                 isVisible: true,
               },
               uiSchema: {
+                'image': {
+                  "ui:widget": "file"
+                },
                 'price': {
                   "ui:widget": "text"
                 },
@@ -389,7 +393,14 @@ export const appStructure = {
                     "inline": true
                   }
                 },
-              },
+              }, // uiSchema
+              // validate: function(formData, errors){
+              //   console.log('validation', formData );
+              //   // if (typeof formData.curr_cdn_to_xaf !== 'number') {
+              //   //   errors.curr_cdn_to_xaf.addError('Vous devez entrer un nombre comme 12.5');
+              //   // }
+              //   return errors;
+              // },
             }, // product
           ], // items
         },

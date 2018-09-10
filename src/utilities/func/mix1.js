@@ -1,6 +1,6 @@
 
 
-import { DATABASE } from './../../settings/basics.js';
+import { DATABASE, STORAGE } from './../../settings/basics.js';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
 
 
@@ -163,6 +163,62 @@ export const dbSaveRecord = ({ url, record, isSingleRecord }) => {
     });
 
   });// [end] promise
+
+};
+
+
+
+function dataURItoBlob(dataURI) {
+  // convert base64/URLEncoded data component to raw binary data held in a string
+  var byteString;
+  if (dataURI.split(',')[0].indexOf('base64') >= 0)
+      byteString = atob(dataURI.split(',')[1]);
+  else
+      byteString = unescape(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+  // write the bytes of the string to a typed array
+  var ia = new Uint8Array(byteString.length);
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+
+  return new Blob([ia], {type:mimeString});
+}
+
+
+
+export const dbUploadFile = ({ dir, fileUrl }) => {
+
+  const metadata = {
+    // more info here...
+    // https://firebase.google.com/docs/storage/web/file-metadata
+  };
+
+  const imgBlob = dataURItoBlob(fileUrl);
+  const storageRef = STORAGE.ref(`${dir}/test`); //(`${dir}/test`);
+
+  // console.log(`---***----${dir}/test`);
+  return storageRef.put(imgBlob, metadata);
+
+  // const listRef = DATABASE.ref(dir);
+  // return new Promise((resolve) => {
+
+  //   STORAGE.ref(name).getDownloadURL().then(function(url) {
+
+  //     resolve({url});
+
+  //   }).catch(function() {
+
+  //     resolve(null);
+
+  //   });
+
+
+    
+  // });
 
 };
 
