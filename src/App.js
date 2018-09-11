@@ -160,17 +160,42 @@ class App extends Component {
    */
   handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
 
-    const { image, title } = event.formData;
-    const imgUploaded = dbUploadFile({ dir:'products', fileUrl:image, fileName:title });
+    console.log('====', nodeRoot, nodeDir1);
 
-    imgUploaded.then((data) => {
+    if (nodeRoot==='products' && nodeDir1==='product') {
 
-      console.log('*****data=', data    );
+      const { image, title } = event.formData;
+      const imgUploaded = dbUploadFile({ dir:'products', fileUrl:image, fileName:title });
 
-      //...
-      const { name } = data.metadata;
-      const record = event.formData;
-      record.image = name;
+      imgUploaded.then((data) => {
+  
+        console.log('*****data=', data    );
+  
+        //...
+        const { name } = data.metadata;
+        const record = event.formData;
+        record.image = name;
+
+        // [*] Submit record (code duplicated: must be optimized)
+        const prodSubmitted = dbSaveRecord({
+          url:`${nodeRoot}/${nodeDir1}/`,
+          record: { ...record },
+          isSingleRecord,
+        });
+  
+        // Reset state after data is submitted
+        prodSubmitted.then((data)=> {
+    
+          resetStateForms.call(this, 'presets');
+    
+        });
+        // [*] Submit record (code duplicated: must be optimized)
+  
+      }); // [end] imgUploaded
+
+    } else {
+      
+      // [*] Submit record (code duplicated: must be optimized)
       const prodSubmitted = dbSaveRecord({
         url:`${nodeRoot}/${nodeDir1}/`,
         record: { ...event.formData },
@@ -183,9 +208,9 @@ class App extends Component {
         resetStateForms.call(this, 'presets');
   
       });
+      // [*] Submit record (code duplicated: must be optimized)
 
-    });
-    
+    }
 
   } //...
 
