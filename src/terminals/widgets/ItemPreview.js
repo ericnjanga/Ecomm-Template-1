@@ -120,7 +120,9 @@ const DisplayItemText = ({ data, modeCondenced }) => {
   }
   return (
     <React.Fragment>
-      <h5 className="card-title">{data.title}</h5>
+      <h5 className="card-title">
+        <TextTrim length={18}>{data.title}</TextTrim>
+      </h5>
       {/* <p className="card-text">
         <TextTrim length={40}>{data.description}</TextTrim>
       </p> */}
