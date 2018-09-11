@@ -52,17 +52,15 @@ export default class TopNavigation extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {/* <NavItem>
-                <NavLink href="/admin">admin</NavLink>
-              </NavItem> */}
               <NavItem>
                 <NavLink to="/admin" activeClassName="selected">admin</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/items" activeClassName="selected">items</NavLink>
               </NavItem>
-
-              <UncontrolledDropdown nav inNavbar>
+              
+              {/* HIDDING FILTERS FOR NOW */}
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Make
                 </DropdownToggle>
@@ -96,7 +94,7 @@ export default class TopNavigation extends React.Component {
                     Make 3
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </div>
