@@ -6,6 +6,7 @@ import GetData from './../utilities/funcAsChild/getData.js';
 import { dbDeleteRecord, dbUpdateRecord } from './../utilities/func/mix1.js';
 import Spinner from './../utilities/comps/Spinner/Spinner.js';
 import DateFormat from './../utilities/comps/DateFormat.js';
+import { GlobalContext } from './../settings/basics.js';
 
 
 const AdminContent = ({
@@ -104,7 +105,6 @@ const FormInputs = ({
         onSubmit={onSubmit}
       />
     }
-      
     </div>
   );
 };
@@ -142,7 +142,13 @@ const FormOutputs = ({
                     </div>
                     <div className="app-col">{item.title}</div>
                     <div className="app-col">
-                      <button className="btn btn-secondary" onClick={()=>{ console.log('--item=', item);  /*dbUpdateRecord(`${url}/${item.id}`)*/ }}>Update</button>
+                      <GlobalContext.Consumer>
+                        {
+                          (global) => (
+                            <button className="btn btn-secondary" onClick={()=>{ global.update(item); }}>Update</button>
+                          )
+                        }
+                      </GlobalContext.Consumer>
                     </div>
                     <div className="app-col">
                       <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
