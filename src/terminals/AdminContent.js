@@ -141,7 +141,7 @@ const FormOutputs = ({
                       <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
                     </div>
                     <div className="app-col">{item.title}</div>
-                    <div className="app-col">
+                    {/* <div className="app-col">
                       <GlobalContext.Consumer>
                         {
                           (global) => (
@@ -149,7 +149,7 @@ const FormOutputs = ({
                           )
                         }
                       </GlobalContext.Consumer>
-                    </div>
+                    </div> */}
                     <div className="app-col">
                       <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
                     </div>

@@ -12,6 +12,9 @@ Product showcasing template in ReactJS.
     - [Auth](#admin-auth)
     - [Upload process: Improve look and feel](#item-1)
     - [Delete product: Improve look and feel](#item-1)
+    - Update product:
+      - [Upate operation must be completely redesigned](#dvff)
+      - [Display image previously uploaded](#dvff)
   - Front-end:
     - Better placeholders:
       - [No items in home focus section](#...)
