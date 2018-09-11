@@ -185,8 +185,6 @@ class App extends Component {
       });
 
     });
-
-    // console.log('*****testUpl=', dbUploadFile({ dir:'products', fileUrl:event.formData.image })    );
     
 
   } //...
