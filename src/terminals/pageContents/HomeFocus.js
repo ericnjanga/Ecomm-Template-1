@@ -54,7 +54,7 @@ const HomeFocus = () => {
                     <div className="col item">
                       <ItemPreview
                         data={product}
-                        modeCondended
+                        modeCondenced
                       />
                     </div>
                   )

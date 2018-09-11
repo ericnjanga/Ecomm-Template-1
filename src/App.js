@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord } from './utilities/func/mix1.js';
+import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord, dbUploadFile } from './utilities/func/mix1.js';
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
@@ -160,18 +160,34 @@ class App extends Component {
    */
   handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
 
-    const dataSubmitted = dbSaveRecord({
-      url:`${nodeRoot}/${nodeDir1}/`,
-      record: { ...event.formData },
-      isSingleRecord,
+    const { image, title } = event.formData;
+    const imgUploaded = dbUploadFile({ dir:'products', fileUrl:image, fileName:title });
+
+    imgUploaded.then((data) => {
+
+      console.log('*****data=', data    );
+
+      //...
+      const { name } = data.metadata;
+      const record = event.formData;
+      record.image = name;
+      const prodSubmitted = dbSaveRecord({
+        url:`${nodeRoot}/${nodeDir1}/`,
+        record: { ...event.formData },
+        isSingleRecord,
+      });
+
+      // Reset state after data is submitted
+      prodSubmitted.then((data)=> {
+  
+        resetStateForms.call(this, 'presets');
+  
+      });
+
     });
+
+    // console.log('*****testUpl=', dbUploadFile({ dir:'products', fileUrl:event.formData.image })    );
     
-    // Reset state after data is submitted
-    dataSubmitted.then((data)=> {
-
-      resetStateForms.call(this, 'presets');
-
-    });
 
   } //...
 

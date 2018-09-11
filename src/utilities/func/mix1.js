@@ -1,7 +1,8 @@
 
 
-import { DATABASE } from './../../settings/basics.js';
+import { DATABASE, STORAGE } from './../../settings/basics.js';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
+import { dataURItoBlob, stringToSlug } from './mix2.js';
 
 
 
@@ -163,6 +164,50 @@ export const dbSaveRecord = ({ url, record, isSingleRecord }) => {
     });
 
   });// [end] promise
+
+};
+
+
+
+/**
+ * 
+ * @param {*} param0 
+ */
+export const dbGetFileUploaded = ({ dir, imgSlug }) => {
+
+  return new Promise((resolve) => {
+
+    STORAGE.ref(`${dir}/${imgSlug}`).getDownloadURL().then(function(url) {
+
+      resolve({url});
+
+    }).catch(function() {
+
+      resolve(null);
+
+    });
+  });
+
+};
+
+
+
+/**
+ * 
+ * @param {*} param0 
+ */
+export const dbUploadFile = ({ dir, fileUrl, fileName }) => {
+
+  const metadata = {
+    // more info here...
+    // https://firebase.google.com/docs/storage/web/file-metadata
+  };
+
+  const imgBlob     = dataURItoBlob(fileUrl);
+  const imgSlug     = stringToSlug(fileName);
+  const storageRef  = STORAGE.ref(`${dir}/${imgSlug}`); //(`${dir}/test`);
+
+  return storageRef.put(imgBlob, metadata);
 
 };
 

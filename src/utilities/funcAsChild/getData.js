@@ -39,21 +39,26 @@ class GetData extends React.Component {
           const { filter, filterType } = this.props;
           let data = resultData;
 
-          // Filter resulting data if a @filter object has been provided
-          if (filter) {
-            const filterKey = Object.keys(filter)[0];
-            const filterValue = Object.values(filter)[0];
+          if (data) { // Only if any data is available
 
-            if(filterType && filterType==='exclude') { // Data without filter
-              data = data.filter(dataItem => !dataItem[filterKey]);
-            } else { // Data with filter
-              data = data.filter(dataItem => dataItem[filterKey]===filterValue);
+            // Filter resulting data if a @filter object has been provided
+            if (filter) {
+              const filterKey = Object.keys(filter)[0];
+              const filterValue = Object.values(filter)[0];
+
+              if(filterType && filterType==='exclude') { // Data without filter
+                data = data.filter(dataItem => !dataItem[filterKey]);
+              } else { // Data with filter
+                data = data.filter(dataItem => dataItem[filterKey]===filterValue);
+              }
+              // console.log('****data=', data); 
             }
-            // console.log('****data=', data); 
+
+            // Save resulting data for rendering
+            this.setState({ data });
+
           }
 
-          // Save resulting data for rendering
-          this.setState({ data });
         }
 
       });

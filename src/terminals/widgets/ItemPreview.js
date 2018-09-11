@@ -1,9 +1,17 @@
 
 /**
- * ItemPreview
- * (SHowcasing a product sample without revealing everything)
+ * Renders a preview version of the product (which can be further "contenced")
+ * - Renders:
+ * -- Title (if not in @modeCondenced)
+ * -- Price
+ * -- kilometers
+ * -- price (In all available currencies)
+ * -- ItemInfo1 Component
+ * -- CTA button
  * 
- * - @modeCondended: Don't display "title" and "description"
+ * - Props
+ * - @data: data to be rendered (title, price, ...)
+ * - @modeCondenced: Dictate rendering style
  * -------------------------------
  */
 
@@ -12,36 +20,57 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from "react-router-dom";
 import ItemInfo1 from './ItemInfo1.js';
-
-
+import FetchImage from './../../utilities/funcAsChild/fetchImage.js';
+import PictureFrame from './../../utilities/funcAsChild/PictureFrame.js';
 
 
 const ItemPreview = ({
   data,
-  modeCondended,
+  modeCondenced,
 }) => {
 
-  console.log('-5- ItemPreview rendered');
+  // console.log('-5- ItemPreview rendered');
 
   return (
     <div className="card box-shadow-hover">
-      <img className="card-img-top" src="https://via.placeholder.com/268x180" alt={data.title} />
-      <div className="card-body">
+      <FetchImage
+        dir='products'
+        name={data.image}
+      >
+        {
+          (url) => (
+            <PictureFrame
+              className='prodImg-frame preview'
+              imgWidth={400}
+              frameHeight={200}
+            >
+              {
+                (position) => (
+                  <img
+                    style={{...position}}
+                    src={url}
+                    alt={data.title}
+                  />
+                )
+              }
+            </PictureFrame>
+          )
+        }
+      </FetchImage>
 
+      <div className="card-body">
         <ItemInfo1
           {...data}
           isSmall
           truncate
         />
 
-        <DisplayText
+        <DisplayItemText
           data={data}
-          modeCondended={modeCondended}
+          modeCondenced={modeCondenced}
         />
         <div className="text-center">
-          {/* <button>??????</button> */}
-          {/* <NavLink to={`/items/${data.id}`} className="link">More details</NavLink> */}
-          <NavLink to={`/admin`} className="link">More details</NavLink>
+          <NavLink to={`/items/${data.id}`} className="link">More details</NavLink>
         </div>
       </div>
     </div>
@@ -52,11 +81,11 @@ const ItemPreview = ({
 // Props validation
 ItemPreview.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  modeCondended: PropTypes.bool,
+  modeCondenced: PropTypes.bool,
 };
 
 ItemPreview.defaultProps = {
-  modeCondended: false,
+  modeCondenced: false,
 };
 
 
@@ -84,17 +113,17 @@ const TextTrim = ({ length, children }) => (
   </React.Fragment>
 );
 
-const DisplayText = ({ data, modeCondended }) => {
-  // console.log('>>>>modeCondended=', modeCondended)
-  if(modeCondended) {
+const DisplayItemText = ({ data, modeCondenced }) => {
+  // console.log('>>>>modeCondenced=', modeCondenced)
+  if(modeCondenced) {
     return false;
   }
   return (
     <React.Fragment>
       <h5 className="card-title">{data.title}</h5>
-      <p className="card-text">
+      {/* <p className="card-text">
         <TextTrim length={40}>{data.description}</TextTrim>
-      </p>
+      </p> */}
     </React.Fragment>
   );
 };
