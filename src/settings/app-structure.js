@@ -395,8 +395,7 @@ export const appStructure = {
                   }
                 },
               }, // uiSchema
-              validate: function(formData, errors){
-                console.log('validation.image', formData.image );
+              validate: function(formData, errors) {
                 if (!formData.image) {
                   errors.image.addError('You have to select an image');
                 }

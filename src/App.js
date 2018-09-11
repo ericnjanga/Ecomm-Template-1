@@ -12,11 +12,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       screens: [...appStructure.screens],
       globals: {
-        // curr_cdn_to_xaf
-        // user
       },
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
@@ -24,6 +23,7 @@ class App extends Component {
     this.handleUserLogin = this.handleUserLogin.bind(this);
     this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
   }
+
 
 
   /**
@@ -36,7 +36,27 @@ class App extends Component {
   componentDidMount() {
 
     const { screens, globals } = this.state;
+    const { state } = this;
     console.log('**1** App mounted');
+
+    /**
+     * [update product record]
+     * Update current product formdata with item information
+     * @param {*} prodFormData 
+     */
+    state.globals.updateProdFormData = (prodFormData) => {
+
+      const { screens } = this.state;
+      // console.log('???....', prodFormData);
+      const formData = {...prodFormData};
+      delete formData['image']; // input file has to be deleted because it causes problem
+      screens[2].sections[2].items[0].formData = {...formData};
+      this.setState({ screens });
+
+    };
+    
+    
+
 
     /**
      * -----------------------------------------------------------------
@@ -160,8 +180,9 @@ class App extends Component {
    */
   handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
 
-    console.log('====', nodeRoot, nodeDir1);
+    // console.log('====', nodeRoot, nodeDir1);
 
+    // Submitting a product
     if (nodeRoot==='products' && nodeDir1==='product') {
 
       const { image, title } = event.formData;
@@ -169,7 +190,7 @@ class App extends Component {
 
       imgUploaded.then((data) => {
   
-        console.log('*****data=', data    );
+        // console.log('*****data=', data    );
   
         //...
         const { name } = data.metadata;
@@ -186,13 +207,14 @@ class App extends Component {
         // Reset state after data is submitted
         prodSubmitted.then((data)=> {
     
-          resetStateForms.call(this, 'presets');
+          resetStateForms.call(this, 'product');
     
         });
         // [*] Submit record (code duplicated: must be optimized)
   
       }); // [end] imgUploaded
 
+    // Submit another record
     } else {
       
       // [*] Submit record (code duplicated: must be optimized)

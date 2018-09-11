@@ -145,7 +145,7 @@ const FormOutputs = ({
                       <GlobalContext.Consumer>
                         {
                           (global) => (
-                            <button className="btn btn-secondary" onClick={()=>{ global.update(item); }}>Update</button>
+                            <button className="btn btn-secondary" onClick={()=>{ global.updateProdFormData(item); }}>Update</button>
                           )
                         }
                       </GlobalContext.Consumer>
