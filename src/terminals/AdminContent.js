@@ -3,7 +3,7 @@ import Form from 'react-jsonschema-form';
 import ListActiveComponent from './../utilities/lists/ListActiveComponent';
 import ListComponent from './../utilities/lists/ListComponent';
 import GetData from './../utilities/funcAsChild/getData.js';
-import { dbDeleteRecord } from './../utilities/func/mix1.js';
+import { dbDeleteRecord, dbUpdateRecord } from './../utilities/func/mix1.js';
 import Spinner from './../utilities/comps/Spinner/Spinner.js';
 import DateFormat from './../utilities/comps/DateFormat.js';
 
@@ -138,11 +138,14 @@ const FormOutputs = ({
                 (item)=> (
                   <div className="app-row">
                     <div className="app-col">
-                      <DateFormat>{item.createdOn}</DateFormat>
+                      <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
                     </div>
                     <div className="app-col">{item.title}</div>
                     <div className="app-col">
-                      <button onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
+                      <button className="btn btn-secondary" onClick={()=>{ console.log('--item=', item);  /*dbUpdateRecord(`${url}/${item.id}`)*/ }}>Update</button>
+                    </div>
+                    <div className="app-col">
+                      <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
                     </div>
                   </div>
                 )
