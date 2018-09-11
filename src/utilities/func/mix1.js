@@ -108,7 +108,6 @@ export const dbGetSnapshotData = ({ snapshot, singleData }) => {
 
 
 
-
 /**
  * 
  * @param {*} url 
@@ -122,6 +121,36 @@ export const dbDeleteRecord = (url) => {
     DATABASE.ref(url).remove();
 
   }
+
+};
+
+
+
+/**
+ * 
+ * @param {*} url 
+ * @param {*} record
+ */
+export const dbUpdateRecord = ({ url, record }) => {
+
+  return new Promise((resolve) => {
+
+    console.log('url=', url);
+
+    let data = {};
+    data[url] = {...record};
+    data[url].createdOn = Date.now();
+    console.log('..updating record=', record);
+    DATABASE.ref().update(data, function(error) {
+      if (error) {
+        // The write failed...
+      } else {
+        // Data saved successfully!
+        resolve(data[url]);
+      }
+    }); 
+
+  });
 
 };
 
@@ -211,30 +240,6 @@ export const dbUploadFile = ({ dir, fileUrl, fileName }) => {
 
 };
 
-
-
-export const dbUpdateRecord = ({ url, record }) => {
-
-  return new Promise((resolve) => {
-
-    console.log('url=', url);
-
-    let data = {};
-    data[url] = {...record};
-    data[url].createdOn = Date.now();
-    console.log('..updating record=', record);
-    DATABASE.ref().update(data, function(error) {
-      if (error) {
-        // The write failed...
-      } else {
-        // Data saved successfully!
-        resolve(data[url]);
-      }
-    }); 
-
-  });
-
-};
 
 
 /**
