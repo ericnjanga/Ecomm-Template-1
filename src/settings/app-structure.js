@@ -297,8 +297,8 @@ export const appStructure = {
                   price: { type: 'number' },
                   make: { 
                     type: 'string',
-                    enum: ["one", "two", "three"],
-                    enumNames: ["one", "two", "three"]
+                    enum: ['toyota','honda','bMW','mercedes',],
+                    enumNames: ['Toyota','Honda','BMW','Mercedes',],
                   },
                   year: { 
                     type: 'number',
@@ -334,7 +334,7 @@ export const appStructure = {
                   isVisible: { 
                     type: 'boolean',
                     enum: [true, false],
-                    enumNames: ['Gaz', '..']
+                    enumNames: ['Yes', 'No']
                   },
                 },
               },
@@ -343,7 +343,7 @@ export const appStructure = {
                 'onSpotlight': false,
                 'description': '',
                 'price': 0.0,
-                'make':'one',
+                'make':'toyota',
                 'year':2011,
                 'bodyType':'sedan',
                 'color':'red',

@@ -277,3 +277,36 @@ body.modal-open {
 
 
 
+
+
+
+/**
+ * Form in general
+ * ----------------------
+*/
+form label.radio-inline {
+  margin-right: 20px;
+}
+form label.radio-inline input + span,
+form .checkbox label input + span {
+  margin-left: 5px;
+}
+form .checkbox {
+  position: relative;
+  top: -2px;
+}
+form .control-label {
+  margin-bottom: .1rem;
+  color: #666;
+}
+form .form-group {
+  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+form .form-group textarea {
+  height: 150px;
+}
+
+
+
+
