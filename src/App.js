@@ -112,38 +112,46 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
+        console.log('---data=', data);
+
         /**
          * ---------------------------
          * OPTMIZE THIS PROCESS LATER
          * ---------------------------
          */
-        if (data.administrator) {
-          // Save autofill admin form
-          screens[2].sections[0].items[0].formData = {...data.administrator};
-        } else {
-          screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
-        }
+        if (data) { // only if data is available
 
-        // Save brand globally
-        if (data.brand) {
-          // Save autofill admin form
-          screens[2].sections[0].items[1].formData = {...data.brand};
-          globals.brand = data.brand;
-        } else {
-          screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
-        }
-
-        if (data.system) {
-          // Save autofill admin form
-          screens[2].sections[0].items[2].formData = {...data.system};
-          
-          // Save 'currency CDN/XAF to global
-          if (data.system.curr_cdn_to_xaf) {
-            globals.curr_cdn_to_xaf = data.system.curr_cdn_to_xaf;
+          if (data.administrator) { // administrator
+            // Save autofill admin form
+            screens[2].sections[0].items[0].formData = {...data.administrator};
+          } else {
+            screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
           }
-        } else {
-          screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
-        }
+
+          // Save brand globally
+          if (data.brand) { // brand
+            // Save autofill admin form
+            screens[2].sections[0].items[1].formData = {...data.brand};
+            globals.brand = data.brand;
+          } else {
+            screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
+          }
+
+          if (data.system) { // system
+            // Save autofill admin form
+            screens[2].sections[0].items[2].formData = {...data.system};
+            
+            // Save 'currency CDN/XAF to global
+            if (data.system.curr_cdn_to_xaf) {
+              globals.curr_cdn_to_xaf = data.system.curr_cdn_to_xaf;
+            }
+          } else {
+            screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
+          }
+
+        } // [end] only if data is available
+
+
         /**
          * ---------------------------
          * OPTMIZE THIS PROCESS LATER
