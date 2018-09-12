@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^5.4.0",
     "moment": "^2.22.2",
+    "npm": "^6.4.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-currency-formatter": "^1.1.0",
