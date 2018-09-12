@@ -210,63 +210,65 @@ export const appStructure = {
             },
           ],
         },
-        {
-          id: 1,
-          name: 'presets',
-          title: 'Presets',
-          info: 'Options used as a complement to other data',
-          active: false,
-          items: [
-            {
-              id: 0,
-              name: 'preset1',
-              title: 'Preset 1',
-              active: true,
-              previewLiveData: true, // should data created be previewed on admin mode?
-              schema: {
-                type: 'object',
-                properties: {
-                  title: { type: 'string' },
-                },
-              },
-              formData: { // Form default data (shoul match schema)
-                'title': '',
-              },
-            },
-            {
-              id: 1,
-              name: 'preset2',
-              title: 'Preset 2',
-              active: false,
-              previewLiveData: true, // should data created be previewed on admin mode?
-              schema: {
-                type: 'object',
-                properties: {
-                  title: { type: 'string' },
-                },
-              },
-              formData: { // Form default data (shoul match schema)
-                'title': '',
-              },
-            },
-            {
-              id: 2,
-              name: 'preset3',
-              title: 'Preset 3',
-              active: false,
-              previewLiveData: true, // should data created be previewed on admin mode?
-              schema: {
-                type: 'object',
-                properties: {
-                  title: { type: 'string' },
-                },
-              },
-              formData: { // Form default data (shoul match schema)
-                'title': '',
-              },
-            },
-          ],
-        },
+        // HIDDING PRESETS FOR NOW
+        // -----------------------
+        // {
+        //   id: 1,
+        //   name: 'presets',
+        //   title: 'Presets',
+        //   info: 'Options used as a complement to other data',
+        //   active: false,
+        //   items: [
+        //     {
+        //       id: 0,
+        //       name: 'preset1',
+        //       title: 'Preset 1',
+        //       active: true,
+        //       previewLiveData: true, // should data created be previewed on admin mode?
+        //       schema: {
+        //         type: 'object',
+        //         properties: {
+        //           title: { type: 'string' },
+        //         },
+        //       },
+        //       formData: { // Form default data (shoul match schema)
+        //         'title': '',
+        //       },
+        //     },
+        //     {
+        //       id: 1,
+        //       name: 'preset2',
+        //       title: 'Preset 2',
+        //       active: false,
+        //       previewLiveData: true, // should data created be previewed on admin mode?
+        //       schema: {
+        //         type: 'object',
+        //         properties: {
+        //           title: { type: 'string' },
+        //         },
+        //       },
+        //       formData: { // Form default data (shoul match schema)
+        //         'title': '',
+        //       },
+        //     },
+        //     {
+        //       id: 2,
+        //       name: 'preset3',
+        //       title: 'Preset 3',
+        //       active: false,
+        //       previewLiveData: true, // should data created be previewed on admin mode?
+        //       schema: {
+        //         type: 'object',
+        //         properties: {
+        //           title: { type: 'string' },
+        //         },
+        //       },
+        //       formData: { // Form default data (shoul match schema)
+        //         'title': '',
+        //       },
+        //     },
+        //   ],
+        // },
         {
           id: 2,
           name: 'products',
