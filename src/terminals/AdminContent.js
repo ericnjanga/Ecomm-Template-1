@@ -13,10 +13,8 @@ const AdminContent = ({
   data,
   handleSubmit,
 }) => {
-  // console.log('handleSubmit=', handleSubmit);
 
   return (
-    // data.map(x => <p>*** ---admin</p>)
     <ListActiveComponent
       data={data}
       Component={
@@ -36,21 +34,41 @@ const AdminContent = ({
                   <React.Fragment>
                     <h3>{sectionItem.title}</h3>
                     <div className="app-row">
-                      <FormInputs
-                        className="app-col"
-                        {...sectionItem}
-                        onSubmit={(event)=>handleSubmit({
-                          event: event,
-                          nodeRoot: section.name,
-                          nodeDir1: sectionItem.name,
-                          isSingleRecord: sectionItem.isSingleRecord,
-                        })}
-                      />
-                      <FormOutputs
-                        url={`${section.name}/${sectionItem.name}`}
-                        isActive={sectionItem.previewLiveData}
-                        className="app-col"
-                      />
+                      {
+                        sectionItem.name==='all-subscriptions' ?
+                        <div className="app-col">
+                          <GetData
+                            endpoint={'users'}
+                            defaultVal={null}
+                          >
+                            {
+                              (data) => (
+                                <SubscriptionsTable
+                                  data={data}
+                                />
+                              )
+                            }
+                          </GetData>
+                        </div>
+                        :
+                        <React.Fragment>
+                          <FormInputs
+                            className="app-col"
+                            {...sectionItem}
+                            onSubmit={(event)=>handleSubmit({
+                              event: event,
+                              nodeRoot: section.name,
+                              nodeDir1: sectionItem.name,
+                              isSingleRecord: sectionItem.isSingleRecord,
+                            })}
+                          />
+                          <FormOutputs
+                            url={`${section.name}/${sectionItem.name}`}
+                            isActive={sectionItem.previewLiveData}
+                            className="app-col"
+                          />
+                        </React.Fragment>
+                      }
                     </div>
                   </React.Fragment>
                 )
@@ -107,6 +125,51 @@ const FormInputs = ({
     }
     </div>
   );
+};
+
+
+
+const SubscriptionsTable = ({ data }) => {
+
+  if (!data) {
+    return false;
+  }
+
+  return (
+    <table className="table table-striped" style={{ width:'100%'}}>
+      <thead className="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telephone</th>
+          <th scope="col">Dernière inscription</th>
+          <th scope="col">Dernière inscription</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          data.map((item, index) =>{
+            return (
+              <tr key={item.id}>
+                <th scope="row">{ index + 1}</th>
+                <td>{ item.name }</td>
+                <td>{ item.email }</td>
+                <td>{ item.phone }</td>
+                <td>
+                  <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
+                </td>
+                <td>
+                  <button className="btn btn-primary">Dejà Vu</button>
+                </td>
+              </tr>                     
+            )
+          })
+        }
+      </tbody>
+    </table> 
+  );
+
 };
 
 
