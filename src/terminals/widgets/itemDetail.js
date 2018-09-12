@@ -10,6 +10,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
 import { GlobalContext } from './../../settings/basics.js';
+import FetchImage from './../../utilities/funcAsChild/fetchImage.js';
+import PictureFrame from './../../utilities/funcAsChild/PictureFrame.js';
 
 import ItemInfo1 from './ItemInfo1.js';
 
@@ -103,15 +105,35 @@ const ModalTop = ({ item, handleToggle }) => (
       <React.Fragment>
         <ModalHeader toggle={handleToggle}>{item.title}</ModalHeader>
         <ModalBody>
-          <img
-            className="card-img-top modal-itemDetail__image"
-            src="https://via.placeholder.com/500x250"
-            alt={item.title}
-            style={{marginBottom: '20px'}}
-          />
+          <FetchImage
+            dir='products'
+            placeHolderWidth={400}
+            placeholderHeight={300}
+            name={item.image}
+          >
+            {
+              (url) => (
+                <PictureFrame
+                  className='prodImg-frame preview'
+                  imgWidth={500}
+                  frameHeight={250}
+                  style={{ marginBottom:'20px' }}
+                >
+                  {
+                    (position) => (
+                      <img
+                        style={{...position}}
+                        src={url}
+                        alt={item.title}
+                      />
+                    )
+                  }
+                </PictureFrame>
+              )
+            }
+          </FetchImage>
           
           <div style={{ position:'relative' }}>
-            
             
             <ItemInfo1
               {...item}
