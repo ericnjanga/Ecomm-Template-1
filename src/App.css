@@ -137,11 +137,11 @@ ul {
 */
 .app-row {
   display: flex;
-  border: 2px solid lime;
+  /* border: 2px solid lime; */
 }
 .app-row .app-col {
   flex: 1;
-  border: 2px solid turquoise;
+  /* border: 2px solid turquoise; */
 }
 .title-size4 {
   font-size: 1.3rem;

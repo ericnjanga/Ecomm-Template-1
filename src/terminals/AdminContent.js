@@ -32,7 +32,7 @@ const AdminContent = ({
               Component={
                 (sectionItem)=>(
                   <React.Fragment>
-                    <h3>{sectionItem.title}</h3>
+                    <h3 style={{ marginBottom:'20px' }}>{sectionItem.title}</h3>
                     <div className="app-row">
                       {
                         sectionItem.name==='all-subscriptions' ?
@@ -199,6 +199,40 @@ const FormOutputs = ({
               data={data}
               Component={
                 (item)=> (
+                  // Add a table here too
+                  // --------------------
+                  // <table className="table table-striped" style={{ width:'100%'}}>
+                  //   <thead className="thead-dark">
+                  //     <tr>
+                  //       <th scope="col">#</th>
+                  //       <th scope="col">Nom</th>
+                  //       <th scope="col">Email</th>
+                  //       <th scope="col">Telephone</th>
+                  //       <th scope="col">Dernière inscription</th>
+                  //       <th scope="col">Dernière inscription</th>
+                  //     </tr>
+                  //   </thead>
+                  //   <tbody>
+                  //     {
+                  //       data.map((item, index) =>{
+                  //         return (
+                  //           <tr key={item.id}>
+                  //             <th scope="row">{ index + 1}</th>
+                  //             <td>{ item.name }</td>
+                  //             <td>{ item.email }</td>
+                  //             <td>{ item.phone }</td>
+                  //             <td>
+                  //               <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
+                  //             </td>
+                  //             <td>
+                  //               <button className="btn btn-primary">Dejà Vu</button>
+                  //             </td>
+                  //           </tr>                     
+                  //         )
+                  //       })
+                  //     }
+                  //   </tbody>
+                  // </table> 
                   <div className="app-row">
                     <div className="app-col">
                       <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
