@@ -18,10 +18,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import ItemInfo1 from './ItemInfo1.js';
 import FetchImage from './../../utilities/funcAsChild/fetchImage.js';
 import PictureFrame from './../../utilities/funcAsChild/PictureFrame.js';
+import { GlobalContext } from './../../settings/basics.js';
 
 
 const ItemPreview = ({
@@ -70,7 +71,15 @@ const ItemPreview = ({
           modeCondenced={modeCondenced}
         />
         <div className="text-center">
-          <NavLink to={`/items/${data.id}`} className="link">More details</NavLink>
+          {/* <NavLink to={`/items/${data.id}`} className="link">More details</NavLink> */}
+          <GlobalContext.Consumer>
+            {
+              (global) => (
+                <button className="btn btn-link" onClick={()=>{ global.toggleItemDetailModal(data, true)}}>More details</button>
+              )
+            }
+          </GlobalContext.Consumer>
+          
         </div>
       </div>
     </div>

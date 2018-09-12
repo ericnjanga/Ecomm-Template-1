@@ -7,8 +7,9 @@
 import React from 'react';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
+// import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
+import { GlobalContext } from './../../settings/basics.js';
 
 import ItemInfo1 from './ItemInfo1.js';
 
@@ -19,14 +20,14 @@ class ItemDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: true,
+      modal: false,
     };
-    this.toggle = this.toggle.bind(this);
+    // this.props.toggle = this.props.toggle.bind(this);
   }
 
 
   toggle() {
-    this.setState({ modal:!this.state.modal });
+    // this.setState({ modal:!this.state.modal });
 
     /**
      * Return to root url when modal closes
@@ -40,16 +41,18 @@ class ItemDetail extends React.Component {
    * Fetch specific product and save it to state
    */
   componentDidMount() {
+    this.setState({ modal:this.props.show });
 
-    dbGetNode(`products/product/${this.props.match.params.itemId}`).once('value', (snapshot) => {
+    // WE WON'T FETCH DATA FROM ROUTE PARAMS (FOR NOW)
+    // dbGetNode(`products/product/${this.props.match.params.itemId}`).once('value', (snapshot) => {
 
-      dbGetSnapshotData({ snapshot, singleData:true }).then((item) => {
+    //   dbGetSnapshotData({ snapshot, singleData:true }).then((item) => {
 
-          this.setState({ item });
+    //       this.setState({ item });
           
-      });
+    //   });
 
-    }); // [end] dbGetNode
+    // }); // [end] dbGetNode
 
   } //[end] componentDidMount
 
@@ -58,14 +61,14 @@ class ItemDetail extends React.Component {
   render() {
 
     return (
-      <Modal isOpen={this.state.modal} toggle={this.toggle} className={`${this.props.className} modal-itemDetail`}>
+      <Modal isOpen={this.props.show} /*toggle={this.props.toggle}*/ className={`${this.props.className} modal-itemDetail`}>
         <ModalTop
-          item={this.state.item}
-          handleToggle={this.toggle}
+          item={this.props.data}
+          handleToggle={this.props.toggle}
         />
         <ModalBottom
-          item={this.state.item}
-          handleToggle={this.toggle}
+          item={this.props.data}
+          handleToggle={this.props.toggle}
         />
       </Modal>
     );
@@ -144,7 +147,7 @@ const ModalTop = ({ item, handleToggle }) => (
 
 const ModalBottom = ({ item, handleToggle }) => (
   <ModalFooter className="modal-itemDetail__footer">
-    <Button color="primary" onClick={handleToggle} disabled={!item}>Interested?</Button>{' '}
+    {/* <Button color="primary" onClick={handleToggle} disabled={!item}>Interested?</Button>{' '} */}
     <Button color="secondary" onClick={handleToggle}>Cancel</Button>
   </ModalFooter>
 );

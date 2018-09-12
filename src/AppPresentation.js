@@ -7,6 +7,7 @@ import ItemDetail from './terminals/widgets/itemDetail.js';
 import Box from './utilities/comps/Box.js';
 import TopNavigation from './terminals/TopNavigation.js';
 import { toggleText } from './utilities/func/mix1.js';
+import { GlobalContext } from './settings/basics.js';
 
 
 const AppPresentation = ({
@@ -26,6 +27,19 @@ const AppPresentation = ({
         
         <TopNavigation />
 
+        <GlobalContext.Consumer>
+          {
+            (global) => (
+              <ItemDetail
+                show={global.itemDetailModal}
+                toggle={global.toggleItemDetailModal}
+                data={global.itemDetail}
+              />
+            )
+          }
+        </GlobalContext.Consumer>
+        
+
         <ListActiveComponent
           data={screens}
           Component={
@@ -33,11 +47,11 @@ const AppPresentation = ({
               <Route path={screen.path} render={(props) => (
                 <React.Fragment>
                   {
-                    screen.name === 'home' &&
-                    <Route
-                      path={`${screen.path}/:itemId`}
-                      component={ItemDetail}
-                    />
+                    // screen.name === 'home' &&
+                    // <Route
+                    //   path={`${screen.path}/:itemId`}
+                    //   component={ItemDetail}
+                    // />
                   }
                   <Box className={screen.className}>
                     {/*----------------------------*/}

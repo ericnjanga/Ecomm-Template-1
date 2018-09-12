@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       screens: [...appStructure.screens],
       globals: {
+        itemDetailModal: false,
       },
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
@@ -52,6 +53,26 @@ class App extends Component {
       delete formData['image']; // input file has to be deleted because it causes problem
       screens[2].sections[2].items[0].formData = {...formData};
       this.setState({ screens });
+
+    };
+
+
+    /**
+     * Toggle item detail modal
+     * @param {*} prodFormData 
+     */
+    state.globals.toggleItemDetailModal = (data, bool) => {
+
+      const { globals } = this.state;
+
+      globals.itemDetailModal = bool;
+      if(data) {
+        globals.itemDetail = data; 
+      }
+      
+      this.setState({ globals });
+
+      console.log('-globals.itemDetailModal-', globals.itemDetailModal);
 
     };
     
