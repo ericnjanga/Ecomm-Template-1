@@ -42,13 +42,23 @@ export default class PictureFrame extends React.Component {
 
     this.calculatePosAndDims(this);
 
+    // Integrate property styles with predefined ones
+    const style = {
+      ...this.props.style,
+      height:`${this.props.frameHeight}px`,
+      position: 'relative',
+      overflow:'hidden',
+      backgroundColor:'#CCCCCC',
+    };
+    this.setState({ style });
+
   }
 
 
   render() {
     return (
       <ResizeAware // Whatch for resizes and readjust the calculations
-        style={{ position: 'relative', height:`${this.props.frameHeight}px`, overflow:'hidden', backgroundColor:'#CCCCCC' }}
+        style={{...this.state.style}}
         onlyEvent
         onResize={this.calculatePosAndDims}
         className={this.props.className}
