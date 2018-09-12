@@ -16,6 +16,9 @@ Product showcasing template in ReactJS.
       - [Upate operation must be completely redesigned](#dvff)
       - [Display image previously uploaded](#dvff)
   - Front-end:
+    - If firebase data isn't available:
+      - [Coming Soon screen: If no data isn't available at all](#vdss)
+      - [Partial data isn't available: Hide it's panel](#vsvs)
     - Better placeholders:
       - [No items in home focus section](#...)
       - [No items in home content section](#...)
