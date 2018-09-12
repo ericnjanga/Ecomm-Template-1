@@ -18,7 +18,7 @@ const HomeHero = () => {
               style={{ marginBottom:'5px'}}
               >
               <div className="container">
-                <div className="col-md-6 offset-md-3 txt-light">
+                <div className="col-sm-10 offset-sm-1 col-md-6 offset-md-3 txt-light">
                   <p>{ global.brand.about }</p>
                 </div>
               </div>
