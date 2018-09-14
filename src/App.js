@@ -193,19 +193,33 @@ class App extends Component {
 
 
 
-
+  /**
+   * -----------------------------------------------------------------
+   * COMPONENT SHOULD IF:
+   * 1) Auth screen is changed
+   * @param {*} nextProps 
+   * @param {*} nextState 
+   * -----------------------------------------------------------------
+   */
   shouldComponentUpdate(nextProps, nextState) {
 
-    console.log('-shouldComponentUpdate: [nextProps]=', nextProps);
-    console.log('-shouldComponentUpdate: [nextState]=', nextState);
+    console.log('-[App] shouldComponentUpdate: [this.props]=', this.props);
+    console.log('-[App] shouldComponentUpdate: [nextProps]=', nextProps);
+    console.log('-[App] shouldComponentUpdate: [nextState]=', nextState.screens[0].active);
+
+
     // if (this.props.color !== nextProps.color) {
     //   return true;
     // }
     // if (this.state.count !== nextState.count) {
     //   return true;
     // }
-    return true;
-    // return false;
+
+    if(nextState.screens[0].active) {
+      return true;
+    }
+    
+    return false;
   }
 
 
