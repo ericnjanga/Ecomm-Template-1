@@ -44,15 +44,8 @@ const AppPresentation = ({
           data={screens}
           Component={
             (screen)=> (
-              <Route path={screen.path} render={(props) => (
-                <React.Fragment>
-                  {
-                    // screen.name === 'home' &&
-                    // <Route
-                    //   path={`${screen.path}/:itemId`}
-                    //   component={ItemDetail}
-                    // />
-                  }
+              <Route path={screen.path} exact render={(props) => (
+                
                   <Box className={screen.className}>
                     {/*----------------------------*/}
                     {/*--- Each view (or screen ---*/}
@@ -85,7 +78,7 @@ const AppPresentation = ({
                       />
                     }
                   </Box>
-                </React.Fragment>
+                
               )} />
             )
           }
@@ -93,7 +86,7 @@ const AppPresentation = ({
 
 
         {/* Home page loads the list of items */}
-        {/* <Redirect exact from="/" to="/items" /> */}
+        {/* <Redirect exact from="/" to="/" /> */}
       </div>  
     </Router>
   );

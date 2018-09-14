@@ -39,7 +39,7 @@ export default class TopNavigation extends React.Component {
         expand="md"
       >
         <div className="container">
-          <NavLink to="/items" className="text-uppercase navbar-brand">
+          <NavLink to="/" className="text-uppercase navbar-brand">
             <GlobalContext.Consumer>
               {
                 (global) => (
@@ -53,11 +53,22 @@ export default class TopNavigation extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink to="/admin" activeClassName="selected">admin</NavLink>
+                <NavLink to="/" exact activeClassName="selected">items</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink to="/items" activeClassName="selected">items</NavLink>
-              </NavItem>
+
+              <GlobalContext.Consumer>
+                {
+                  (global) => (
+                    global && global.user &&
+                    // console.log('==============global.user.isAdmin', global.user.isAdmin )
+                    global && global.user && global.user.isAdmin===true &&
+                    <NavItem>
+                      <NavLink to="/admin" activeClassName="selected">admin</NavLink>
+                    </NavItem>
+                  )
+                }
+              </GlobalContext.Consumer>
+                
               
               {/* HIDDING FILTERS FOR NOW */}
               {/* <UncontrolledDropdown nav inNavbar>
@@ -114,7 +125,7 @@ export default class TopNavigation extends React.Component {
   
 //       <ul className="list-inline">
 //         <li className="list-inline-item">
-//           <NavLink to={`/items`}>Home</NavLink>
+//           <NavLink to={`/`}>Home</NavLink>
 //         </li>
 //         <li className="list-inline-item">
 //           <NavLink to={`/`}>Single</NavLink>

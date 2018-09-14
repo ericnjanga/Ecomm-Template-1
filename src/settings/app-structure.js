@@ -38,7 +38,7 @@ export const appStructure = {
       active: true,
       info1: 'info1',
       info2: 'info2',
-      path: '/items',
+      path: '/',
       className: 'screen',
       dividers: [
         {

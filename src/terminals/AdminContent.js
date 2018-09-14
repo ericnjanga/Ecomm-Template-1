@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
+import { BrowserRouter as Redirect } from "react-router-dom";
 import ListActiveComponent from './../utilities/lists/ListActiveComponent';
 import ListComponent from './../utilities/lists/ListComponent';
 import GetData from './../utilities/funcAsChild/getData.js';
@@ -15,69 +16,80 @@ const AdminContent = ({
 }) => {
 
   return (
-    <ListActiveComponent
-      data={data}
-      Component={
-        (section)=>(
-          <React.Fragment>
-            <h2>
-              {section.title}
-              {
-                section.info &&
-                <small> &nbsp; ({section.info})</small>
-              }
-            </h2>
-            <ListActiveComponent
-              data={section.items}
-              Component={
-                (sectionItem)=>(
-                  <React.Fragment>
-                    <h3 style={{ marginBottom:'20px' }}>{sectionItem.title}</h3>
-                    <div className="app-row">
-                      {
-                        sectionItem.name==='all-subscriptions' ?
-                        <div className="app-col">
-                          <GetData
-                            endpoint={'users'}
-                            defaultVal={null}
-                          >
-                            {
-                              (data) => (
-                                <SubscriptionsTable
-                                  data={data}
-                                />
-                              )
-                            }
-                          </GetData>
-                        </div>
-                        :
-                        <React.Fragment>
-                          <FormInputs
-                            className="app-col"
-                            {...sectionItem}
-                            onSubmit={(event)=>handleSubmit({
-                              event: event,
-                              nodeRoot: section.name,
-                              nodeDir1: sectionItem.name,
-                              isSingleRecord: sectionItem.isSingleRecord,
-                            })}
-                          />
-                          <FormOutputs
-                            url={`${section.name}/${sectionItem.name}`}
-                            isActive={sectionItem.previewLiveData}
-                            className="app-col"
-                          />
-                        </React.Fragment>
-                      }
-                    </div>
-                  </React.Fragment>
-                )
-              }
-            />
-          </React.Fragment>
+    <React.Fragment>
+      <GlobalContext.Consumer>
+      {
+        (global) => (
+          global && global.user && !global.user.isAdmin &&
+          <Redirect exact to="/" />
         )
       }
-    />
+      </GlobalContext.Consumer>
+
+      <ListActiveComponent
+        data={data}
+        Component={
+          (section)=>(
+            <React.Fragment>
+              <h2>
+                {section.title}
+                {
+                  section.info &&
+                  <small> &nbsp; ({section.info})</small>
+                }
+              </h2>
+              <ListActiveComponent
+                data={section.items}
+                Component={
+                  (sectionItem)=>(
+                    <React.Fragment>
+                      <h3 style={{ marginBottom:'20px' }}>{sectionItem.title}</h3>
+                      <div className="app-row">
+                        {
+                          sectionItem.name==='all-subscriptions' ?
+                          <div className="app-col">
+                            <GetData
+                              endpoint={'users'}
+                              defaultVal={null}
+                            >
+                              {
+                                (data) => (
+                                  <SubscriptionsTable
+                                    data={data}
+                                  />
+                                )
+                              }
+                            </GetData>
+                          </div>
+                          :
+                          <React.Fragment>
+                            <FormInputs
+                              className="app-col"
+                              {...sectionItem}
+                              onSubmit={(event)=>handleSubmit({
+                                event: event,
+                                nodeRoot: section.name,
+                                nodeDir1: sectionItem.name,
+                                isSingleRecord: sectionItem.isSingleRecord,
+                              })}
+                            />
+                            <FormOutputs
+                              url={`${section.name}/${sectionItem.name}`}
+                              isActive={sectionItem.previewLiveData}
+                              className="app-col"
+                            />
+                          </React.Fragment>
+                        }
+                      </div>
+                    </React.Fragment>
+                  )
+                }
+              />
+            </React.Fragment>
+          )
+        }
+      />
+    </React.Fragment>
   );
 };
 

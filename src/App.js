@@ -90,11 +90,36 @@ class App extends Component {
       phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
     };
 
+    // If there are some user saved informations:
+    // - Get that user in the database and save its info inside the global object
+    // - Hide login screen
     if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
-      // const { screens } = this.state;
-      screens[0].dividers[0].active = false;
-      // console.log('** 1 - ---a ** [App mounted] set state ');
-      // this.setState({ screens }, ()=>{ console.log('** 1 - a ** [App mounted] screens updated (hide auth panel) '); });
+
+      dbGetNode(`users`).once('value', (snapshot) => {
+
+        dbGetSnapshotData({ snapshot }).then((usersCollection) => {
+
+          // Find-out if this user exist in the DB
+          if (usersCollection) {
+
+            const userInDB = usersCollection.filter(currUser => {
+              return (currUser.name===savedUserInfo.name && currUser.email===savedUserInfo.email && currUser.phone===savedUserInfo.phone);
+            });
+
+            // Save user database info inside the global object
+            const { globals } = this.state;
+            globals.user = userInDB[0];
+            this.setState({ globals });
+
+            // Hide login screen
+            screens[0].dividers[0].active = false;
+
+          }
+        
+        });
+        
+      });
+
     }
 
 
@@ -294,7 +319,6 @@ class App extends Component {
 
         }
 
-
         // 1) Register user in DB (if no records exists), update "auth crendentials" in DB and move on
         // ------------------
         // [Create new record]:
@@ -319,12 +343,12 @@ class App extends Component {
 
         } // [Create new record]
 
-
+        console.log('....1' );
         // 2) Save DB "auth crendentials" in user object
         // 3) If "remember" is checked, save "auth crendentials" in local storage
         // *) Hide "auth page"
         // ------------------
-        dataSubmitted.then((user)=> {
+        dataSubmitted.then((user)=> {     console.log('....user=', user );
 
           const { globals, screens } = this.state;
           globals.user = { ...user };
