@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      shouldUpdate: true, // Help contrain main and children components rendering
       screens: [...appStructure.screens],
       globals: {
         itemDetailModal: false,
@@ -70,7 +71,7 @@ class App extends Component {
         globals.itemDetail = data; 
       }
       
-      this.setState({ globals });
+      this.setState({ globals, shouldUpdate:false });
 
       console.log('-globals.itemDetailModal-', globals.itemDetailModal);
 
@@ -190,37 +191,6 @@ class App extends Component {
     }); // [end] dbGetNode
 
   } // [end] componentDidMount
-
-
-
-  /**
-   * -----------------------------------------------------------------
-   * COMPONENT SHOULD IF:
-   * 1) Auth screen is changed
-   * @param {*} nextProps 
-   * @param {*} nextState 
-   * -----------------------------------------------------------------
-   */
-  shouldComponentUpdate(nextProps, nextState) {
-
-    console.log('-[App] shouldComponentUpdate: [this.props]=', this.props);
-    console.log('-[App] shouldComponentUpdate: [nextProps]=', nextProps);
-    console.log('-[App] shouldComponentUpdate: [nextState]=', nextState.screens[0].active);
-
-
-    // if (this.props.color !== nextProps.color) {
-    //   return true;
-    // }
-    // if (this.state.count !== nextState.count) {
-    //   return true;
-    // }
-
-    if(nextState.screens[0].active) {
-      return true;
-    }
-    
-    return false;
-  }
 
 
 

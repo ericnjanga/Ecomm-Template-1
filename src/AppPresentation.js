@@ -11,101 +11,105 @@ import { GlobalContext } from './settings/basics.js';
 
 
 class AppPresentation extends React.Component {
- 
- 
-//   screens,
-//   handleToggleSidebar,
-//   handleAdminPageToggle,
-//   handleUserLogin,
-//   handleAdminDataSubmit,
-// }) => {
+  // componentDidMount() {
+  //   console.log('-2- AppPresentation mounted');
+  // }
 
-
-
-  componentDidMount() {
-
-    console.log('-2- AppPresentation mounted');
-  }
-
-  shouldComponentUpdate() {
-
-    console.log('-[AppPresentation] shouldComponentUpdate: [this.props]=', this.props);
-    console.log('-[AppPresentation] shouldComponentUpdate: [nextProps]=', nextProps);
-    console.log('-[AppPresentation] shouldComponentUpdate: [nextState]=', nextState.screens[0].active);
-
+  /**
+   * ---------------------------
+   * UPDATE COMPONENT IF:
+   * - shouldUpdate props is positive (managed from the global function)
+   * ---------------------------
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log('-[AppPresentation] shouldComponentUpdate: [this.props]=', this.props.shouldUpdate);
+    // console.log('-[AppPresentation] shouldComponentUpdate: [nextProps]=', nextProps.shouldUpdate);
+    return nextProps.shouldUpdate;
   }
 
 
   render() {
 
+    const {
+      screens,
+      handleToggleSidebar,
+      handleAdminPageToggle,
+      handleUserLogin,
+      handleAdminDataSubmit,
+    } = this.props;
+
     return(
-      <Router>
-        <div className="Et1">
-          
-          <TopNavigation />
+      <React.Fragment>
+        <GlobalContext.Consumer>
+          {
+            (global) => (
+              <ItemDetail
+                show={global.itemDetailModal}
+                toggle={global.toggleItemDetailModal}
+                data={global.itemDetail}
+              />
+            )
+          }
+        </GlobalContext.Consumer>
+        
 
-          <GlobalContext.Consumer>
-            {
-              (global) => (
-                <ItemDetail
-                  show={global.itemDetailModal}
-                  toggle={global.toggleItemDetailModal}
-                  data={global.itemDetail}
-                />
-              )
-            }
-          </GlobalContext.Consumer>
-          
+        <Router>
+          <div className="Et1">
+            
+            <TopNavigation />
 
-          <ListActiveComponent
-            data={screens}
-            Component={
-              (screen)=> (
-                <Route path={screen.path} exact render={(props) => (
-                  
-                    <Box className={screen.className}>
-                      {/*----------------------------*/}
-                      {/*--- Each view (or screen ---*/}
-                      {/*----------------------------*/}
-                      {
-                        screen.dividers && 
-                        <ListActiveComponent
-                          data={screen.dividers}
-                          Component={
-                            (divider)=> (
-                              <React.Fragment>
-                                {/*--------------------*/}
-                                {/*--- Each divider ---*/}
-                                {/*--------------------*/}
-                                <Divider
-                                  parentName={screen.name}
-                                  sections={screen.sections ? [...screen.sections] : []}
-                                  {...divider}
-                                  toggleSidebar={handleToggleSidebar}
-                                  togglePages={handleAdminPageToggle}
-                                  handleLogin={handleUserLogin}
-                                  adminDataSubmit={handleAdminDataSubmit}
-                                  className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
-                                  // {...screen}
-                                />
-                                {/* <p>{item.name} - {divider.name}</p> */}
-                              </React.Fragment>
-                            )
-                          }
-                        />
-                      }
-                    </Box>
-                  
-                )} />
-              )
-            }
-          />
+            <ListActiveComponent
+              data={screens}
+              Component={
+                (screen)=> (
+                  <Route path={screen.path} exact render={(props) => (
+                    
+                      <Box className={screen.className}>
+                        {/*----------------------------*/}
+                        {/*--- Each view (or screen ---*/}
+                        {/*----------------------------*/}
+                        {
+                          screen.dividers && 
+                          <ListActiveComponent
+                            data={screen.dividers}
+                            Component={
+                              (divider)=> (
+                                <React.Fragment>
+                                  {/*--------------------*/}
+                                  {/*--- Each divider ---*/}
+                                  {/*--------------------*/}
+                                  <Divider
+                                    parentName={screen.name}
+                                    sections={screen.sections ? [...screen.sections] : []}
+                                    {...divider}
+                                    toggleSidebar={handleToggleSidebar}
+                                    togglePages={handleAdminPageToggle}
+                                    handleLogin={handleUserLogin}
+                                    adminDataSubmit={handleAdminDataSubmit}
+                                    className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
+                                    // {...screen}
+                                  />
+                                  {/* <p>{item.name} - {divider.name}</p> */}
+                                </React.Fragment>
+                              )
+                            }
+                          />
+                        }
+                      </Box>
+                    
+                  )} />
+                )
+              }
+            />
 
 
-          {/* Home page loads the list of items */}
-          {/* <Redirect exact from="/" to="/" /> */}
-        </div>  
-      </Router>
+            {/* Home page loads the list of items */}
+            {/* <Redirect exact from="/" to="/" /> */}
+          </div>  
+        </Router>
+      </React.Fragment>
+
+
     );
   }
 
