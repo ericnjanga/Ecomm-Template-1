@@ -10,86 +10,104 @@ import { toggleText } from './utilities/func/mix1.js';
 import { GlobalContext } from './settings/basics.js';
 
 
-const AppPresentation = ({
-  screens,
-  handleToggleSidebar,
-  handleAdminPageToggle,
-  handleUserLogin,
-  handleAdminDataSubmit,
-}) => {
+class AppPresentation extends React.Component {
+ 
+ 
+//   screens,
+//   handleToggleSidebar,
+//   handleAdminPageToggle,
+//   handleUserLogin,
+//   handleAdminDataSubmit,
+// }) => {
 
 
-  console.log('-2- AppPresentation mounted');
 
-  return(
-    <Router>
-      <div className="Et1">
-        
-        <TopNavigation />
+  componentDidMount() {
 
-        <GlobalContext.Consumer>
-          {
-            (global) => (
-              <ItemDetail
-                show={global.itemDetailModal}
-                toggle={global.toggleItemDetailModal}
-                data={global.itemDetail}
-              />
-            )
-          }
-        </GlobalContext.Consumer>
-        
+    console.log('-2- AppPresentation mounted');
+  }
 
-        <ListActiveComponent
-          data={screens}
-          Component={
-            (screen)=> (
-              <Route path={screen.path} exact render={(props) => (
-                
-                  <Box className={screen.className}>
-                    {/*----------------------------*/}
-                    {/*--- Each view (or screen ---*/}
-                    {/*----------------------------*/}
-                    {
-                      screen.dividers && 
-                      <ListActiveComponent
-                        data={screen.dividers}
-                        Component={
-                          (divider)=> (
-                            <React.Fragment>
-                              {/*--------------------*/}
-                              {/*--- Each divider ---*/}
-                              {/*--------------------*/}
-                              <Divider
-                                parentName={screen.name}
-                                sections={screen.sections ? [...screen.sections] : []}
-                                {...divider}
-                                toggleSidebar={handleToggleSidebar}
-                                togglePages={handleAdminPageToggle}
-                                handleLogin={handleUserLogin}
-                                adminDataSubmit={handleAdminDataSubmit}
-                                className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
-                                // {...screen}
-                              />
-                              {/* <p>{item.name} - {divider.name}</p> */}
-                            </React.Fragment>
-                          )
-                        }
-                      />
-                    }
-                  </Box>
-                
-              )} />
-            )
-          }
-        />
+  shouldComponentUpdate() {
+
+    console.log('-[AppPresentation] shouldComponentUpdate: [this.props]=', this.props);
+    console.log('-[AppPresentation] shouldComponentUpdate: [nextProps]=', nextProps);
+    console.log('-[AppPresentation] shouldComponentUpdate: [nextState]=', nextState.screens[0].active);
+
+  }
 
 
-        {/* Home page loads the list of items */}
-        {/* <Redirect exact from="/" to="/" /> */}
-      </div>  
-    </Router>
-  );
+  render() {
+
+    return(
+      <Router>
+        <div className="Et1">
+          
+          <TopNavigation />
+
+          <GlobalContext.Consumer>
+            {
+              (global) => (
+                <ItemDetail
+                  show={global.itemDetailModal}
+                  toggle={global.toggleItemDetailModal}
+                  data={global.itemDetail}
+                />
+              )
+            }
+          </GlobalContext.Consumer>
+          
+
+          <ListActiveComponent
+            data={screens}
+            Component={
+              (screen)=> (
+                <Route path={screen.path} exact render={(props) => (
+                  
+                    <Box className={screen.className}>
+                      {/*----------------------------*/}
+                      {/*--- Each view (or screen ---*/}
+                      {/*----------------------------*/}
+                      {
+                        screen.dividers && 
+                        <ListActiveComponent
+                          data={screen.dividers}
+                          Component={
+                            (divider)=> (
+                              <React.Fragment>
+                                {/*--------------------*/}
+                                {/*--- Each divider ---*/}
+                                {/*--------------------*/}
+                                <Divider
+                                  parentName={screen.name}
+                                  sections={screen.sections ? [...screen.sections] : []}
+                                  {...divider}
+                                  toggleSidebar={handleToggleSidebar}
+                                  togglePages={handleAdminPageToggle}
+                                  handleLogin={handleUserLogin}
+                                  adminDataSubmit={handleAdminDataSubmit}
+                                  className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
+                                  // {...screen}
+                                />
+                                {/* <p>{item.name} - {divider.name}</p> */}
+                              </React.Fragment>
+                            )
+                          }
+                        />
+                      }
+                    </Box>
+                  
+                )} />
+              )
+            }
+          />
+
+
+          {/* Home page loads the list of items */}
+          {/* <Redirect exact from="/" to="/" /> */}
+        </div>  
+      </Router>
+    );
+  }
 
 };
 
