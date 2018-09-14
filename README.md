@@ -16,6 +16,7 @@ Product showcasing template in ReactJS.
       - [Upate operation must be completely redesigned](#dvff)
       - [Display image previously uploaded](#dvff)
   - Front-end:
+    - 404 page
     - If firebase data isn't available:
       - [Coming Soon screen: If no data isn't available at all](#vdss)
       - [Partial data isn't available: Hide it's panel](#vsvs)
@@ -70,7 +71,7 @@ Restaure these rules in `firebase storage`:
 
 ### Item 1
 
-Return to `root/items` when `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js).
+Return to `root/` when `ItemDetail` [modal](https://github.com/ericnjanga/Ecomm-Template-1/blob/master/src/terminals/widgets/itemDetail.js).
 
 ### Item 2
 
