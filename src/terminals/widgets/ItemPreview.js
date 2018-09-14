@@ -71,7 +71,7 @@ const ItemPreview = ({
           modeCondenced={modeCondenced}
         />
         <div className="text-center">
-          {/* <NavLink to={`/items/${data.id}`} className="link">More details</NavLink> */}
+          {/* <NavLink to={`//${data.id}`} className="link">More details</NavLink> */}
           <GlobalContext.Consumer>
             {
               (global) => (
