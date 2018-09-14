@@ -297,13 +297,13 @@ export const appStructure = {
                   price: { type: 'number' },
                   make: { 
                     type: 'string',
-                    enum: ['toyota','honda','bMW','mercedes',],
-                    enumNames: ['Toyota','Honda','BMW','Mercedes',],
+                    enum: ['toyota','honda','bMW','mercedes','kia','volvo'],
+                    enumNames: ['Toyota','Honda','BMW','Mercedes','Kia','Volvo'],
                   },
                   year: { 
                     type: 'number',
-                    enum: [2010,2011,2012],
-                    enumNames: [2010,2011,2012]
+                    enum: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,2011,2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+                    enumNames: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,2011,2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
                   },
                   bodyType: { 
                     type: 'string',
