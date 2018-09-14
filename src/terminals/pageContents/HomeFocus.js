@@ -42,7 +42,7 @@ const HomeFocus = () => {
             <OwlCarousel
               className="owl-theme"
               autoplay
-              loop
+              // loop
               margin={10}
               responsive={responsiveConf}
               // nav
