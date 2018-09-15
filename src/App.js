@@ -39,7 +39,7 @@ class App extends Component {
 
     const { screens, globals } = this.state;
     const { state } = this;
-    console.log('**1** App mounted');
+    // console.log('**1** App mounted');
 
     /**
      * [update product record]
@@ -138,7 +138,7 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        console.log('---data=', data);
+        // console.log('---data=', data);
 
         /**
          * ---------------------------
@@ -184,7 +184,7 @@ class App extends Component {
          * ---------------------------
          */
 
-        this.setState({ screens, globals }, ()=>{ console.log('** 1 - a ** [App mounted] screens / update globals (brand, currency) '); });
+        this.setState({ screens, globals }, ()=>{ /*console.log('** 1 - a ** [App mounted] screens / update globals (brand, currency) ');*/ });
 
       }); // [end] dbGetSnapshotData
 

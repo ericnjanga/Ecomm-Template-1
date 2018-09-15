@@ -135,12 +135,12 @@ export const dbUpdateRecord = ({ url, record }) => {
 
   return new Promise((resolve) => {
 
-    console.log('url=', url);
+    // console.log('url=', url);
 
     let data = {};
     data[url] = {...record};
     data[url].createdOn = Date.now();
-    console.log('..updating record=', record);
+    // console.log('..updating record=', record);
     DATABASE.ref().update(data, function(error) {
       if (error) {
         // The write failed...

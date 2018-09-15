@@ -29,7 +29,7 @@ export default class TopNavigation extends React.Component {
   }
   render() {
 
-    console.log('-2- TopNavigation');
+    // console.log('-2- TopNavigation');
 
     return (
       <Navbar
