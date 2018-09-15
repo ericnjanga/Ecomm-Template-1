@@ -11,7 +11,7 @@ import React from 'react';
 import firebase, { firebaseConfig } from './firebase-configs';
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig.dev);
+firebase.initializeApp(firebaseConfig.prod); // env or prod
 
 // Application prefix
 export const APP_PREFIX = 'Et1';
