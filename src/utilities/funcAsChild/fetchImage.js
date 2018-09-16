@@ -25,21 +25,28 @@ class FetchImage extends React.Component {
 
   componentDidMount() {
 
-    this._ismounted = true;
+    this._isMounted = true;
 
     // Ony try to fetch if "node directory" and "file name" are provided
     // Update state's "url" property when data is resolved
     if (this.props.dir && this.props.name) {
 
       dbGetFileUploaded({ dir:this.props.dir, imgSlug:this.props.name }).then((data) => {
-        if(data && data.url) {
+        // Only set state is there is a 'url' value
+        if(data && data.url && this._isMounted) { // But also make sure the component is mounted
           const { url } = data;
-          console.log('------url=', url);
-          this.setState({ url })
+          this.setState({ url });
         }
       });
 
     }
+
+  }
+
+
+  componentWillUnmount() {
+
+    this._isMounted = false;
 
   }
 
