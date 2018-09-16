@@ -148,6 +148,7 @@ export const appStructure = {
                 type: 'object',
                 properties: {
                   name: { type: 'string', title: brandSetting.title },
+                  slogan: { type: 'string', title:'Your Slogan (70 chars max)' },
                   about: { type: 'string', title: 'À Propos (La section "À Propos" sera absente si cette information est inexistente)' },
                   email: { type: 'string', title: 'Email' },
                   phone1: { type: 'string', title: 'Phone1' },
@@ -156,6 +157,7 @@ export const appStructure = {
               },
               formData: { // Form default data (shoul match schema)
                 'name': '',
+                'slogan': '',
                 'about': '',
                 'email': '',
                 'phone1': '',

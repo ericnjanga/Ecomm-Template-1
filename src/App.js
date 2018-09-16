@@ -73,7 +73,7 @@ class App extends Component {
       
       this.setState({ globals, shouldUpdate:false });
 
-      console.log('-globals.itemDetailModal-', globals.itemDetailModal);
+      // console.log('-globals.itemDetailModal-', globals.itemDetailModal);
 
     };
     
@@ -159,6 +159,8 @@ class App extends Component {
             // Save autofill admin form
             screens[2].sections[0].items[1].formData = {...data.brand};
             globals.brand = data.brand;
+            // update app title with brand name and slogan
+            document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
           } else {
             screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
           }

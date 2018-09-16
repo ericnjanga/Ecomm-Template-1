@@ -34,7 +34,7 @@ class FetchImage extends React.Component {
       dbGetFileUploaded({ dir:this.props.dir, imgSlug:this.props.name }).then((data) => {
         if(data && data.url) {
           const { url } = data;
-          // console.log('------url=', url);
+          console.log('------url=', url);
           this.setState({ url })
         }
       });
