@@ -22,20 +22,20 @@ class GetData extends React.Component {
 
   componentDidMount() {
 
-    this._ismounted = true;
+    this._isMounted = true;
 
-    // console.log('##1##componentDidMount', this._ismounted);
+    // console.log('##1##componentDidMount', this._isMounted);
 
     dbGetNode(`${this.props.endpoint}`).on('value', (snapshot) => {
 
-      // console.log('##1----2##componentDidMount--', this._ismounted);
+      // console.log('##1----2##componentDidMount--', this._isMounted);
 
       const { singleData } = this.props;
       dbGetSnapshotData({ snapshot, singleData }).then((resultData) => {
 
         // console.log('****resultData=', resultData);
 
-        if (this._ismounted) {
+        if (this._isMounted) {
           const { filter, filterType } = this.props;
           let data = resultData;
 
@@ -70,9 +70,9 @@ class GetData extends React.Component {
 
   componentWillUnmount() {
 
-    this._ismounted = false;
+    this._isMounted = false;
 
-    // console.log('--2--componentWillUnmount', this._ismounted);
+    // console.log('--2--componentWillUnmount', this._isMounted);
     dbGetNode(`${this.props.endpoint}`).off();
   }
 
