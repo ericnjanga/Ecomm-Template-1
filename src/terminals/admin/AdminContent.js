@@ -1,13 +1,13 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import { BrowserRouter as Redirect } from "react-router-dom";
-import ListActiveComponent from './../utilities/lists/ListActiveComponent';
-import ListComponent from './../utilities/lists/ListComponent';
-import GetData from './../utilities/funcAsChild/getData.js';
-import { dbDeleteRecord, dbUpdateRecord } from './../utilities/func/mix1.js';
-import Spinner from './../utilities/comps/Spinner/Spinner.js';
-import DateFormat from './../utilities/comps/DateFormat.js';
-import { GlobalContext } from './../settings/basics.js';
+import ListActiveComponent from './../../utilities/lists/ListActiveComponent';
+import ListComponent from './../../utilities/lists/ListComponent';
+import GetData from './../../utilities/funcAsChild/getData.js';
+import { dbDeleteRecord, dbUpdateRecord } from './../../utilities/func/mix1.js';
+import Spinner from './../../utilities/comps/Spinner/Spinner.js';
+import DateFormat from './../../utilities/comps/DateFormat.js';
+import { GlobalContext } from './../../settings/basics.js';
 
 
 const AdminContent = ({

@@ -1,7 +1,7 @@
 import React from 'react';
-import { toggleText } from './../utilities/func/mix1.js';
-import ListComponent from './../utilities/lists/ListComponent.js';
-import BrandLogo from './BrandLogo.js';
+import { toggleText } from './../../utilities/func/mix1.js';
+import ListComponent from './../../utilities/lists/ListComponent.js';
+import BrandLogo from './../BrandLogo.js';
 
  
 

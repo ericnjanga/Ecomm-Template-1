@@ -15,77 +15,10 @@ export const appStructure = {
   
   screens: [
     {
-      // id: 0,
-      // name: 'auth',
-      // title: 'Login',
-      // active: true,
-      // info1: 'info1',
-      // info2: 'info2',
-      // path: '/', 
-      // dividers: [
-      //   {
-      //     id: 0,
-      //     name: 'content',
-      //     active: true,
-      //     className: 'full-screen',
-      //   }
-      // ],
     }, // auth
     {
-      id: 1,
-      name: 'home',
-      title: 'Home',
-      active: true,
-      info1: 'info1',
-      info2: 'info2',
-      path: '/',
-      className: 'screen',
-      dividers: [
-        {
-          id: 0,
-          name: 'hero',
-          active: true,
-        },
-        {
-          id: 1,
-          name: 'focus',
-          active: true,
-        },
-        {
-          id: 2,
-          name: 'content',
-          active: true,
-        },
-        {
-          id: 3,
-          name: 'footer',
-          active: true,
-        },
-      ],
+      // id: 1,
     }, // home
-    /*
-    -- HIDDING SINGLE FOR NOW
-    {
-      id: 2,
-      name: 'single',
-      title: 'Single',
-      active: true,
-      info1: 'info1',
-      info2: 'info2',
-      dividers: [
-        {
-          id: 0,
-          name: 'hero',
-          active: true,
-        },
-        {
-          id: 1,
-          name: 'content',
-          active: true,
-        },
-      ],
-    }, // single
-    */
     {
       id: 3,
       name: 'admin',
@@ -212,65 +145,6 @@ export const appStructure = {
             },
           ],
         },
-        // HIDDING PRESETS FOR NOW
-        // -----------------------
-        // {
-        //   id: 1,
-        //   name: 'presets',
-        //   title: 'Presets',
-        //   info: 'Options used as a complement to other data',
-        //   active: false,
-        //   items: [
-        //     {
-        //       id: 0,
-        //       name: 'preset1',
-        //       title: 'Preset 1',
-        //       active: true,
-        //       previewLiveData: true, // should data created be previewed on admin mode?
-        //       schema: {
-        //         type: 'object',
-        //         properties: {
-        //           title: { type: 'string' },
-        //         },
-        //       },
-        //       formData: { // Form default data (shoul match schema)
-        //         'title': '',
-        //       },
-        //     },
-        //     {
-        //       id: 1,
-        //       name: 'preset2',
-        //       title: 'Preset 2',
-        //       active: false,
-        //       previewLiveData: true, // should data created be previewed on admin mode?
-        //       schema: {
-        //         type: 'object',
-        //         properties: {
-        //           title: { type: 'string' },
-        //         },
-        //       },
-        //       formData: { // Form default data (shoul match schema)
-        //         'title': '',
-        //       },
-        //     },
-        //     {
-        //       id: 2,
-        //       name: 'preset3',
-        //       title: 'Preset 3',
-        //       active: false,
-        //       previewLiveData: true, // should data created be previewed on admin mode?
-        //       schema: {
-        //         type: 'object',
-        //         properties: {
-        //           title: { type: 'string' },
-        //         },
-        //       },
-        //       formData: { // Form default data (shoul match schema)
-        //         'title': '',
-        //       },
-        //     },
-        //   ],
-        // },
         {
           id: 2,
           name: 'products',
