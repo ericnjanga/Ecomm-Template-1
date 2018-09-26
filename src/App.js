@@ -19,6 +19,11 @@ class App extends Component {
       globals: {
         itemDetailModal: false,
       },
+      views:{
+        auth: {
+          active: true,
+        },
+      },
     };
     this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
     this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
@@ -37,7 +42,7 @@ class App extends Component {
    */
   componentDidMount() {
 
-    const { screens, globals } = this.state;
+    const { screens, globals, views } = this.state;
     const { state } = this;
     // console.log('**1** App mounted');
 
@@ -113,7 +118,7 @@ class App extends Component {
             this.setState({ globals });
 
             // Hide login screen
-            screens[0].dividers[0].active = false;
+            views.auth.active = false;
 
           }
         
@@ -336,11 +341,11 @@ class App extends Component {
         // ------------------
         dataSubmitted.then((user)=> {     console.log('....user=', user );
 
-          const { globals, screens } = this.state;
+          const { globals, screens, views } = this.state;
           globals.user = { ...user };
 
           // Hide "auth page"
-          screens[0].active = false;
+          views.auth.active = false;
 
           this.setState({ globals, screens });
           if (user['remember-auth']) {

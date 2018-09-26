@@ -1,10 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route/*, Redirect*/ } from "react-router-dom";
-import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
-import Divider from './terminals/Divider.js';
+import { BrowserRouter as Router, Route, Switch/*, Redirect*/ } from "react-router-dom";
+
 import ItemDetail from './terminals/widgets/itemDetail.js';
 import Box from './utilities/comps/Box.js';
+
+import AuthContent from './terminals/pageContents/AuthContent.js';
+import HomeHero from './terminals/pageContents/HomeHero.js';
+import HomeFocus from './terminals/pageContents/HomeFocus.js';
+import HomeContent from './terminals/pageContents/HomeContent.js';
+import HomeFooter from './terminals/pageContents/HomeFooter.js';
+import AdminSidebar from './terminals/AdminSidebar.js';
+import AdminContent from './terminals/AdminContent.js';
+
+
+// DELETE THESE FILES
+// import ListActiveComponent from './utilities/lists/ListActiveComponent.js';
+// import Divider from './terminals/Divider.js';
+
+
 import TopNavigation from './terminals/TopNavigation.js';
 import { toggleText } from './utilities/func/mix1.js';
 import { GlobalContext } from './settings/basics.js';
@@ -32,6 +46,7 @@ class AppPresentation extends React.Component {
 
     const {
       screens,
+      views,
       handleToggleSidebar,
       handleAdminPageToggle,
       handleUserLogin,
@@ -57,17 +72,77 @@ class AppPresentation extends React.Component {
           <div className="Et1">
             
             <TopNavigation />
+            
+            {/* Auth screen */}
+            {
+              views.auth.active &&
+              <Box className="screen full-screen auth content">
+                <AuthContent
+                  handleLogin={handleUserLogin}
+                />
+              </Box>
+            }
+            
 
-            <ListActiveComponent
+
+            <Switch>
+              {/* Home screen */}
+              <Route path={'/'} exact render={(props) => (
+                <Box className="screen">
+                  <HomeHero />
+                  <HomeFocus />
+                  <HomeContent />
+                  <HomeFooter />
+                </Box> 
+              )} />
+
+
+            
+              {/* Admin */}
+              <Route path={'/admin'} exact render={(props) => (
+                <Box className="screen admin full-screen overflow-y-scroll">
+                  <div className="screen undefined admin sidebar isOpen">
+                    <AdminSidebar
+                      // data={sections}
+                      toggleSidebar={handleToggleSidebar}
+                      togglePages={handleAdminPageToggle}
+                      className="$$$$$"
+                      isOpen={true}
+                    />
+                  
+                    <AdminContent
+                      // data={sections}
+                      handleSubmit={handleAdminDataSubmit}
+                      togglePages={handleAdminPageToggle}
+                    />
+                  </div>
+                </Box> 
+              )} />
+
+
+              
+              {/* Home screen will render for any 404 page */}
+              <Route render={(props) => (
+                <Box className="screen">
+                  <HomeHero />
+                  <HomeFocus />
+                  <HomeContent />
+                  <HomeFooter />
+                </Box> 
+              )} />
+
+            </Switch>
+
+
+
+            {/* <ListActiveComponent
               data={screens}
               Component={
                 (screen)=> (
                   <Route path={screen.path} exact render={(props) => (
                     
                       <Box className={screen.className}>
-                        {/*----------------------------*/}
-                        {/*--- Each view (or screen ---*/}
-                        {/*----------------------------*/}
+                         
                         {
                           screen.dividers && 
                           <ListActiveComponent
@@ -75,9 +150,7 @@ class AppPresentation extends React.Component {
                             Component={
                               (divider)=> (
                                 <React.Fragment>
-                                  {/*--------------------*/}
-                                  {/*--- Each divider ---*/}
-                                  {/*--------------------*/}
+                                   
                                   <Divider
                                     parentName={screen.name}
                                     sections={screen.sections ? [...screen.sections] : []}
@@ -89,7 +162,7 @@ class AppPresentation extends React.Component {
                                     className={`screen ${divider.className} ${screen.name} ${divider.name} ${toggleText(divider.isOpen, 'isOpen', '')}`}
                                     // {...screen}
                                   />
-                                  {/* <p>{item.name} - {divider.name}</p> */}
+                                   
                                 </React.Fragment>
                               )
                             }
@@ -100,7 +173,7 @@ class AppPresentation extends React.Component {
                   )} />
                 )
               }
-            />
+            /> */}
 
 
             {/* Home page loads the list of items */}

@@ -15,21 +15,21 @@ export const appStructure = {
   
   screens: [
     {
-      id: 0,
-      name: 'auth',
-      title: 'Login',
-      active: true,
-      info1: 'info1',
-      info2: 'info2',
-      path: '/', 
-      dividers: [
-        {
-          id: 0,
-          name: 'content',
-          active: true,
-          className: 'full-screen',
-        }
-      ],
+      // id: 0,
+      // name: 'auth',
+      // title: 'Login',
+      // active: true,
+      // info1: 'info1',
+      // info2: 'info2',
+      // path: '/', 
+      // dividers: [
+      //   {
+      //     id: 0,
+      //     name: 'content',
+      //     active: true,
+      //     className: 'full-screen',
+      //   }
+      // ],
     }, // auth
     {
       id: 1,
