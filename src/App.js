@@ -93,7 +93,7 @@ class App extends Component {
 
     // If there are some user saved informations:
     // - Get that user in the database and save its info inside the global object
-    // - Hide login screen
+    // - Hide logi n screen
     if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
 
       dbGetNode(`users`).once('value', (snapshot) => {

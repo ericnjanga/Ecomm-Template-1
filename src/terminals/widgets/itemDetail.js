@@ -147,8 +147,8 @@ const ModalTop = ({ item, handleToggle }) => (
             <div className="container modal-itemDetail__addinfo txt-grayed">
               <div className="row">
                 <ul className="col-sm-6">
-                  <li>{ TEXT_COPY.itemDetail.mileage }: <span className="txt-dark">{item.kilometers}</span></li>
-                  <li>{ TEXT_COPY.itemDetail.colors }: <span className="txt-dark">{item.colors}</span></li>
+                  <li>{ TEXT_COPY.itemDetail.mileage }: <span className="txt-dark">{ (item.kilometers===0 ? TEXT_COPY.gen.undefined : item.kilometers) }</span></li>
+                  <li>{ TEXT_COPY.itemDetail.colors }: <span className="txt-dark">{item.color}</span></li>
                   <li>{ TEXT_COPY.itemDetail.bodyType }: <span className="txt-dark">{item.bodyType}</span></li>
                   <li>{ TEXT_COPY.itemDetail.fuelType }: <span className="txt-dark">{item.fuelType}</span></li>
                 </ul>

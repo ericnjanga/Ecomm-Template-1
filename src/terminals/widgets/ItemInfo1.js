@@ -71,8 +71,10 @@ const ItemInfo1 = ({
           </WrapWithSmall>
         }
         <WrapWithSmall isSmall={isSmall}>
-          <span>
-            { kilometers } km
+          <span> 
+            {
+              (kilometers===0 ? <i>({ TEXT_COPY.gen.undefined })</i> : kilometers)
+            } km
           </span>
         </WrapWithSmall>
       </div>
@@ -80,7 +82,7 @@ const ItemInfo1 = ({
   );
 };
 
-
+TEXT_COPY.gen.undefined
 
 
 // Props validation

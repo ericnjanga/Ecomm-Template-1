@@ -299,8 +299,8 @@ export const appStructure = {
                   price: { type: 'number' },
                   make: { 
                     type: 'string',
-                    enum: ['toyota','honda','bMW','mercedes','kia','volvo'],
-                    enumNames: ['Toyota','Honda','BMW','Mercedes','Kia','Volvo'],
+                    enum: ['toyota', 'honda', 'subaru', 'bMW', 'mercedes', 'audi', 'alpha romeo', 'kia','volvo', 'nissan', 'mazda'],
+                    enumNames: ['Toyota', 'Honda', 'Subaru', 'BMW', 'Mercedes', 'Audi', 'Alpha Romeo', 'Kia','Volvo', 'Nissan', 'Mazda'],
                   },
                   year: { 
                     type: 'number',
@@ -309,13 +309,13 @@ export const appStructure = {
                   },
                   bodyType: { 
                     type: 'string',
-                    enum: ['sedan','...','ccc'],
-                    enumNames: ['sedan','...','ccc']
+                    enum: ['non défini','sedan'],
+                    enumNames: ['Non défini','Sedan']
                   },
                   color: { 
                     type: 'string',
-                    enum: ['blue','red','...','sss'],
-                    enumNames: ['blue','red','...','sss']
+                    enum: ['non définie', 'bleu','rouge','gris', 'gris clair', 'gris foncé', 'jaune', 'orange'],
+                    enumNames: ['Non définie', 'Bleu','Rouge','Gris', 'Gris Clair', 'Gris foncé', 'Jaune', 'Orange']
                   },
                   kilometers: { type: 'number' },
                   transmission: { 
@@ -347,8 +347,8 @@ export const appStructure = {
                 'price': 0.0,
                 'make':'toyota',
                 'year':2011,
-                'bodyType':'sedan',
-                'color':'red',
+                'bodyType':'non défini',
+                'color':'non définie',
                 'kilometers': 0.0,
                 'transmission': 'automatic',
                 'fuelType': 'Gaz',

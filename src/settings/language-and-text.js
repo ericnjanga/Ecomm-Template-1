@@ -57,6 +57,9 @@ export const appTextCopy = {
       interested: 'Interested?',
       cancel: 'Cancel',
     },
+    gen: {
+      undefined: 'undefined',
+    },
     // itemDetail -----------------------------------------------------------------
   },
 
@@ -105,6 +108,9 @@ export const appTextCopy = {
       transmission: 'Transmission',
       interested: 'Intéressé?',
       cancel: 'Annuller',
+    },
+    gen: {
+      undefined: 'non définie',
     },
     // itemDetail -----------------------------------------------------------------
   },  
