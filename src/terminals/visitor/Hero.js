@@ -3,7 +3,9 @@ import { GlobalContext } from './../../settings/basics.js';
 import CollapsePanelPres from './../../utilities/comps/CollapsePanelPresentation.js';
 
 
-const HomeHero = () => {
+const HomeHero = ({
+  className,
+}) => {
   return (
     <GlobalContext.Consumer>
       {
@@ -16,6 +18,7 @@ const HomeHero = () => {
             <CollapsePanelPres
               btnLabel={['Learn more','Read Less']}
               style={{ marginBottom:'5px'}}
+              className="bg-dark1"
               >
               <div className="container">
                 <div className="col-sm-10 offset-sm-1 col-md-6 offset-md-3 txt-light">

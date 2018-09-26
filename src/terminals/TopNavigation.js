@@ -37,6 +37,7 @@ export default class TopNavigation extends React.Component {
         dark
         fixed="top"
         expand="md"
+        className="bg-dark1"
       >
         <div className="container">
           <NavLink to="/" className="text-uppercase navbar-brand">

@@ -12,7 +12,7 @@ import ItemPreview from './../widgets/ItemPreview.js';
 // import AppPagination from './../../utilities/comps/AppPagination.js';
 
 
-const HomeContent = () => {
+const ItemsListing = () => {
   return (
     <div className="container">
       <div className="row multi-rows">
@@ -49,4 +49,4 @@ const HomeContent = () => {
   );
 };
 
-export default HomeContent;
+export default ItemsListing;

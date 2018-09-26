@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch/*, Redirect*/ } from "react-rout
 
 import ItemDetail from './terminals/widgets/itemDetail.js';
 
-import AuthContent from './terminals/pageContents/AuthContent.js';
-import HomePresentation from './terminals/pageContents/HomePresentation.js';
+import AuthPresentation from './terminals/auth/AuthPresentation.js';
+import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
 
 import AdminPresentation from './terminals/admin/AdminPresentation.js';
 
@@ -72,7 +72,8 @@ class AppPresentation extends React.Component {
             <TopNavigation />
             
             {/* Auth screen */}
-            <AuthContent
+            <AuthPresentation
+              className="screen-auth screen-fixed opaque-black full-screen"
               active={views.auth.active}
               handleLogin={handleUserLogin}
             />
@@ -82,7 +83,7 @@ class AppPresentation extends React.Component {
               <Route 
                 path={'/'}
                 exact
-                component={HomePresentation}
+                component={VisitorPresentation}
               />
 
               {/* Admin (only if user is admin) */}
@@ -101,14 +102,14 @@ class AppPresentation extends React.Component {
                       />
                     )} />
                     :
-                    <HomePresentation />
+                    <VisitorPresentation />
                   )
                 }
               </GlobalContext.Consumer>
             
               {/* Home screen will render for any 404 page */}
               <Route 
-                component={HomePresentation}
+                component={VisitorPresentation}
               />
 
             </Switch>

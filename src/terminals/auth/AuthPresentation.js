@@ -7,7 +7,8 @@ import { authForm } from './../../settings/forms/authForm.js';
 
 
 
-const AuthContent = ({
+const AuthPresentation = ({
+  className,
   handleLogin,
   active
 }) => {
@@ -17,8 +18,8 @@ const AuthContent = ({
   }
 
   return (
-    <div className="screen full-screen auth content">
-      <div className="container">
+    <section className={className}>
+      <div className="container container-small">
         <Form
           // liveValidate
           noHtml5Validate
@@ -38,8 +39,8 @@ const AuthContent = ({
           </div>
         </Form>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default AuthContent;
+export default AuthPresentation;

@@ -12,34 +12,9 @@
  * Layouts
  * ----------------------
 */
-.Et1 .screen.home.hero {    
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.Et1 .screen.home.hero .title {    
-  margin-bottom: 20px;
-}
-.Et1 .screen.home.hero .btn {    
-  margin-bottom: 0;
-}
-.Et1 .screen.home.focus .row,
-.Et1 .screen.home.content .row {
-  justify-content: center;
-}
+ 
 
 
-.Et1 .screen.home.focus,
-.Et1 .screen.home.content,
-.Et1 .screen.home.footer {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.Et1 .screen.home.footer h1,
-.Et1 .screen.home.footer .col-lg-3 {
-  margin-bottom: 30px;
-}
 
 /**
  * Smaller devices
@@ -56,35 +31,8 @@
  * Theme
  * ----------------------
 */
-.Et1 .screen.home.hero { 
-}
+ 
 .Et1 .screen.home.hero .card { 
   border: 0px;
 }
-
-.navbar, 
-.Et1 .screen.home.hero, 
-.Et1 .screen.home.footer,
-.Et1 .screen.home.hero .card {
-  background-color:#21162A;
-}
-
-
-.Et1 .screen.home.footer {  
-  color: #f5f5f5;  
-}
-
-.Et1 .screen.home.footer h1 {
-  font-size: 2rem;
-  color: #47BDA7;
-}
-.Et1 .screen.home.footer h3 {
-  color: #999;
-}
-.Et1 .screen.home.footer h3 {
-  font-size: 1.45rem;
-}
-
-.Et1 .screen.home.footer ul {    
-  padding-left: 20px;
-}
+ 

@@ -55,7 +55,7 @@ class CollapsePanelPresentation extends React.Component {
           isOpen={this.state.collapse}
           style={this.props.style}
         >
-          <Card>
+          <Card className={this.props.className}>
             <CardBody>
               {this.props.children}
             </CardBody>

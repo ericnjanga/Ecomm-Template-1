@@ -4,9 +4,13 @@
 */
 
 
-/* .Et1 .screen.auth {
-  flex-direction: row;
-} */
+
+.container-small {
+  max-width: 400px;
+  width: 100%;
+}
+
+
 
 .Et1 .screen.auth,
 .Et1 .screen.home,
@@ -15,26 +19,16 @@
 } 
 
 
-.Et1 .screen.auth .container {
-  margin-bottom: 50px;
-  max-width: 400px;
-  width: 100%;
-  position: relative;
-  top: 70px;
+
+.box-padd30-tb {  /* box padding 30px top - bottom */  
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
-.Et1 .screen.auth [for="root_remember-auth"] {
-  display: none;
+.box-padd50-tb {  /* box padding 50px top - bottom */  
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-/**
- * Smaller devices
- * -------------------------
-*/
-@media (min-width: 992px) {
-  .Et1 .screen.auth .container {
-    top: 200px;
-  }
-}
 
 
 /**

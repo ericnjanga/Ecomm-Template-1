@@ -73,7 +73,7 @@ body {
 @import 'css/product.css';
 @import 'css/auth.css';
 @import 'css/home.css';
-@import 'css/single.css';
+@import 'css/small-tweaks.css';
 @import 'css/admin.css';
 @import 'css/theme.css';
 
@@ -273,6 +273,24 @@ ul {
 
 body.modal-open {
   overflow: visible;
+}
+
+
+
+.screen-fixed {
+  position: fixed!important;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  z-index: 2000;
+}
+.opaque-black {
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+}
+.opaque-black label,
+.opaque-black form .control-label {
+  color: #fff;
 }
 
 

@@ -1,9 +1,7 @@
 
 
 
-.screen.auth.content {
-
-  /* display: flex; */
+/* .screen.auth.content { 
 
   position: fixed;
   top: 0;
@@ -11,5 +9,26 @@
   background: rgba(0,0,0,0.7);
   color: #fff;
   overflow-y: scroll;
-  z-index: 2000; /* Want it to be supperior than reactstrap modal */
+  z-index: 2000; 
+} */
+
+
+
+.Et1 .screen-auth .container {
+  position: relative;
+  margin-bottom: 50px;
+  top: 70px;
+}
+.Et1 .screen-auth [for="root_remember-auth"] {
+  display: none;
+}
+
+/**
+ * Smaller devices
+ * -------------------------
+*/
+@media (min-width: 992px) {
+  .Et1 .screen-auth .container {
+    top: 200px;
+  }
 }
