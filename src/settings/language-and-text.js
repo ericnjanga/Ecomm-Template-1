@@ -59,7 +59,13 @@ export const appTextCopy = {
     },
     gen: {
       undefined: 'undefined',
+      learnmore: 'Learn More',
+      readless: 'Read Less',
     },
+    nav: {
+      cars: 'Cars',
+      admin: 'Administration',
+    }
     // itemDetail -----------------------------------------------------------------
   },
 
@@ -111,7 +117,13 @@ export const appTextCopy = {
     },
     gen: {
       undefined: 'non définie',
+      learnmore: 'En savoir plus',
+      readless: 'Reduire',
     },
+    nav: {
+      cars: 'Voitures',
+      admin: 'Administration',
+    }
     // itemDetail -----------------------------------------------------------------
   },  
 };

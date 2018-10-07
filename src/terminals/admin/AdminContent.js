@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
-import { BrowserRouter as Redirect } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Redirect, Route, Switch } from "react-router-dom";
 import ListActiveComponent from './../../utilities/lists/ListActiveComponent';
 import ListComponent from './../../utilities/lists/ListComponent';
 import GetData from './../../utilities/funcAsChild/getData.js';
@@ -9,6 +10,11 @@ import Spinner from './../../utilities/comps/Spinner/Spinner.js';
 import DateFormat from './../../utilities/comps/DateFormat.js';
 import { GlobalContext } from './../../settings/basics.js';
 
+import AdminBrand from './content/AdminBrand.js';
+import AdminSystem from './content/AdminSystem.js';
+import AdminProduct from './content/AdminProduct.js';
+import AdminSubscriptions from './content/AdminSubscriptions.js';
+
 
 const AdminContent = ({
   data,
@@ -16,7 +22,17 @@ const AdminContent = ({
 }) => {
 
   return (
-    <React.Fragment>
+    <section style={{ width:'100%', margin:'0 auto', overflow:'scroll' }}> 
+      <div style={{ padding:'30px' }}>
+        <Switch>
+          <Route path={'/admin'} exact component={AdminBrand} />
+          <Route path={'/admin/brand'} exact component={AdminBrand} />
+          <Route path={'/admin/system'} exact component={AdminSystem} />
+          <Route path={'/admin/product'} exact component={AdminProduct} />
+          <Route path={'/admin/subscriptions'} exact component={AdminSubscriptions} />
+        </Switch>
+      </div>
+
       <GlobalContext.Consumer>
       {
         (global) => (
@@ -89,7 +105,7 @@ const AdminContent = ({
           )
         }
       />
-    </React.Fragment>
+    </section>
   );
 };
 

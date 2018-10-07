@@ -7,7 +7,7 @@ import ItemDetail from './terminals/widgets/itemDetail.js';
 import AuthPresentation from './terminals/auth/AuthPresentation.js';
 import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
 
-import AdminPresentation from './terminals/admin/AdminPresentation.js';
+import Admin from './terminals/admin/Admin.js';
 
 
 
@@ -44,11 +44,8 @@ class AppPresentation extends React.Component {
 
     const {
       screens,
-      views,
-      handleToggleSidebar,
-      handleAdminPageToggle,
+      views, 
       handleUserLogin,
-      handleAdminDataSubmit,
     } = this.props;
 
     return(
@@ -91,15 +88,9 @@ class AppPresentation extends React.Component {
                 {
                   (global) => (
                     global && global.user &&
-                    // console.log('==============global.user.isAdmin', global.user.isAdmin )
                     global && global.user && global.user.isAdmin===true ?
-                    <Route path={'/admin'} exact render={(props) => (
-                      <AdminPresentation
-                        toggleSidebar={handleToggleSidebar}
-                        togglePages={handleAdminPageToggle}
-                        handleSubmit={handleAdminDataSubmit}
-                        isOpen={true}
-                      />
+                    <Route path={'/admin'} render={(props) => (
+                      <Admin />
                     )} />
                     :
                     <VisitorPresentation />
@@ -136,7 +127,6 @@ class AppPresentation extends React.Component {
                                     parentName={screen.name}
                                     sections={screen.sections ? [...screen.sections] : []}
                                     {...divider}
-                                    toggleSidebar={handleToggleSidebar}
                                     togglePages={handleAdminPageToggle}
                                     handleLogin={handleUserLogin}
                                     adminDataSubmit={handleAdminDataSubmit}
@@ -169,10 +159,7 @@ class AppPresentation extends React.Component {
 // Props validation
 AppPresentation.propTypes = {
   screens: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  handleToggleSidebar: PropTypes.func.isRequired,
-  handleAdminPageToggle: PropTypes.func.isRequired,
-  handleUserLogin: PropTypes.func.isRequired,
-  handleAdminDataSubmit: PropTypes.func.isRequired,
+  handleUserLogin: PropTypes.func.isRequired, 
 };
 
 AppPresentation.defaultProps = {

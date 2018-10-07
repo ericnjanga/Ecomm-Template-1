@@ -1,5 +1,6 @@
 import React from 'react';
 import { GlobalContext } from './../settings/basics.js';
+import { TEXT_COPY } from './../settings/language-and-text.js';
 import { NavLink } from "react-router-dom";
 import {
   Collapse,
@@ -53,9 +54,6 @@ export default class TopNavigation extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink to="/" exact activeClassName="selected">items</NavLink>
-              </NavItem>
 
               <GlobalContext.Consumer>
                 {
@@ -63,9 +61,18 @@ export default class TopNavigation extends React.Component {
                     global && global.user &&
                     // console.log('==============global.user.isAdmin', global.user.isAdmin )
                     global && global.user && global.user.isAdmin===true &&
-                    <NavItem>
-                      <NavLink to="/admin" activeClassName="selected">admin</NavLink>
-                    </NavItem>
+                    <React.Fragment>
+                      <NavItem>
+                        <NavLink to="/" exact activeClassName="selected">
+                          { TEXT_COPY.nav.cars }
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink to="/admin" activeClassName="selected">
+                          { TEXT_COPY.nav.admin }
+                        </NavLink>
+                      </NavItem>
+                    </React.Fragment>
                   )
                 }
               </GlobalContext.Consumer>

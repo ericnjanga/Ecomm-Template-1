@@ -1,5 +1,6 @@
 import React from 'react';
 import { GlobalContext } from './../../settings/basics.js';
+import { TEXT_COPY } from './../../settings/language-and-text';
 import CollapsePanelPres from './../../utilities/comps/CollapsePanelPresentation.js';
 
 
@@ -13,10 +14,10 @@ const HomeHero = ({
           global.brand && 
           <React.Fragment>
             <h1 className="title h3 text-uppercase txt-light">
-            { global.brand.name }
+            { global.brand.welcomeTitle }
             </h1>
             <CollapsePanelPres
-              btnLabel={['Learn more','Read Less']}
+              btnLabel={[TEXT_COPY.gen.learnmore, TEXT_COPY.gen.readless]}
               style={{ marginBottom:'5px'}}
               className="bg-dark1"
               >

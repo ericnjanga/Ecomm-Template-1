@@ -2,6 +2,7 @@ import React from 'react';
 import { toggleText } from './../../utilities/func/mix1.js';
 import ListComponent from './../../utilities/lists/ListComponent.js';
 import BrandLogo from './../BrandLogo.js';
+import { NavLink } from "react-router-dom";
 
  
 
@@ -11,11 +12,12 @@ const AdminSidebar = ({
   togglePages,
   toggleSidebar,
   isOpen,
+  className
 }) => {
 
   // console.log('data=', data);
   return (
-    <React.Fragment>
+    <section className={`${className} ${toggleText(isOpen, 'isOpen', '')}`}>
       
       <BrandLogo
         className="app__brand"
@@ -24,9 +26,37 @@ const AdminSidebar = ({
         hasToggleButton
       />
 
+      <nav>
+        <h2>Site Info</h2>
+        <ul>
+          <li>
+            <NavLink to="/admin/brand" exact activeClassName="selected">Brand</NavLink> 
+          </li>
+          <li>
+            <NavLink to="/admin/system" exact activeClassName="selected">System</NavLink>
+          </li>
+        </ul>
+
+        <h2>Products</h2>
+        <ul>
+          <li>
+            <NavLink to="/admin/product" exact activeClassName="selected">Product</NavLink>
+          </li>
+        </ul>
+
+
+        <h2>Subscriptions</h2>
+        <ul>
+          <li>
+            <NavLink to="/admin/subscriptions" exact activeClassName="selected">All Subscriptions</NavLink>
+          </li>
+        </ul>
+
+      </nav>
+
       
       { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
-      <ListComponent
+      {/* <ListComponent
         data={data}
         Component={
           (sidebarItem)=>(
@@ -38,8 +68,7 @@ const AdminSidebar = ({
               </button>
               {
                 sidebarItem.items &&
-                <ul>
-                  { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
+                <ul> 
                   <ListComponent
                     data={sidebarItem.items}
                     Component={
@@ -57,8 +86,8 @@ const AdminSidebar = ({
             </div>
           )
         }
-      />
-    </React.Fragment>
+      /> */}
+    </section>
   );
 };
 

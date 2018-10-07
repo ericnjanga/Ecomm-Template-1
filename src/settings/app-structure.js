@@ -1,9 +1,9 @@
 import { TEXT_COPY } from './language-and-text';
 
-export const brandSetting = {
-  name: 'brand',
-  title : 'Brand Name ...',
-};
+// export const brandSetting = {
+//   name: 'brand',
+//   title : 'Brand Name ...',
+// };
 
 export const appStructure = {
 
@@ -73,14 +73,14 @@ export const appStructure = {
             {
               id: 1,
               title: 'Brand',
-              name: brandSetting.name,
+              name: 'brandSetting.name',
               active: false,
               isSingleRecord: true, // the same record will be updated each time
               previewLiveData: false, // should data created be previewed on admin mode?
               schema: {
                 type: 'object',
                 properties: {
-                  name: { type: 'string', title: brandSetting.title },
+                  name: { type: 'string', title: 'brandSetting.title' },
                   slogan: { type: 'string', title:'Your Slogan (70 chars max)' },
                   about: { type: 'string', title: 'À Propos (La section "À Propos" sera absente si cette information est inexistente)' },
                   email: { type: 'string', title: 'Email' },

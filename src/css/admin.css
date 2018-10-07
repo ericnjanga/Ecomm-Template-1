@@ -1,5 +1,44 @@
 
 
+
+
+.admin.sidebar h2,
+.admin.sidebar ul a  {
+  margin-bottom: 0;
+  padding: 15px 10px 15px 25px;
+  display: block;
+  color: #f7f7f7; 
+  border-bottom: 1px solid #11293b;
+}
+
+
+.admin.sidebar h2 {
+  margin-top: 40px;
+  padding: 15px 10px 15px 25px;
+  font-size: 17px;
+  background: #11293b;
+  color: #9cc3e2;
+  text-transform: uppercase;
+}
+.admin.sidebar ul a {
+  background: #295f89;
+  padding-left: 50px;
+}
+.admin.sidebar ul a:hover,
+.admin.sidebar ul a.selected {
+  background: #e6e6e6;
+  color: #333;
+  text-decoration: none;
+}
+
+
+.admin.sidebar:not(.isOpen) nav {
+  display: none;
+}
+
+
+
+
 .Et1 .screen.admin {
   display: flex;
 }

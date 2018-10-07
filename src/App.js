@@ -4,7 +4,7 @@ import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
 import { resetStateForms } from './terminals/func.js';
-import { toggleCollectionProperty, localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
+import { localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
 import './App.css';
 
 
@@ -18,17 +18,15 @@ class App extends Component {
       screens: [...appStructure.screens],
       globals: {
         itemDetailModal: false,
+        handleSubmit: this.handleAdminDataSubmit,
       },
       views:{
         auth: {
           active: true,
         },
       },
-    };
-    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
-    this.handleAdminPageToggle = this.handleAdminPageToggle.bind(this);
-    this.handleUserLogin = this.handleUserLogin.bind(this);
-    this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
+    };  
+    // this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
   }
 
 
@@ -152,17 +150,17 @@ class App extends Component {
          */
         if (data) { // only if data is available
 
-          if (data.administrator) { // administrator
-            // Save autofill admin form
-            screens[2].sections[0].items[0].formData = {...data.administrator};
-          } else {
-            screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
-          }
+          // if (data.administrator) { // administrator
+          //   // Save autofill admin form
+          //   screens[2].sections[0].items[0].formData = {...data.administrator};
+          // } else {
+          //   screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
+          // }
 
           // Save brand globally
           if (data.brand) { // brand
             // Save autofill admin form
-            screens[2].sections[0].items[1].formData = {...data.brand};
+            // screens[2].sections[0].items[1].formData = {...data.brand};
             globals.brand = data.brand;
             // update app title with brand name and slogan
             document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
@@ -200,30 +198,13 @@ class App extends Component {
   } // [end] componentDidMount
 
 
-
-  /**
-   * LOGIN SYSTEM
-   * ------------------------
-   * Toggle sibebar visibility
-   * @param {*} data 
-   * @param {*} itemId 
-   */
-  handleToggleSidebar(data, itemId) {
-  
-    const {screens} = this.state;
-    screens[2].dividers[0].isOpen = !screens[2].dividers[0].isOpen;
-    this.setState({ screens });
-  
-  }
-
-
   /**
    * [ADMIN] APP DATA (Admin saved data)
    * ------------------------
    * Handle data submission from admin to the database
    * @param {*} param0 
    */
-  handleAdminDataSubmit({ event, nodeRoot, nodeDir1, isSingleRecord }) {
+  handleAdminDataSubmit = ({ event, nodeRoot, nodeDir1, isSingleRecord }) => {
 
     // console.log('====', nodeRoot, nodeDir1);
 
@@ -291,7 +272,7 @@ class App extends Component {
    * 5) Clear form 
    * @param {*} param0 
    */
-  handleUserLogin({ event, nodeRoot }) {
+  handleUserLogin = ({ event, nodeRoot }) => {
 
     let newUser = event.formData; // newly processed user data
     let userInDB;       // user in database
@@ -365,56 +346,13 @@ class App extends Component {
   } // handleUserLogin
 
   
-  /**
-   * [ADMIN] TOGGLE PAGES VISIBILITY ON/OFF (when user switches from 1 tab to another)
-   * ------------------------
-   * Toggle 'active' property of state page collections
-   * - Will toggle active property of "page" or "subpage" collection
-   * - In case of a subpage, use 
-   *
-   * @collection: collection that will be mapped
-   * @collTargetId: string identifying the item we will activate
-   * @subpageIndex: index at which the collection will be replaced in the parent collection (before being replaced in the state)
-  */
-  handleAdminPageToggle(collection, collTargetId, subpageIndex) {
-    // console.log(collection, collTargetId, subpageIndex)
-    let sections = '';
-    const {screens} = this.state;
-    if (typeof subpageIndex !== 'number' && !subpageIndex) {
-      sections = toggleCollectionProperty ({
-        arrCollection: collection, 
-        targetId: collTargetId, 
-        itemIdProp: 'name',
-        itemProp: 'active', 
-        itemVal: true, 
-        itemOppVal: false,
-      });
-    } else {
-      const subsections = toggleCollectionProperty ({
-        arrCollection: collection, 
-        targetId: collTargetId, 
-        itemIdProp: 'name',
-        itemProp: 'active', 
-        itemVal: true, 
-        itemOppVal: false,
-      });
-      sections = this.state.screens[2].sections;
-      // console.log('...sections=', sections, sections[subpageIndex], subpageIndex);
-      sections[subpageIndex].items = subsections;   
-    }
-    screens[2].sections = sections;
-    // console.log(screens[2].sections)
-    this.setState({ screens });
-  }
-
+ 
 
   render() {
     return (
       <GlobalContext.Provider value={{...this.state.globals}}>
         <AppPresentation
-          {...this.state}
-          handleToggleSidebar={this.handleToggleSidebar}
-          handleAdminPageToggle={this.handleAdminPageToggle}
+          {...this.state} 
           handleUserLogin={this.handleUserLogin}
           handleAdminDataSubmit={this.handleAdminDataSubmit}
         />
