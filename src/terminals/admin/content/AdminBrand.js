@@ -3,6 +3,7 @@ import Form from 'react-jsonschema-form';
 import { GlobalContext } from './../../../settings/basics.js';
 
 const structure = {
+  name: 'brand',
   schema: {
     type: 'object',
     properties: {
@@ -33,13 +34,16 @@ const structure = {
 const AdminBrand = ({
   handleSubmit
 }) => {
+
+  const dataDir = structure.name;
+  
   return (
     <div>
       <h1>Brand</h1>
       <GlobalContext.Consumer>
         {
           (global) => {
-            const thisFormData = global.brand ? {...global.brand} : structure.formData;
+            const thisFormData = global[dataDir] ? {...global[dataDir]} : structure.formData;
             return (
               <Form
                 schema={structure.schema}
@@ -50,7 +54,7 @@ const AdminBrand = ({
                   (event) => global.handleSubmit({
                     event: event,
                     nodeRoot: 'site-info',
-                    nodeDir1: 'brand',
+                    nodeDir1: dataDir,
                     isSingleRecord: true,
                   })
                 }

@@ -150,35 +150,20 @@ class App extends Component {
          */
         if (data) { // only if data is available
 
-          // if (data.administrator) { // administrator
-          //   // Save autofill admin form
-          //   screens[2].sections[0].items[0].formData = {...data.administrator};
-          // } else {
-          //   screens[2].sections[0].items[0].formData = {...appStructure.screens[2].sections[0].items[0].formData};
-          // }
-
           // Save brand globally
           if (data.brand) { // brand
             // Save autofill admin form
-            // screens[2].sections[0].items[1].formData = {...data.brand};
             globals.brand = data.brand;
             // update app title with brand name and slogan
             document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
-          } else {
-            screens[2].sections[0].items[1].formData = {...appStructure.screens[2].sections[0].items[1].formData};
           }
 
+          // Save system globally
           if (data.system) { // system
             // Save autofill admin form
-            screens[2].sections[0].items[2].formData = {...data.system};
-            
-            // Save 'currency CDN/XAF to global
-            if (data.system.curr_cdn_to_xaf) {
-              globals.curr_cdn_to_xaf = data.system.curr_cdn_to_xaf;
-            }
-          } else {
-            screens[2].sections[0].items[2].formData = {...appStructure.screens[2].sections[0].items[2].formData};
+            globals.system = data.system;
           }
+          
 
         } // [end] only if data is available
 
