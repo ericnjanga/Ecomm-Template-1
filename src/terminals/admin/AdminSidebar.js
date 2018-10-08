@@ -40,7 +40,10 @@ const AdminSidebar = ({
         <h2>Products</h2>
         <ul>
           <li>
-            <NavLink to="/admin/product" exact activeClassName="selected">Product</NavLink>
+            <NavLink to="/admin/create-products" exact activeClassName="selected">Create a product</NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin/list-products" exact activeClassName="selected">Product List</NavLink>
           </li>
         </ul>
 

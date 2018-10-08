@@ -17,7 +17,7 @@ const ItemsListing = () => {
     <div className="container">
       <div className="row multi-rows">
         <GetData
-          endpoint={'products/product'}
+          endpoint={'products'}
           defaultVal={null}
           filter={{ onSpotlight: true }}
           filterType='exclude'

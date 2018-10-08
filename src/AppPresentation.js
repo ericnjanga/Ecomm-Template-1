@@ -9,6 +9,8 @@ import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
 
 import Admin from './terminals/admin/Admin.js';
 
+import AppSnackbar from './components/AppSnackbar.js';
+
 
 
 // DELETE THESE FILES
@@ -50,6 +52,15 @@ class AppPresentation extends React.Component {
 
     return(
       <React.Fragment>
+        
+        <div style={{ position:'absolute', left:'50%',  width: '200px', top:'100px', border:'40px solid red', zIndex:'999'}}>
+          <AppSnackbar
+            vertical='center'
+            horizontal='right'
+          />
+        </div>
+
+
         <GlobalContext.Consumer>
           {
             (global) => (

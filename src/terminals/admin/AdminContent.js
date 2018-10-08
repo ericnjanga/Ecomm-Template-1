@@ -28,7 +28,7 @@ const AdminContent = ({
           <Route path={'/admin'} exact component={AdminBrand} />
           <Route path={'/admin/brand'} exact component={AdminBrand} />
           <Route path={'/admin/system'} exact component={AdminSystem} />
-          <Route path={'/admin/product'} exact component={AdminProduct} />
+          <Route path={'/admin/create-products'} exact component={AdminProduct} />
           <Route path={'/admin/subscriptions'} exact component={AdminSubscriptions} />
         </Switch>
       </div>
@@ -227,54 +227,11 @@ const FormOutputs = ({
               data={data}
               Component={
                 (item)=> (
-                  // Add a table here too
-                  // --------------------
-                  // <table className="table table-striped" style={{ width:'100%'}}>
-                  //   <thead className="thead-dark">
-                  //     <tr>
-                  //       <th scope="col">#</th>
-                  //       <th scope="col">Nom</th>
-                  //       <th scope="col">Email</th>
-                  //       <th scope="col">Telephone</th>
-                  //       <th scope="col">Dernière inscription</th>
-                  //       <th scope="col">Dernière inscription</th>
-                  //     </tr>
-                  //   </thead>
-                  //   <tbody>
-                  //     {
-                  //       data.map((item, index) =>{
-                  //         return (
-                  //           <tr key={item.id}>
-                  //             <th scope="row">{ index + 1}</th>
-                  //             <td>{ item.name }</td>
-                  //             <td>{ item.email }</td>
-                  //             <td>{ item.phone }</td>
-                  //             <td>
-                  //               <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
-                  //             </td>
-                  //             <td>
-                  //               <button className="btn btn-primary">Dejà Vu</button>
-                  //             </td>
-                  //           </tr>                     
-                  //         )
-                  //       })
-                  //     }
-                  //   </tbody>
-                  // </table> 
                   <div className="app-row">
                     <div className="app-col">
                       <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
                     </div>
                     <div className="app-col">{item.title}</div>
-                    {/* <div className="app-col">
-                      <GlobalContext.Consumer>
-                        {
-                          (global) => (
-                            <button className="btn btn-secondary" onClick={()=>{ global.updateProdFormData(item); }}>Update</button>
-                          )
-                        }
-                      </GlobalContext.Consumer>
-                    </div> */}
                     <div className="app-col">
                       <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
                     </div>

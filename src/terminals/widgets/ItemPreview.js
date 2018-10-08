@@ -30,7 +30,7 @@ const ItemPreview = ({
   modeCondenced,
 }) => {
 
-  // console.log('-5- ItemPreview rendered');
+  console.log('-5- ItemPreview rendered = ', data);
 
   return (
     <div className="card box-shadow-hover">

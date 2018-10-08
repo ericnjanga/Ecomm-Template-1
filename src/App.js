@@ -191,17 +191,13 @@ class App extends Component {
    */
   handleAdminDataSubmit = ({ event, nodeRoot, nodeDir1, isSingleRecord }) => {
 
-    // console.log('====', nodeRoot, nodeDir1);
-
     // Submitting a product
-    if (nodeRoot==='products' && nodeDir1==='product') {
+    if (nodeRoot==='products') {
 
       const { image, title } = event.formData;
       const imgUploaded = dbUploadFile({ dir:'products', fileUrl:image, fileName:title });
 
       imgUploaded.then((data) => {
-  
-        // console.log('*****data=', data    );
   
         //...
         const { name } = data.metadata;
@@ -210,7 +206,7 @@ class App extends Component {
 
         // [*] Submit record (code duplicated: must be optimized)
         const prodSubmitted = dbSaveRecord({
-          url:`${nodeRoot}/${nodeDir1}/`,
+          url:`${nodeRoot}/`,
           record: { ...record },
           isSingleRecord,
         });

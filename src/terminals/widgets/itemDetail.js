@@ -46,7 +46,7 @@ class ItemDetail extends React.Component {
     this.setState({ modal:this.props.show });
 
     // WE WON'T FETCH DATA FROM ROUTE PARAMS (FOR NOW)
-    // dbGetNode(`products/product/${this.props.match.params.itemId}`).once('value', (snapshot) => {
+    // dbGetNode(`products/${this.props.match.params.itemId}`).once('value', (snapshot) => {
 
     //   dbGetSnapshotData({ snapshot, singleData:true }).then((item) => {
 

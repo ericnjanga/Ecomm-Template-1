@@ -20,7 +20,7 @@ const VisitorPresentation = () => {
         // Only display SPOTLIGHT if there is any data for the spotlight
       }
       <GetData
-        endpoint={'products/product'}
+        endpoint={'products'}
         defaultVal={null}
         filter={{ onSpotlight: true }}
       >
