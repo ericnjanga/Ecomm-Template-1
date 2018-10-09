@@ -10,6 +10,8 @@ import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
 import Admin from './terminals/admin/Admin.js';
 
 import AppSnackbar from './components/AppSnackbar.js';
+import CircularProgressBar from './components/CircularProgressBar.js';
+
 
 
 
@@ -35,31 +37,39 @@ class AppPresentation extends React.Component {
    * - shouldUpdate props is positive (managed from the global function)
    * ---------------------------
    */
-  shouldComponentUpdate(nextProps, nextState) {
-    // console.log('-[AppPresentation] shouldComponentUpdate: [this.props]=', this.props.shouldUpdate);
-    // console.log('-[AppPresentation] shouldComponentUpdate: [nextProps]=', nextProps.shouldUpdate);
-    return nextProps.shouldUpdate;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+
+  //   console.log('-nextProps.snackbar=', nextProps.snackbar);
+  //   console.log('-this.props.snackbar=', this.props.snackbar);
+  //   return nextProps.shouldUpdate;
+  // }
 
 
   render() {
 
     const {
-      screens,
       views, 
       handleUserLogin,
+      snackbar,
     } = this.props;
 
     return(
       <React.Fragment>
         
-        <div style={{ position:'absolute', left:'50%',  width: '200px', top:'100px', border:'40px solid red', zIndex:'999'}}>
-          <AppSnackbar
-            vertical='center'
-            horizontal='right'
-          />
+        <div
+          style={{ position:'absolute', top:'100px', right:'0', zIndex:'9999' }}
+        >
+          <CircularProgressBar />
         </div>
+          
 
+
+        <AppSnackbar
+          {...snackbar}
+          vertical='bottom'
+          horizontal='right'
+          handleClose={snackbar.handleClose}
+        />
 
         <GlobalContext.Consumer>
           {
@@ -119,7 +129,6 @@ class AppPresentation extends React.Component {
 
 
             {/* <ListActiveComponent
-              data={screens}
               Component={
                 (screen)=> (
                   <Route path={screen.path} exact render={(props) => (
@@ -169,7 +178,6 @@ class AppPresentation extends React.Component {
 
 // Props validation
 AppPresentation.propTypes = {
-  screens: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   handleUserLogin: PropTypes.func.isRequired, 
 };
 

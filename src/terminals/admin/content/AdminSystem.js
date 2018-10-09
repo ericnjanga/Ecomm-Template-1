@@ -35,6 +35,7 @@ const AdminSystem = ({
             const thisFormData = global[dataDir] ? {...global[dataDir]} : structure.formData;
             return (
               <Form
+                className="admin-form"
                 schema={structure.schema}
                 uiSchema={structure.uiSchema}
                 // validate={validate}

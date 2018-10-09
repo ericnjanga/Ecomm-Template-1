@@ -14,6 +14,7 @@ import AdminBrand from './content/AdminBrand.js';
 import AdminSystem from './content/AdminSystem.js';
 import AdminProduct from './content/AdminProduct.js';
 import AdminSubscriptions from './content/AdminSubscriptions.js';
+import ProductList from './content/ProductList.js';
 
 
 const AdminContent = ({
@@ -29,6 +30,7 @@ const AdminContent = ({
           <Route path={'/admin/brand'} exact component={AdminBrand} />
           <Route path={'/admin/system'} exact component={AdminSystem} />
           <Route path={'/admin/create-products'} exact component={AdminProduct} />
+          <Route path={'/admin/list-products'} exact component={ProductList} />
           <Route path={'/admin/subscriptions'} exact component={AdminSubscriptions} />
         </Switch>
       </div>
@@ -42,7 +44,7 @@ const AdminContent = ({
       }
       </GlobalContext.Consumer>
 
-      <ListActiveComponent
+      {/* <ListActiveComponent
         data={data}
         Component={
           (section)=>(
@@ -104,7 +106,7 @@ const AdminContent = ({
             </React.Fragment>
           )
         }
-      />
+      /> */}
     </section>
   );
 };
@@ -116,135 +118,135 @@ const AdminContent = ({
 export default AdminContent;
 
 
-const FormInputs = ({
-  name,
-  schema,
-  uiSchema,
-  formData,
-  validate,
-  onSubmit,
-  className,
-}) => {
+// const FormInputs = ({
+//   name,
+//   schema,
+//   uiSchema,
+//   formData,
+//   validate,
+//   onSubmit,
+//   className,
+// }) => {
 
-  if(!schema) {
+//   if(!schema) {
 
-    return <p>{ name }</p>
+//     return <p>{ name }</p>
 
-  }
+//   }
 
-  return (
-    <div className={className}>
-    {
-      validate ? 
-      <Form
-        schema={schema}
-        uiSchema={uiSchema}
-        validate={validate}
-        formData={formData}
-        onSubmit={onSubmit}
-      />
-      :
-      <Form
-        schema={schema}
-        uiSchema={uiSchema}
-        formData={formData}
-        onSubmit={onSubmit}
-      />
-    }
-    </div>
-  );
-};
-
-
-
-const SubscriptionsTable = ({ data }) => {
-
-  if (!data) {
-    return false;
-  }
-
-  return (
-    <table className="table table-striped" style={{ width:'100%'}}>
-      <thead className="thead-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Email</th>
-          <th scope="col">Telephone</th>
-          <th scope="col">Dernière inscription</th>
-          <th scope="col">Dernière inscription</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          data.map((item, index) =>{
-            return (
-              <tr key={item.id}>
-                <th scope="row">{ index + 1}</th>
-                <td>{ item.name }</td>
-                <td>{ item.email }</td>
-                <td>{ item.phone }</td>
-                <td>
-                  <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
-                </td>
-                <td>
-                  <button className="btn btn-primary">Dejà Vu</button>
-                </td>
-              </tr>                     
-            )
-          })
-        }
-      </tbody>
-    </table> 
-  );
-
-};
+//   return (
+//     <div className={className}>
+//     {
+//       validate ? 
+//       <Form
+//         schema={schema}
+//         uiSchema={uiSchema}
+//         validate={validate}
+//         formData={formData}
+//         onSubmit={onSubmit}
+//       />
+//       :
+//       <Form
+//         schema={schema}
+//         uiSchema={uiSchema}
+//         formData={formData}
+//         onSubmit={onSubmit}
+//       />
+//     }
+//     </div>
+//   );
+// };
 
 
 
-const FormOutputs = ({
-  isActive,
-  url,
-  className,
-}) => {
+// const SubscriptionsTable = ({ data }) => {
 
-  if (!isActive) {
-    return false;
+//   if (!data) {
+//     return false;
+//   }
+
+//   return (
+//     <table className="table table-striped" style={{ width:'100%'}}>
+//       <thead className="thead-dark">
+//         <tr>
+//           <th scope="col">#</th>
+//           <th scope="col">Nom</th>
+//           <th scope="col">Email</th>
+//           <th scope="col">Telephone</th>
+//           <th scope="col">Dernière inscription</th>
+//           <th scope="col">Dernière inscription</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {
+//           data.map((item, index) =>{
+//             return (
+//               <tr key={item.id}>
+//                 <th scope="row">{ index + 1}</th>
+//                 <td>{ item.name }</td>
+//                 <td>{ item.email }</td>
+//                 <td>{ item.phone }</td>
+//                 <td>
+//                   <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
+//                 </td>
+//                 <td>
+//                   <button className="btn btn-primary">Dejà Vu</button>
+//                 </td>
+//               </tr>                     
+//             )
+//           })
+//         }
+//       </tbody>
+//     </table> 
+//   );
+
+// };
+
+
+
+// const FormOutputs = ({
+//   isActive,
+//   url,
+//   className,
+// }) => {
+
+//   if (!isActive) {
+//     return false;
      
-  }
+//   }
 
 
-  return (
-    <div className={className}>
-      <GetData
-        endpoint={url}
-        defaultVal={null}
-      >
-        {
-          (data) => (
-            data ? 
-            <ListComponent
-              data={data}
-              Component={
-                (item)=> (
-                  <div className="app-row">
-                    <div className="app-col">
-                      <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
-                    </div>
-                    <div className="app-col">{item.title}</div>
-                    <div className="app-col">
-                      <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
-                    </div>
-                  </div>
-                )
-              }
-            />
-            :
-            <Spinner />
-          )
-        }
-      </GetData>
-    </div>
-  );
+//   return (
+//     <div className={className}>
+//       <GetData
+//         endpoint={url}
+//         defaultVal={null}
+//       >
+//         {
+//           (data) => (
+//             data ? 
+//             <ListComponent
+//               data={data}
+//               Component={
+//                 (item)=> (
+//                   <div className="app-row">
+//                     <div className="app-col">
+//                       <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
+//                     </div>
+//                     <div className="app-col">{item.title}</div>
+//                     <div className="app-col">
+//                       <button className="btn btn-danger" onClick={()=>{ dbDeleteRecord(`${url}/${item.id}`) }}>Delete</button>
+//                     </div>
+//                   </div>
+//                 )
+//               }
+//             />
+//             :
+//             <Spinner />
+//           )
+//         }
+//       </GetData>
+//     </div>
+//   );
 
-};
+// };

@@ -3,7 +3,7 @@ import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord, dbUploadFil
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
-import { resetStateForms } from './terminals/func.js';
+// import { resetStateForms } from './terminals/func.js';
 import { localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
 import './App.css';
 
@@ -15,7 +15,6 @@ class App extends Component {
 
     this.state = {
       shouldUpdate: true, // Help contrain main and children components rendering
-      screens: [...appStructure.screens],
       globals: {
         itemDetailModal: false,
         handleSubmit: this.handleAdminDataSubmit,
@@ -24,6 +23,16 @@ class App extends Component {
         auth: {
           active: true,
         },
+      },
+      snackbar: {
+        hideTimeout: 2000,
+        active: false,
+        message: '',
+        handleClose: () => {
+          const { snackbar } = this.state;
+          snackbar.active = false;
+          this.setState({ snackbar });
+        }
       },
     };  
     // this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
@@ -40,25 +49,8 @@ class App extends Component {
    */
   componentDidMount() {
 
-    const { screens, globals, views } = this.state;
+    const { globals, views } = this.state;
     const { state } = this;
-    // console.log('**1** App mounted');
-
-    /**
-     * [update product record]
-     * Update current product formdata with item information
-     * @param {*} prodFormData 
-     */
-    state.globals.updateProdFormData = (prodFormData) => {
-
-      const { screens } = this.state;
-      // console.log('???....', prodFormData);
-      const formData = {...prodFormData};
-      delete formData['image']; // input file has to be deleted because it causes problem
-      screens[2].sections[2].items[0].formData = {...formData};
-      this.setState({ screens });
-
-    };
 
 
     /**
@@ -174,7 +166,7 @@ class App extends Component {
          * ---------------------------
          */
 
-        this.setState({ screens, globals }, ()=>{ /*console.log('** 1 - a ** [App mounted] screens / update globals (brand, currency) ');*/ });
+        this.setState({ globals }, ()=>{ /*console.log('** 1 - a ** [App mounted] / update globals (brand, currency) ');*/ });
 
       }); // [end] dbGetSnapshotData
 
@@ -190,6 +182,10 @@ class App extends Component {
    * @param {*} param0 
    */
   handleAdminDataSubmit = ({ event, nodeRoot, nodeDir1, isSingleRecord }) => {
+
+    console.log('>>>handle submit')
+
+    const { snackbar } = this.state;
 
     // Submitting a product
     if (nodeRoot==='products') {
@@ -212,9 +208,21 @@ class App extends Component {
         });
   
         // Reset state after data is submitted
-        prodSubmitted.then((data)=> {
-    
-          resetStateForms.call(this, 'product');
+        prodSubmitted.then(()=> {
+
+          // Display snackbar
+          snackbar.active = true;
+          snackbar.message = `Car "${record.title}" successfully saved`;
+          this.setState({ snackbar });
+          // Reset snackbar state after "snackbar.hideTimeout" milliseconds
+          window.setTimeout(
+            () => {
+              snackbar.active = false;
+              snackbar.message = '';
+              this.setState({ snackbar });
+            },
+            snackbar.hideTimeout
+          );
     
         });
         // [*] Submit record (code duplicated: must be optimized)
@@ -232,9 +240,21 @@ class App extends Component {
       });
 
       // Reset state after data is submitted
-      prodSubmitted.then((data)=> {
-  
-        resetStateForms.call(this, 'presets');
+      prodSubmitted.then(()=> {
+
+        // Display snackbar
+        snackbar.active = true;
+        snackbar.message = `Data successfully saved`;
+        this.setState({ snackbar });
+        // Reset snackbar state after "snackbar.hideTimeout" milliseconds
+        window.setTimeout(
+          () => {
+            snackbar.active = false;
+            snackbar.message = '';
+            this.setState({ snackbar });
+          },
+          snackbar.hideTimeout
+        );
   
       });
       // [*] Submit record (code duplicated: must be optimized)
@@ -303,13 +323,13 @@ class App extends Component {
         // ------------------
         dataSubmitted.then((user)=> {     console.log('....user=', user );
 
-          const { globals, screens, views } = this.state;
+          const { globals, views } = this.state;
           globals.user = { ...user };
 
           // Hide "auth page"
           views.auth.active = false;
 
-          this.setState({ globals, screens });
+          this.setState({ globals });
           if (user['remember-auth']) {
 
             localStorageSave({ 

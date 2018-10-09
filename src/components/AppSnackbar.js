@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -13,50 +12,45 @@ const styles = theme => ({
 });
 
 class AppSnackbar extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    this.setState({ open: false });
-  };
 
   render() {
-    const { classes, horizontal, vertical } = this.props;
+
+    const {
+      classes,
+      horizontal,
+      vertical,
+      hideTimeout,
+      active,
+      message,
+      handleClose,
+    } = this.props;
+
     return (
       <div>
-        <Button onClick={this.handleClick}>Open simple snackbar</Button>
         <Snackbar
           anchorOrigin={{
             vertical: vertical,
             horizontal: horizontal,
           }}
           variant="success"
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
+          open={active}
+          autoHideDuration={hideTimeout}
+          onClose={handleClose}
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
-          message={<span id="message-id">Note archived</span>}
+          message={
+            <span id="message-id">
+              { message }
+            </span>
+          }
           action={[
-            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-            </Button>,
             <IconButton
               key="close"
               aria-label="Close"
               color="inherit"
               className={classes.close}
-              onClick={this.handleClose}
+              onClick={handleClose}
             >
               <CloseIcon />
             </IconButton>,
@@ -69,11 +63,14 @@ class AppSnackbar extends React.Component {
 
 AppSnackbar.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 AppSnackbar.defaultProps = {
   vertical: 'bottom',
   horizontal: 'center',
+  hideTimeout: 3000,
+  active: false,
 };
 
 export default withStyles(styles)(AppSnackbar);

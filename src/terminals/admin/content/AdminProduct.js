@@ -1,11 +1,11 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import { GlobalContext } from './../../../settings/basics.js';
-import GetData from './../../../utilities/funcAsChild/getData.js';
-import DateFormat from './../../../utilities/comps/DateFormat.js';
+// import GetData from './../../../utilities/funcAsChild/getData.js';
+// import DateFormat from './../../../utilities/comps/DateFormat.js';
 import { TEXT_COPY } from './../../../settings/language-and-text.js';
-import { dbDeleteRecord, dbUpdateRecord } from './../../../utilities/func/mix1.js';
-import Spinner from './../../../utilities/comps/Spinner/Spinner.js';
+// import { dbDeleteRecord, dbUpdateRecord } from './../../../utilities/func/mix1.js';
+// import Spinner from './../../../utilities/comps/Spinner/Spinner.js';
 
 
 const structure = {
@@ -15,13 +15,6 @@ const structure = {
     properties: {
       image: { type: 'string' }, //, format: "data-url" },
       title: { type: 'string' , minLength: 3 },
-      onSpotlight: { // Products which will receive more exposure than the rest
-        title: TEXT_COPY.admin.onSpotlight,
-        type: 'boolean',
-        enum: [true, false],
-        enumNames: ['Gaz', '..']
-      },
-      description: { type: 'string', minLength: 10 },
       price: { type: 'number' },
       make: { 
         type: 'string',
@@ -63,6 +56,13 @@ const structure = {
         type: 'boolean',
         enum: [true, false],
         enumNames: ['Yes', 'No']
+      },
+      description: { type: 'string', minLength: 10 },
+      onSpotlight: { // Products which will receive more exposure than the rest
+        title: TEXT_COPY.admin.onSpotlight,
+        type: 'boolean',
+        enum: [true, false],
+        enumNames: ['Gaz', '..']
       },
     },
   },
@@ -141,7 +141,7 @@ const AdminProduct = () => {
     <section>
       <h1>Products</h1>
       <h2>(Items actually showcased on the main page for purchase)</h2>
-      <div class="app-row">
+      <div className="app-row">
         <div className="app-col">
           <GlobalContext.Consumer>
             {
@@ -149,6 +149,7 @@ const AdminProduct = () => {
                 const thisFormData = global[dataDir] ? {...global[dataDir]} : structure.formData;
                 return (
                   <Form
+                    className="admin-form"
                     schema={structure.schema}
                     uiSchema={structure.uiSchema}
                     validate={structure.validate}
@@ -168,7 +169,7 @@ const AdminProduct = () => {
             }
           </GlobalContext.Consumer>
         </div>
-        <div className="app-col">
+        {/* <div className="app-col">
           <GetData
             endpoint="products"
             defaultVal={null}
@@ -211,7 +212,7 @@ const AdminProduct = () => {
               )
             }
           </GetData>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -13,6 +13,7 @@ export const appStructure = {
    * (This describes the application's entire structure)
    */
   
+   /*
   screens: [
     {
     }, // auth
@@ -300,4 +301,5 @@ export const appStructure = {
       ], // pages 
     }, // admin
   ],
+  */
 };
