@@ -1,11 +1,7 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import { GlobalContext } from './../../../settings/basics.js';
-// import GetData from './../../../utilities/funcAsChild/getData.js';
-// import DateFormat from './../../../utilities/comps/DateFormat.js';
 import { TEXT_COPY } from './../../../settings/language-and-text.js';
-// import { dbDeleteRecord, dbUpdateRecord } from './../../../utilities/func/mix1.js';
-// import Spinner from './../../../utilities/comps/Spinner/Spinner.js';
 
 
 const structure = {
@@ -133,7 +129,7 @@ const structure = {
   },
 };
 
-const AdminProduct = () => {
+const AdminCreateProduct = () => {
 
   const dataDir = structure.name;
 
@@ -218,4 +214,4 @@ const AdminProduct = () => {
   );
 }
 
-export default AdminProduct;
+export default AdminCreateProduct;

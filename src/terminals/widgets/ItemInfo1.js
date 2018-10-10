@@ -82,7 +82,6 @@ const ItemInfo1 = ({
   );
 };
 
-TEXT_COPY.gen.undefined
 
 
 // Props validation

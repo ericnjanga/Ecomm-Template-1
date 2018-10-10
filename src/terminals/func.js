@@ -7,8 +7,6 @@
  */
 
 
-import { appStructure } from './../settings/app-structure.js';
-
 /**
  * Returns initial data for each item
  * @param {*} dataNode 

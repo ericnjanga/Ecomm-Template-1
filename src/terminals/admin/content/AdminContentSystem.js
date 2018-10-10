@@ -20,7 +20,7 @@ const structure = {
   },
 };
 
-const AdminSystem = ({
+const AdminContentSystem = ({
   handleSubmit
 }) => {
 
@@ -58,4 +58,4 @@ const AdminSystem = ({
   );
 }
 
-export default AdminSystem;
+export default AdminContentSystem;

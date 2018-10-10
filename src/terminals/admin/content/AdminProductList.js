@@ -1,10 +1,10 @@
 import React from 'react';
 import GetData from './../../../utilities/funcAsChild/getData.js';
 import DateFormat from './../../../utilities/comps/DateFormat.js';
-import { dbDeleteRecord, dbUpdateRecord } from './../../../utilities/func/mix1.js';
+import { dbDeleteRecord /*, dbUpdateRecord*/ } from './../../../utilities/func/mix1.js';
 import Spinner from './../../../utilities/comps/Spinner/Spinner.js';
 
-const ProductList = () => {
+const AdminProductList = () => {
   return (
 
     <GetData
@@ -19,8 +19,9 @@ const ProductList = () => {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
-                  <th scope="col">ECreated On</th>
-                  <th scope="col">Telephone</th>
+                  <th scope="col">Created On</th>
+                  <th scope="col">Delete</th>
+                  <th scope="col">Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -34,6 +35,18 @@ const ProductList = () => {
                         </td>
                         <td>
                           <DateFormat format='MMM Do, YYYY'>{item.createdOn}</DateFormat>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-primary"
+                            // onClick={
+                            //   ()=>{
+                            //     dbDeleteRecord(`products/${item.id}`)
+                            //   }
+                            // }
+                          >
+                            Edit
+                          </button>
                         </td>
                         <td>
                           <button
@@ -62,4 +75,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default AdminProductList;

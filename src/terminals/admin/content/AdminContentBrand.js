@@ -11,7 +11,7 @@ const structure = {
       slogan: { type: 'string', title:'Your Slogan (70 chars max)', 'minLength': 3, 'maxLength': 70, },
       email: { type: 'string', title: 'Email' },
       phone1: { type: 'string', title: 'Phone1' },
-      phone2: { type: 'string', title: 'Phone2' },
+      // phone2: { type: 'string', title: 'Phone2' },
       welcomeTitle: { type: 'string', title:'Welcome title (70 chars max)', 'minLength': 3, 'maxLength': 70,  },
       about: { type: 'string', title: 'À Propos (La section "À Propos" sera absente si cette information est inexistente)', 'minLength': 3, },
     },
@@ -31,7 +31,7 @@ const structure = {
   },
 };
 
-const AdminBrand = ({
+const AdminContentBrand = ({
   handleSubmit
 }) => {
 
@@ -69,6 +69,6 @@ const AdminBrand = ({
   );
 }
 
-export default AdminBrand;
+export default AdminContentBrand;
 
 

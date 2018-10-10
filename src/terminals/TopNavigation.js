@@ -7,12 +7,8 @@ import {
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
-  // NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavItem
+} from 'reactstrap';
 
 export default class TopNavigation extends React.Component {
   constructor(props) {
@@ -29,8 +25,6 @@ export default class TopNavigation extends React.Component {
     });
   }
   render() {
-
-    // console.log('-2- TopNavigation');
 
     return (
       <Navbar

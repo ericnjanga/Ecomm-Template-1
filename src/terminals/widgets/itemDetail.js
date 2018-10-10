@@ -7,9 +7,7 @@
 import React from 'react';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-// import { dbGetNode, dbGetSnapshotData } from './../../utilities/func/mix1.js';
 import Spinner from './../../utilities/comps/Spinner/Spinner.js';
-import { GlobalContext } from './../../settings/basics.js';
 import FetchImage from './../../utilities/funcAsChild/fetchImage.js';
 import PictureFrame from './../../utilities/funcAsChild/PictureFrame.js';
 

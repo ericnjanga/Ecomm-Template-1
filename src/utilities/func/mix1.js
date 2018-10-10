@@ -1,6 +1,6 @@
 
 
-import { DATABASE, STORAGE } from './../../settings/basics.js';
+import { DATABASE, STORAGE } from './../../settings/firebase-configs.js';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
 import { dataURItoBlob, stringToSlug } from './mix2.js';
 
@@ -114,7 +114,7 @@ export const dbGetSnapshotData = ({ snapshot, singleData }) => {
  */
 export const dbDeleteRecord = (url) => {
 
-  let deleteOk = window.confirm(TEXT_COPY['confirm delete']);
+  let deleteOk = window.confirm(TEXT_COPY.gen.confirmDelete);
 
   if (deleteOk) {
 

@@ -10,8 +10,6 @@ export const ACTIVE_LANG = LANG[1];
 
 // Text copy used all over the app
 export const appTextCopy = {
-  'confirm delete': `Voulez-vous vraiment supprimer cet element?`,
-
   // English copy ******************************************************************************
   // ******************************************************************************************
   // ******************************************************************************************
@@ -61,6 +59,9 @@ export const appTextCopy = {
       undefined: 'undefined',
       learnmore: 'Learn More',
       readless: 'Read Less',
+      aboutus: 'About Us',
+      contactus: 'Contact Us',
+      confirmDelete: `Do you really want to delete this?`,
     },
     nav: {
       cars: 'Cars',
@@ -119,6 +120,9 @@ export const appTextCopy = {
       undefined: 'non définie',
       learnmore: 'En savoir plus',
       readless: 'Reduire',
+      aboutus: 'À Propos',
+      contactus: 'Nous Contacter',
+      confirmDelete: `Voulez-vous vraiment supprimer cet element?`,
     },
     nav: {
       cars: 'Voitures',

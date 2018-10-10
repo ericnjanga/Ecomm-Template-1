@@ -1,6 +1,5 @@
 import React from 'react';
 import { toggleText } from './../../utilities/func/mix1.js';
-import ListComponent from './../../utilities/lists/ListComponent.js';
 import BrandLogo from './../BrandLogo.js';
 import { NavLink } from "react-router-dom";
 
@@ -8,8 +7,6 @@ import { NavLink } from "react-router-dom";
 
 
 const AdminSidebar = ({
-  data,
-  togglePages,
   toggleSidebar,
   isOpen,
   className
@@ -56,40 +53,6 @@ const AdminSidebar = ({
         </ul>
 
       </nav>
-
-      
-      { /* <ListActiveComponent /> not needed here (we'll use the active state for styling only) */ }
-      {/* <ListComponent
-        data={data}
-        Component={
-          (sidebarItem)=>(
-            <div className={`menu ${toggleText(sidebarItem.active, 'active', '')}`}>
-              <button
-                onClick={()=>{ togglePages(data, sidebarItem.name) }}
-              >
-                { sidebarItem.title }
-              </button>
-              {
-                sidebarItem.items &&
-                <ul> 
-                  <ListComponent
-                    data={sidebarItem.items}
-                    Component={
-                      (subitem, subitemIndex)=>(
-                        <li className={`${toggleText(subitem.active, 'active', '')}`}>
-                          <button
-                            onClick={()=>{ togglePages(sidebarItem.items, subitem.name, sidebarItem.id) }}
-                          >{ subitem.title }</button>
-                        </li>
-                      )
-                    }
-                  />
-                </ul>
-              }
-            </div>
-          )
-        }
-      /> */}
     </section>
   );
 };

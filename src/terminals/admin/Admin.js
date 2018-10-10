@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AdminPresentation from './AdminPresentation.js';
 
 export default class Admin extends React.Component {
@@ -11,11 +10,7 @@ export default class Admin extends React.Component {
         active: true,
       }
     };
-
-    this.handleToggleSidebar = this.handleToggleSidebar.bind(this);
   }
-
-
 
 
   /**
@@ -23,14 +18,14 @@ export default class Admin extends React.Component {
    * @param {*} data 
    * @param {*} itemId 
    */
-  handleToggleSidebar(data, itemId) {
+  handleToggleSidebar = () => {
   
     const { sidebar } = this.state;
     sidebar.active = !sidebar.active;
     this.setState({ sidebar });
   
   }
-  // toggleSidebar={handleToggleSidebar}
+  
 
   render() {
     return(
@@ -42,11 +37,3 @@ export default class Admin extends React.Component {
   }
 
 }
-
-
-// Props validation
-Admin.propTypes = {
-};
-
-Admin.defaultProps = {
-};

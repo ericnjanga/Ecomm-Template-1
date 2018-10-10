@@ -1,6 +1,8 @@
 import React from 'react';
 import BrandLogo from './../BrandLogo.js';
 import DateFormat from './../../utilities/comps/DateFormat.js';
+import { GlobalContext } from './../../settings/basics.js';
+import { TEXT_COPY } from './../../settings/language-and-text.js';
 
 
 const HomeFooter = () => {
@@ -13,19 +15,34 @@ const HomeFooter = () => {
         <div className="col">
           <BrandLogo />
         </div>
-        <div className="col-lg-3">
-          <h3>Links</h3>
-          <ul>
-            <li>Anim pariatur cliche</li>
-            <li>reprehenderit, enim eiusmod high</li>
-            <li>life accusamus terry richardson</li>
-            <li>Nihil anim keffiyeh helvetica</li>
-          </ul>
-        </div>
-        <div className="col-lg-3">
-          <h3>Info additionnelle</h3>
-          <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
-        </div>
+
+
+        <GlobalContext.Consumer>
+        {
+          (global) => (
+            global && global.brand &&
+            <React.Fragment>
+              {
+                global.brand.email && global.brand.phone1 &&
+                <div className="col-lg-3">
+                  <h3>{ TEXT_COPY.gen.contactus }</h3>
+                  <ul>
+                    <li>{ global.brand.email }</li>
+                    <li>{ global.brand.phone1 }</li>
+                  </ul>
+                </div>
+              }
+              {
+                global.brand.about &&
+                <div className="col-lg-4">
+                  <h3>{ TEXT_COPY.gen.aboutus }</h3>
+                  <p>{ global.brand.about }</p>
+                </div>
+              }
+            </React.Fragment>
+          )
+        }
+        </GlobalContext.Consumer>
       </div>
       <div className="row">
         <div className="col text-center">

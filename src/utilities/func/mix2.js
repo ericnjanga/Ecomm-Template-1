@@ -36,8 +36,8 @@ export const dataURItoBlob = (dataURI) => {
 export const stringToSlug = (str) => {
 
   let _str = str.toLowerCase().trim();
-  _str = _str.replace(/\ +/g, ' ');       // Replace all extra white space into a single "white space"
-  _str = _str.replace(/[^\w^\ ]/g, '');   // Eliminate all special characters (except "white space")
-  return _str.replace(/\ /g, '-');        // Replace any single white space into a dash
+  _str = _str.replace(/ +/g, ' ');       // Replace all extra white space into a single "white space"
+  _str = _str.replace(/[^\w^ ]/g, '');   // Eliminate all special characters (except "white space")
+  return _str.replace(/ /g, '-');        // Replace any single white space into a dash
 
 };

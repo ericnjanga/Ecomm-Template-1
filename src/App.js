@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord, dbUploadFile } from './utilities/func/mix1.js';
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
-import { appStructure } from './settings/app-structure.js';
 import AppPresentation from './AppPresentation.js';
-// import { resetStateForms } from './terminals/func.js';
 import { localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
 import './App.css';
 
@@ -33,19 +31,18 @@ class App extends Component {
           dialogInfo.active = active;
           dialogInfo.message = message;
           this.setState({ dialogInfo });
-          console.log('------this.state=', this.state);
         },
       },
-      snackbar: {
-        hideTimeout: 2000,
-        active: false,
-        message: '',
-        handleClose: () => {
-          const { snackbar } = this.state;
-          snackbar.active = false;
-          this.setState({ snackbar });
-        }
-      },
+      // snackbar: { --- SNACKBAR NOT IN USE AT THIS TIME
+      //   hideTimeout: 2000,
+      //   active: false,
+      //   message: '',
+      //   handleClose: () => {
+      //     const { snackbar } = this.state;
+      //     snackbar.active = false;
+      //     this.setState({ snackbar });
+      //   }
+      // },
     };  
   }
 
@@ -63,7 +60,6 @@ class App extends Component {
     const { globals, views } = this.state;
     const { state } = this;
 
-
     /**
      * Toggle item detail modal
      * @param {*} prodFormData 
@@ -79,13 +75,9 @@ class App extends Component {
       
       this.setState({ globals, shouldUpdate:false });
 
-      // console.log('-globals.itemDetailModal-', globals.itemDetailModal);
-
     };
     
     
-
-
     /**
      * -----------------------------------------------------------------
      * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
@@ -144,8 +136,6 @@ class App extends Component {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        // console.log('---data=', data);
-
         /**
          * ---------------------------
          * OPTMIZE THIS PROCESS LATER
@@ -167,7 +157,6 @@ class App extends Component {
             globals.system = data.system;
           }
           
-
         } // [end] only if data is available
 
 
@@ -194,7 +183,7 @@ class App extends Component {
    */
   handleAdminDataSubmit = ({ event, nodeRoot, nodeDir1, isSingleRecord }) => {
 
-    console.log('>>>handle submit')
+    // console.log('>>>handle submit')
 
     const { dialogInfo } = this.state;
 
@@ -314,12 +303,12 @@ class App extends Component {
 
         } // [Create new record]
 
-        console.log('....1' );
+        // console.log('....1' );
         // 2) Save DB "auth crendentials" in user object
         // 3) If "remember" is checked, save "auth crendentials" in local storage
         // *) Hide "auth page"
         // ------------------
-        dataSubmitted.then((user)=> {     console.log('....user=', user );
+        dataSubmitted.then((user)=> {     // console.log('....user=', user );
 
           const { globals, views } = this.state;
           globals.user = { ...user };
@@ -344,8 +333,6 @@ class App extends Component {
 
   } // handleUserLogin
 
-  
- 
 
   render() {
     return (
