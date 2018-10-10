@@ -22,6 +22,18 @@ class App extends Component {
       views:{
         auth: {
           active: true,
+          message: '',
+        },
+      },
+      dialogInfo: {
+        active: false,
+        message: '',
+        set: ({ active, message }) => {
+          const { dialogInfo } = this.state;
+          dialogInfo.active = active;
+          dialogInfo.message = message;
+          this.setState({ dialogInfo });
+          console.log('------this.state=', this.state);
         },
       },
       snackbar: {
@@ -35,7 +47,6 @@ class App extends Component {
         }
       },
     };  
-    // this.handleAdminDataSubmit = this.handleAdminDataSubmit.bind(this);
   }
 
 
@@ -185,15 +196,24 @@ class App extends Component {
 
     console.log('>>>handle submit')
 
-    const { snackbar } = this.state;
+    const { dialogInfo } = this.state;
+
+    // Inform the user: "data is being saved"
+    dialogInfo.set({ active:true, message:'Saving your data ...' });
 
     // Submitting a product
+    // 2 steps submission:
+    // - Image (going to storage)
+    // - Post (going to database)
     if (nodeRoot==='products') {
 
       const { image, title } = event.formData;
       const imgUploaded = dbUploadFile({ dir:'products', fileUrl:image, fileName:title });
 
       imgUploaded.then((data) => {
+
+        // Inform the user: "Image has been successfully uploaded"
+        dialogInfo.set({ active:true, message:'Image has been successfully uploaded! Now saving post ...' });
   
         //...
         const { name } = data.metadata;
@@ -210,19 +230,8 @@ class App extends Component {
         // Reset state after data is submitted
         prodSubmitted.then(()=> {
 
-          // Display snackbar
-          snackbar.active = true;
-          snackbar.message = `Car "${record.title}" successfully saved`;
-          this.setState({ snackbar });
-          // Reset snackbar state after "snackbar.hideTimeout" milliseconds
-          window.setTimeout(
-            () => {
-              snackbar.active = false;
-              snackbar.message = '';
-              this.setState({ snackbar });
-            },
-            snackbar.hideTimeout
-          );
+          // Hide the info dialog
+          dialogInfo.set({ active:false, message:'' });
     
         });
         // [*] Submit record (code duplicated: must be optimized)
@@ -242,19 +251,8 @@ class App extends Component {
       // Reset state after data is submitted
       prodSubmitted.then(()=> {
 
-        // Display snackbar
-        snackbar.active = true;
-        snackbar.message = `Data successfully saved`;
-        this.setState({ snackbar });
-        // Reset snackbar state after "snackbar.hideTimeout" milliseconds
-        window.setTimeout(
-          () => {
-            snackbar.active = false;
-            snackbar.message = '';
-            this.setState({ snackbar });
-          },
-          snackbar.hideTimeout
-        );
+        // Hide the info dialog
+        dialogInfo.set({ active:false, message:'' });
   
       });
       // [*] Submit record (code duplicated: must be optimized)

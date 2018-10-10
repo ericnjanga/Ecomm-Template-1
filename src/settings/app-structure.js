@@ -1,4 +1,4 @@
-import { TEXT_COPY } from './language-and-text';
+// import { TEXT_COPY } from './language-and-text';
 
 // export const brandSetting = {
 //   name: 'brand',
