@@ -14,8 +14,10 @@ class AppPresentation extends React.Component {
 
   render() {
 
+    console.log('[render] -AppPresentation');
+
     const {
-      views, 
+      authPanel, 
       handleUserLogin,
       dialogInfo,
     } = this.props;
@@ -47,7 +49,7 @@ class AppPresentation extends React.Component {
             {/* Auth screen */}
             <AuthPresentation
               className="screen-auth screen-fixed opaque-black full-screen"
-              active={views.auth.active}
+              active={authPanel.active}
               handleLogin={handleUserLogin}
             />
             

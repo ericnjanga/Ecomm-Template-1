@@ -6,22 +6,94 @@ import { localStorageSave, localStorageGetItem } from './utilities/func/mix1.js'
 import './App.css';
 
 
+    /**
+     * -----------------------------------------------------------------
+     * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
+     * -----------------------------------------------------------------
+     */
+function verifySavedUserInfoAndHIdeAuthPanel () {
+
+
+  const { authPanel } = this.state;
+
+
+  console.log('.....>>>>', this.state);
+
+  const savedUserInfo = {
+    name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : null,
+    email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : null,
+    phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
+  };
+
+  // If there are some user saved informations:
+  // - Get that user in the database and save its info inside the global object
+  // - Hide login screen
+  if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
+
+    dbGetNode(`users`).once('value', (snapshot) => {
+
+      dbGetSnapshotData({ snapshot }).then((usersCollection) => {
+
+        // Find-out if this user exist in the DB
+        if (usersCollection) {
+
+          const userInDB = usersCollection.filter(currUser => {
+            return (currUser.name===savedUserInfo.name && currUser.email===savedUserInfo.email && currUser.phone===savedUserInfo.phone);
+          });
+
+          // Save user database info inside the global object
+          const { globals } = this.state;
+          globals.user = userInDB[0];
+          this.setState({ globals });
+
+          // Hide login screen
+          authPanel.active = false;
+
+        }
+      
+      });
+      
+    });
+
+  }
+
+
+
+
+
+}
+
+
 class App extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      shouldUpdate: true, // Help contrain main and children components rendering
+      // shouldUpdate: true, // Help contrain main and children components rendering
       globals: {
         itemDetailModal: false,
         handleSubmit: this.handleAdminDataSubmit,
-      },
-      views:{
-        auth: {
-          active: true,
-          message: '',
+
+        /**
+         * Toggle item detail modal
+         * @param {*} prodFormData
+         */
+        toggleItemDetailModal: (data, bool) => {
+
+          const { globals } = this.state;
+    
+          globals.itemDetailModal = bool;
+          if(data) {
+            globals.itemDetail = data; 
+          }
+          
+          this.setState({ globals /*, shouldUpdate:false*/ });
+    
         },
+      },
+      authPanel: {
+        active: true, 
       },
       dialogInfo: {
         active: false,
@@ -57,70 +129,12 @@ class App extends Component {
    */
   componentDidMount() {
 
-    const { globals, views } = this.state;
-    const { state } = this;
+    // const { globals, authPanel } = this.state;
 
-    /**
-     * Toggle item detail modal
-     * @param {*} prodFormData 
-     */
-    state.globals.toggleItemDetailModal = (data, bool) => {
 
-      const { globals } = this.state;
-
-      globals.itemDetailModal = bool;
-      if(data) {
-        globals.itemDetail = data; 
-      }
-      
-      this.setState({ globals, shouldUpdate:false });
-
-    };
     
+    verifySavedUserInfoAndHIdeAuthPanel.call(this, null);
     
-    /**
-     * -----------------------------------------------------------------
-     * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
-     * -----------------------------------------------------------------
-     */
-    const savedUserInfo = {
-      name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : null,
-      email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : null,
-      phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
-    };
-
-    // If there are some user saved informations:
-    // - Get that user in the database and save its info inside the global object
-    // - Hide logi n screen
-    if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
-
-      dbGetNode(`users`).once('value', (snapshot) => {
-
-        dbGetSnapshotData({ snapshot }).then((usersCollection) => {
-
-          // Find-out if this user exist in the DB
-          if (usersCollection) {
-
-            const userInDB = usersCollection.filter(currUser => {
-              return (currUser.name===savedUserInfo.name && currUser.email===savedUserInfo.email && currUser.phone===savedUserInfo.phone);
-            });
-
-            // Save user database info inside the global object
-            const { globals } = this.state;
-            globals.user = userInDB[0];
-            this.setState({ globals });
-
-            // Hide login screen
-            views.auth.active = false;
-
-          }
-        
-        });
-        
-      });
-
-    }
-
 
     /**
      * -----------------------------------------------------------------
@@ -132,6 +146,8 @@ class App extends Component {
      * NOTE: THIS CODE MUST BE OPTIMIZED
      * -----------------------------------------------------------------
      */
+
+    const { globals } = this.state;
     dbGetNode(`site-info`).on('value', (snapshot) => {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
@@ -310,13 +326,13 @@ class App extends Component {
         // ------------------
         dataSubmitted.then((user)=> {     // console.log('....user=', user );
 
-          const { globals, views } = this.state;
+          const { globals, authPanel } = this.state;
           globals.user = { ...user };
 
           // Hide "auth page"
-          views.auth.active = false;
+          authPanel.active = false;
 
-          this.setState({ globals });
+          this.setState({ globals, authPanel });
           if (user['remember-auth']) {
 
             localStorageSave({ 
