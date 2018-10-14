@@ -2,7 +2,7 @@ import React from 'react';
 import AdminContent from './AdminContent.js';
 import AdminSidebar from './AdminSidebar.js';
 
-alert('Make sure only admin sees admin');
+// alert('Make sure only admin sees admin');
 
 const AdminPresentation = ({
   toggleSidebar,

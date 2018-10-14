@@ -124,7 +124,7 @@ const TextTrim = ({ length, children }) => (
 
 const DisplayItemText = ({ data, modeCondenced }) => {
   // console.log('>>>>modeCondenced=', modeCondenced)
-  if(modeCondenced) {
+  if(modeCondenced || !data || data.title) {
     return false;
   }
   return (
