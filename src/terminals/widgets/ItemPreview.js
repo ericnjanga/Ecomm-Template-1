@@ -32,6 +32,10 @@ const ItemPreview = ({
 
   // console.log('-5- ItemPreview rendered = ', data);
 
+  if(!data || !data.title) {
+    return false;
+  }
+
   return (
     <div className="card box-shadow-hover">
       <FetchImage
@@ -124,7 +128,7 @@ const TextTrim = ({ length, children }) => (
 
 const DisplayItemText = ({ data, modeCondenced }) => {
   // console.log('>>>>modeCondenced=', modeCondenced)
-  if(modeCondenced || !data || data.title) {
+  if(modeCondenced || !data || !data.title) {
     return false;
   }
   return (
