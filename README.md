@@ -111,13 +111,7 @@ Re-engineer `Brand Logo` component (the current version is not optimal at all)
 
 ## Technical Features
 ### How To Prevent App from rerendering
-
-There are times when we don't want the main component (or some components) to rerender.
-For this:
-- I have created a `shouldUpdate` property in the main component's `state` which is initialized to `true`. 
-- I implement the `shouldComponentUpdate` lifecycle method on all descendant components I might not wish to be re-rendered at runtime (with return statement: `return nextProps.shouldUpdate;`)
-- For each operation i wish not descendant components to re-render, I get the global state `shouldUpdate = false`
-
+ 
 
 
 ## Inspiration

@@ -62,10 +62,16 @@ export const appTextCopy = {
       aboutus: 'About Us',
       contactus: 'Contact Us',
       confirmDelete: `Do you really want to delete this?`,
+      loading: 'Chargement',
+    },
+    appInit: {
+      settings: 'Settings',
+      userInfo: 'User info',
     },
     nav: {
       cars: 'Cars',
       admin: 'Administration',
+      logout: 'Logout',
     }
     // itemDetail -----------------------------------------------------------------
   },
@@ -123,10 +129,16 @@ export const appTextCopy = {
       aboutus: 'À Propos',
       contactus: 'Nous Contacter',
       confirmDelete: `Voulez-vous vraiment supprimer cet element?`,
+      loading: 'Chargement',
+    },
+    appInit: {
+      settings: 'Paramètres',
+      userInfo: 'Info usager',
     },
     nav: {
       cars: 'Voitures',
       admin: 'Administration',
+      logout: 'Se deconnecter',
     }
     // itemDetail -----------------------------------------------------------------
   },  

@@ -275,4 +275,19 @@ export const localStorageGetItem = ({
 };
 
 
+/**
+ * Remove data in localStorage
+ * @param {*} collection (2 dimensions array, each cell containing a array [key, val])
+ * (Array [Array [key, val], Array [key, val], Array [key, val]]) 
+ */
+export const localStorageRemove = ({
+  prefix,
+  name,
+}) => {
+
+  return localStorage.removeItem(`${prefix}${name}`);
+
+};
+
+
 

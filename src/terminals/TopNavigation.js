@@ -1,7 +1,13 @@
 import React from 'react';
+import { Button } from 'reactstrap';
+
 import { GlobalContext } from './../settings/basics.js';
 import { TEXT_COPY } from './../settings/language-and-text.js';
 import { NavLink } from "react-router-dom";
+import { APP_PREFIX } from './../settings/basics.js';
+import { localStorageRemove } from './../utilities/func/mix1.js';
+
+
 import {
   Collapse,
   Navbar,
@@ -24,6 +30,19 @@ export default class TopNavigation extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  /**
+   * Clear saved information and reload the page
+   */
+  logout = () => {
+    localStorageRemove({ prefix:`${APP_PREFIX}-`, name:'name' });
+    localStorageRemove({ prefix:`${APP_PREFIX}-`, name:'email' });
+    localStorageRemove({ prefix:`${APP_PREFIX}-`, name:'phone' });
+    window.location.reload();
+  }
+
+
+
   render() {
 
     return (
@@ -52,24 +71,40 @@ export default class TopNavigation extends React.Component {
               <GlobalContext.Consumer>
                 {
                   (global) => (
-                    global && global.user &&
-                    // console.log('==============global.user.isAdmin', global.user.isAdmin )
-                    global && global.user && global.user.isAdmin===true &&
-                    <React.Fragment>
-                      <NavItem>
-                        <NavLink to="/" exact activeClassName="selected">
-                          { TEXT_COPY.nav.cars }
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink to="/admin" activeClassName="selected">
-                          { TEXT_COPY.nav.admin }
-                        </NavLink>
-                      </NavItem>
-                    </React.Fragment>
+
+                    console.log('==============global.user', global.user )
+                    // global && global.user &&
+                    // global && global.user && global.user.isAdmin===true &&
+                    // <React.Fragment>
+                    //   <NavItem>
+                    //     <NavLink to="/" exact activeClassName="selected">
+                    //       { TEXT_COPY.nav.cars }
+                    //     </NavLink>
+                    //   </NavItem>
+                    //   <NavItem>
+                    //     <NavLink to="/admin" activeClassName="selected">
+                    //       { TEXT_COPY.nav.admin }
+                    //     </NavLink>
+                    //   </NavItem>
+                    // </React.Fragment>
                   )
                 }
               </GlobalContext.Consumer>
+
+
+              <React.Fragment>
+                <NavItem>
+                  <Button
+                    color="link"
+                    onClick={this.logout}
+                  >
+                    { TEXT_COPY.nav.logout }
+                  </Button>
+                  {/* <NavLink to="/admin" activeClassName="selected">
+                    
+                  </NavLink> */}
+                </NavItem>
+              </React.Fragment>
                 
               
               {/* HIDDING FILTERS FOR NOW */}

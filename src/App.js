@@ -3,63 +3,158 @@ import { dbGetNode, dbGetSnapshotData, dbSaveRecord, dbUpdateRecord, dbUploadFil
 import { APP_PREFIX, GlobalContext } from './settings/basics.js';
 import AppPresentation from './AppPresentation.js';
 import { localStorageSave, localStorageGetItem } from './utilities/func/mix1.js';
+// import { TEXT_COPY } from './settings/language-and-text.js';
+
+// import CheckBoxOffIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+// import CheckBoxOnIcon from '@material-ui/icons/CheckBox';
+
 import './App.css';
 
 
-    /**
-     * -----------------------------------------------------------------
-     * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
-     * -----------------------------------------------------------------
-     */
-function verifySavedUserInfoAndHIdeAuthPanel () {
+/**
+ * -----------------------------------------------------------------
+ * HIDE "AUTH PANEL" IF USER INFO HAVE BEEN SAVED IN LOCAL STORAGE
+ * -----------------------------------------------------------------
+ */
+function verifySavedUserInfoAndHideAuthPanel () {
 
+  alert('Better admin auth');
 
-  const { authPanel } = this.state;
+  return new Promise((resolve) => {
 
+    console.log('.....verifySavedUserInfoAndHideAuthPanel>>>>' );
+  
+    const { authPanel, globals, appLoader } = this.state;
+  
+    const savedUserInfo = {
+      name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : null,
+      email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : null,
+      phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
+    };
+  
+    // If there are some user saved informations:
+    // - Get that user in the database and save its info inside the global object
+    // - Hide login screen
+    if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
+  
+      dbGetNode(`users`).once('value', (snapshot) => {
+  
+        dbGetSnapshotData({ snapshot }).then((usersCollection) => {
+  
+          // Find-out if this user exist in the DB
+          if (usersCollection) {
+            
+            const userInDB = usersCollection.filter(currUser => {
+              return (currUser.name===savedUserInfo.name && currUser.email===savedUserInfo.email && currUser.phone===savedUserInfo.phone);
+            });
+  
+            // Save user database info inside the global object
+            globals.user = userInDB[0];
+            console.log('....globals.user=', globals.user);
+            
+            // Hide login screen
+            authPanel.active = false;
 
-  console.log('.....>>>>', this.state);
-
-  const savedUserInfo = {
-    name: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'name' }) : null,
-    email: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) ? localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'email' }) : null,
-    phone: localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' }) ? Number(localStorageGetItem({ prefix:`${APP_PREFIX}-`, name:'phone' })) : null,
-  };
-
-  // If there are some user saved informations:
-  // - Get that user in the database and save its info inside the global object
-  // - Hide login screen
-  if (savedUserInfo.name && savedUserInfo.email && savedUserInfo.phone) {
-
-    dbGetNode(`users`).once('value', (snapshot) => {
-
-      dbGetSnapshotData({ snapshot }).then((usersCollection) => {
-
-        // Find-out if this user exist in the DB
-        if (usersCollection) {
-
-          const userInDB = usersCollection.filter(currUser => {
-            return (currUser.name===savedUserInfo.name && currUser.email===savedUserInfo.email && currUser.phone===savedUserInfo.phone);
-          });
-
-          // Save user database info inside the global object
-          const { globals } = this.state;
-          globals.user = userInDB[0];
-          this.setState({ globals });
-
-          // Hide login screen
-          authPanel.active = false;
-
-        }
-      
+            // Flag userInfo setting as completed
+            appLoader.userInfo = true;
+  
+            // Update state
+            this.setState({ globals, authPanel, appLoader }, ()=>{ resolve('UI verification done'); console.log('.....[done]verifySavedUserInfoAndHideAuthPanel>>>>' ); });
+  
+          }
+        
+        });
+        
       });
-      
-    });
+  
+    } else {
 
+      // Flag userInfo setting as completed
+      appLoader.userInfo = true;
+  
+      // Update state
+      this.setState({ appLoader }, ()=>{ resolve('No user info'); console.log('.....[done]verifySavedUserInfoAndHideAuthPanel>>>>' ); });
+    }// [end] checking saved info
+
+  }); // [end] promise
+
+} // [end] verifySavedUserInfoAndHideAuthPanel
+
+
+/**
+ * -----------------------------------------------------------------
+ * EXTRACT APP INFO (saved in the database)
+ * - brand name, app title, system info (for other calculations)
+ * -----------------------------------------------------------------
+ */
+
+function getAppInfo () {
+
+  return new Promise((resolve)=>{
+
+    console.log('.....getAppInfo>>>>' );
+
+    const { globals, appLoader } = this.state;
+    dbGetNode(`site-info`).on('value', (snapshot) => {
+
+      dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
+
+        /**
+         * ---------------------------
+         * OPTMIZE THIS PROCESS LATER
+         * ---------------------------
+         */
+        if (data) { // only if data is available
+
+          // Save brand globally
+          if (data.brand) { // brand
+            // Save autofill admin form
+            globals.brand = data.brand;
+            // update app title with brand name and slogan
+            document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
+          }
+
+          // Save system globally
+          if (data.system) { // system
+            // Save autofill admin form
+            globals.system = data.system;
+          }
+
+          // Flag appInfo setting as completed
+          appLoader.appInfo = true;
+          
+        } // [end] only if data is available
+
+        /**
+         * ---------------------------
+         * OPTMIZE THIS PROCESS LATER
+         * ---------------------------
+         */
+
+        this.setState({ globals, appLoader }, ()=>{ resolve('data extraction done'); console.log('.....[done]getAppInfo>>>>' ); });
+
+      }); // [end] dbGetSnapshotData
+
+    }); // [end] dbGetNode
+
+  }); //[end] promise
+
+} // [end] getAppInfo
+
+
+async function executeAppInitProcess() {
+
+  let process1Done = await getAppInfo.call(this, null);
+  let process2Done = await verifySavedUserInfoAndHideAuthPanel.call(this, null);
+  
+  if (process1Done && process2Done) {
+    console.log(`first render ready: ${process1Done} - ${process2Done}`);
+    window.setTimeout(()=>{
+      const { appLoader } = this.state;
+      appLoader.firstRenderReady = true;
+      this.setState({ appLoader });
+    }, 1000);
   }
-
-
-
-
 
 }
 
@@ -70,7 +165,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      // shouldUpdate: true, // Help contrain main and children components rendering
+      appLoader: {
+        firstRenderReady: false, // Prevent app from rendering multiple times "on first render"
+        appInfo: false,
+        userInfo: false,
+      },
       globals: {
         itemDetailModal: false,
         handleSubmit: this.handleAdminDataSubmit,
@@ -88,7 +187,7 @@ class App extends Component {
             globals.itemDetail = data; 
           }
           
-          this.setState({ globals /*, shouldUpdate:false*/ });
+          this.setState({ globals });
     
         },
       },
@@ -129,64 +228,7 @@ class App extends Component {
    */
   componentDidMount() {
 
-    // const { globals, authPanel } = this.state;
-
-
-    
-    verifySavedUserInfoAndHIdeAuthPanel.call(this, null);
-    
-
-    /**
-     * -----------------------------------------------------------------
-     * Sync these fields with database
-     * (so that user can see what info has been already saved)
-     * 
-     * - site-info: 
-     * 
-     * NOTE: THIS CODE MUST BE OPTIMIZED
-     * -----------------------------------------------------------------
-     */
-
-    const { globals } = this.state;
-    dbGetNode(`site-info`).on('value', (snapshot) => {
-
-      dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
-
-        /**
-         * ---------------------------
-         * OPTMIZE THIS PROCESS LATER
-         * ---------------------------
-         */
-        if (data) { // only if data is available
-
-          // Save brand globally
-          if (data.brand) { // brand
-            // Save autofill admin form
-            globals.brand = data.brand;
-            // update app title with brand name and slogan
-            document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
-          }
-
-          // Save system globally
-          if (data.system) { // system
-            // Save autofill admin form
-            globals.system = data.system;
-          }
-          
-        } // [end] only if data is available
-
-
-        /**
-         * ---------------------------
-         * OPTMIZE THIS PROCESS LATER
-         * ---------------------------
-         */
-
-        this.setState({ globals }, ()=>{ /*console.log('** 1 - a ** [App mounted] / update globals (brand, currency) ');*/ });
-
-      }); // [end] dbGetSnapshotData
-
-    }); // [end] dbGetNode
+    executeAppInitProcess.call(this, null);
 
   } // [end] componentDidMount
 
@@ -351,6 +393,33 @@ class App extends Component {
 
 
   render() {
+
+    // const { appLoader } = this.state;
+
+    // if(!appLoader.firstRenderReady) {
+    //   return (
+    //     <section className="app-preloder">
+    //       <div className="app-preloder__frame">
+    //         <h3>{ TEXT_COPY.gen.loading } ...</h3>
+    //         <ul>
+    //           <li className={appLoader.appInfo ? 'active' : ''}>
+    //             {
+    //               appLoader.appInfo ?  <CheckBoxOnIcon className="app-preloder__icon" /> : <CheckBoxOffIcon className="app-preloder__icon" />
+    //             }
+    //             { TEXT_COPY.appInit.settings }
+    //           </li>
+    //           <li className={appLoader.userInfo ? 'active' : ''}>
+    //             {
+    //               appLoader.userInfo ?  <CheckBoxOnIcon className="app-preloder__icon" /> : <CheckBoxOffIcon className="app-preloder__icon" />
+    //             }
+    //             { TEXT_COPY.appInit.userInfo }
+    //           </li>
+    //         </ul>
+    //       </div>
+    //     </section>
+    //   );
+    // }
+
     return (
       <GlobalContext.Provider value={{...this.state.globals}}>
         <AppPresentation
