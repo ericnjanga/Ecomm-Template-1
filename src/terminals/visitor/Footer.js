@@ -36,7 +36,11 @@ const HomeFooter = () => {
                 global.brand.about &&
                 <div className="col-lg-4">
                   <h3>{ TEXT_COPY.gen.aboutus }</h3>
-                  <p>{ global.brand.about }</p>
+                  <p>
+                  {
+                    global.brand.about && `${global.brand.about.substr(0, 150)} ...`
+                  }
+                  </p>
                 </div>
               }
             </React.Fragment>
