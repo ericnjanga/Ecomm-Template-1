@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
 import ItemDetail from './terminals/widgets/itemDetail.js';
 import Admin from './terminals/admin/Admin.js';
-import AuthPresentation from './terminals/auth/AuthPresentation.js';
 import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
 import DialogInfo from './terminals/widgets/DialogInfo.js'
 import TopNavigation from './terminals/TopNavigation.js';
@@ -11,6 +10,7 @@ import { GlobalContext } from './settings/basics.js';
 import { TEXT_COPY } from './settings/language-and-text.js';
 import CheckBoxOffIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxOnIcon from '@material-ui/icons/CheckBox';
+import Page404 from './terminals/404Page';
 
 
 class AppPresentation extends React.Component {
@@ -76,19 +76,21 @@ class AppPresentation extends React.Component {
             
             <TopNavigation />
             
-            {/* Auth screen */}
-            <AuthPresentation
-              className="screen-auth screen-fixed opaque-black full-screen"
-              active={authPanel.active}
-              handleLogin={handleUserLogin}
-            />
-            
             <Switch>
               {/* Home screen */}
               <Route 
                 path={'/'}
                 exact
-                component={VisitorPresentation}
+                render={
+                  () => {
+                    return(
+                      <VisitorPresentation
+                        authPanel={authPanel}
+                        handleUserLogin={handleUserLogin}
+                      />
+                    )
+                  }
+                }
               />
 
               {/* Admin (only if user is admin) */}
@@ -101,7 +103,8 @@ class AppPresentation extends React.Component {
                       <Admin />
                     )} />
                     :
-                    <VisitorPresentation />
+                    <Page404 />
+                    // <VisitorPresentation />
                   )
                 }
               </GlobalContext.Consumer>
