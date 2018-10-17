@@ -22,6 +22,7 @@ const AuthPresentation = ({
       <div className="container container-small">
         <Form
           // liveValidate
+          className="visitor-login__form"
           noHtml5Validate
           {...authForm.data}
           transformErrors={authForm.transformErrors}

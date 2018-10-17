@@ -39,6 +39,9 @@ export const appTextCopy = {
     // Admin area -----------------------------------------------------------------
     admin: {
       onSpotlight: 'Deals Of the week',
+      login: 'Connect to admin',
+      loginUsername: 'Username or email',
+      loginPassword: 'Password',
     },
     // Admin area -----------------------------------------------------------------
     // itemDetail -----------------------------------------------------------------
@@ -107,6 +110,9 @@ export const appTextCopy = {
     // Admin area -----------------------------------------------------------------
     admin: {
       onSpotlight: 'Bonnes affaires de la semaine',
+      login: "Connecter à l'admin",
+      loginUsername: "Nom d'utilisateur ou email",
+      loginPassword: 'Mot de passe',
     },
     // itemDetail -----------------------------------------------------------------
     itemDetail: {

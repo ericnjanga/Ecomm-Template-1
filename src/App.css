@@ -347,13 +347,14 @@ form .form-group textarea {
 
 
 
+
+
 .app-preloder {
   display: flex;
   flex-direction: column;
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #2f6d9d;
   justify-content: flex-start;
   align-items: center;
   color: #fff;
@@ -419,3 +420,46 @@ align-items: center; */
 }
 
 
+
+
+.Et1 > .admin-login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 120px;
+  align-items: center;
+  flex-direction: column;
+}
+.admin-login__title {
+  margin-bottom: 20px;
+}
+.admin-login__card {
+  width: 100%;
+  max-width: 400px;
+}
+.admin-login__card .card-body {
+  padding-top: 30px;
+}
+
+
+.visitor-login__form .field-boolean:last-of-type,
+.admin-login__form .field-boolean:last-of-type {
+  margin-bottom: 0;
+}
+
+
+.app-preloder,
+.Et1 > .admin-login {
+  background: #2f6d9d;
+}
+
+.app-preloder .title,
+.Et1 > .admin-login .title {
+  color: #fff;
+}
+
+
+.btn-primary {
+  padding-left: 30px;
+  padding-right: 30px;
+}

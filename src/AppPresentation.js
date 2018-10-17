@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import PropTypes from 'prop-types';
 import ItemDetail from './terminals/widgets/itemDetail.js';
 import Admin from './terminals/admin/Admin.js';
 import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
+import AdminLogin from './terminals/admin/login';
 import DialogInfo from './terminals/widgets/DialogInfo.js'
 import TopNavigation from './terminals/TopNavigation.js';
 import { GlobalContext } from './settings/basics.js';
@@ -74,7 +75,6 @@ class AppPresentation extends React.Component {
         <Router>
           <div className="Et1">
             
-            <TopNavigation />
             
             <Switch>
               {/* Home screen */}
@@ -84,34 +84,61 @@ class AppPresentation extends React.Component {
                 render={
                   () => {
                     return(
-                      <VisitorPresentation
-                        authPanel={authPanel}
-                        handleUserLogin={handleUserLogin}
-                      />
+                      <React.Fragment>
+                        <TopNavigation />
+                        <VisitorPresentation
+                          authPanel={authPanel}
+                          handleUserLogin={handleUserLogin}
+                        />
+                      </React.Fragment>
                     )
                   }
                 }
               />
 
-              {/* Admin (only if user is admin) */}
-              <GlobalContext.Consumer>
-                {
-                  (global) => (
-                    global && global.user &&
-                    global && global.user && global.user.isAdmin===true ?
-                    <Route path={'/admin'} render={(props) => (
-                      <Admin />
-                    )} />
-                    :
-                    <Page404 />
-                    // <VisitorPresentation />
-                  )
-                }
-              </GlobalContext.Consumer>
+
+              {/* 
+                Admin: 
+                If user cannot authenticate, any handle after '/admin/' must redirect to '/admin'
+              */}
+              <Route path={'/admin'} render={(props) => (
+                <React.Fragment>
+                  <AdminLogin />
+                  <Route path={'/admin/:id'} render={(props) => (
+                    <GlobalContext.Consumer>
+                      {
+                        (global) => (
+                          global && global.admin ?
+                          <Admin />
+                          :
+                          <Redirect
+                            to={{
+                              pathname: "/admin",
+                              state: { from: props.location }
+                            }}
+                          />
+                        )
+                      }
+                    </GlobalContext.Consumer>
+                  )} />
+                  
+                  <Admin />
+                </React.Fragment>
+              )} />
+              
             
               {/* Home screen will render for any 404 page */}
               <Route 
-                component={VisitorPresentation}
+                render={
+                  () => {
+                    return(
+                      <React.Fragment>
+                        <TopNavigation />
+                        <Page404 />
+                      </React.Fragment>
+                    )
+                  }
+                }
               />
             </Switch>
 
