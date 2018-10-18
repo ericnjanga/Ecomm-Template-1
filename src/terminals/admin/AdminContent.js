@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Redirect, Route, Switch } from "react-router-dom";
 import { GlobalContext } from './../../settings/basics.js';
+import AdminCredentials from './content/AdminCredentials.js';
 import AdminContentBrand from './content/AdminContentBrand.js';
 import AdminContentSystem from './content/AdminContentSystem.js';
 import AdminCreateProduct from './content/AdminCreateProduct.js';
@@ -17,7 +18,8 @@ const AdminContent = ({
     <section style={{ width:'100%', margin:'0 auto', overflow:'scroll' }}> 
       <div style={{ padding:'30px' }}>
         <Switch>
-          <Route path={'/admin'} exact component={AdminContentBrand} />
+          {/* <Route path={'/admin'} exact component={AdminContentBrand} /> */}
+          <Route path={'/admin/admin-user'} exact component={AdminCredentials} />
           <Route path={'/admin/brand'} exact component={AdminContentBrand} />
           <Route path={'/admin/system'} exact component={AdminContentSystem} />
           <Route path={'/admin/create-products'} exact component={AdminCreateProduct} />
@@ -25,15 +27,6 @@ const AdminContent = ({
           <Route path={'/admin/subscriptions'} exact component={AdminSubscriptions} />
         </Switch>
       </div>
-
-      <GlobalContext.Consumer>
-      {
-        (global) => (
-          global && global.user && !global.user.isAdmin &&
-          <Redirect exact to="/" />
-        )
-      }
-      </GlobalContext.Consumer>
     </section>
   );
 };

@@ -4,9 +4,13 @@ import { GlobalContext } from './../../settings/basics.js';
 import { TEXT_COPY } from './../../settings/language-and-text.js';
 
 const structure = {
-  name: 'brand',
+  name: 'admin-login',
   schema: {
     type: 'object',
+    required: [
+      'name',
+      'password',
+    ],
     properties: {
       name: { type: 'string', title:TEXT_COPY.admin.loginUsername, 'minLength': 5, },
       password: { type: 'string', title:TEXT_COPY.admin.loginPassword, 'minLength': 8, 'maxLength': 70 },
@@ -26,9 +30,44 @@ const structure = {
       "ui:widget": "password"
     },
   },
+
+  /**
+   * Define custom error validations
+   * @param {*} formData 
+   * @param {*} errors 
+   */
+  validate : function (formData, errors) {
+    // if (!emailPattern.test(formData.email)) {
+    //   errors.email.addError(TEXT_COPY.form.errors.email);
+    // }
+    return errors;
+  },
+
+  /**
+   * Define custom error messages
+   * @param {*} errors 
+   */
+  transformErrors: function(errors) {
+    return errors.map(error => {
+      let msgErr = '';
+      
+      if (error.property === '.name') {
+        msgErr = 'Votre nom devrait avoir au moins 5 charactères';
+      } else if (error.property === '.password') {
+        msgErr = 'Votre mot de passe devrait avoir au moins 8 charactères';
+      }
+      error.message = msgErr;
+      error.stack = `${error.property}: ${msgErr}`;
+      return error;
+    });
+  },
+
+
 };
 
-const AdminLogin = () => {
+const AdminLogin = ({
+  handleLogin,
+}) => {
   return (
     <div className="screen admin full-screen admin-login">
 
@@ -44,18 +83,13 @@ const AdminLogin = () => {
                 <div className="card-body">
                   <Form
                     className="admin-login__form"
+                    noHtml5Validate
                     schema={structure.schema}
+                    transformErrors={structure.transformErrors}
                     uiSchema={structure.uiSchema}
-                    // validate={validate}
+                    validate={structure.validate}
                     formData={structure.formData}
-                    onSubmit={
-                      (event) => global.handleSubmit({
-                        // event: event,
-                        // nodeRoot: 'site-info',
-                        // nodeDir1: dataDir,
-                        // isSingleRecord: true,
-                      })
-                    }
+                    onSubmit={handleLogin}
                   >
                     <div>
                       <button

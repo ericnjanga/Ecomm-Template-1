@@ -45,6 +45,8 @@ export default class TopNavigation extends React.Component {
 
   render() {
 
+    alert('adapt top nav to ADMIN and USERS')
+
     return (
       <Navbar
         // color="light"

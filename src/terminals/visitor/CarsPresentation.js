@@ -9,7 +9,7 @@ import ItemsListing from './ItemsListing.js';
 import Footer from './Footer.js';
 
 
-const VisitorPresentation = ({
+const CarsPresentation = ({
   authPanel, 
   handleUserLogin,
 }) => {
@@ -64,4 +64,4 @@ const VisitorPresentation = ({
   );
 };
 
-export default VisitorPresentation;
+export default CarsPresentation;

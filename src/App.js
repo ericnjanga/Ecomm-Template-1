@@ -18,16 +18,6 @@ import './App.css';
  */
 function verifySavedUserInfoAndHideAuthPanel () {
 
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-  console.log('-------Better admin auth');
-
   return new Promise((resolve) => {
 
     console.log('.....verifySavedUserInfoAndHideAuthPanel>>>>' );
@@ -92,52 +82,33 @@ function verifySavedUserInfoAndHideAuthPanel () {
 /**
  * -----------------------------------------------------------------
  * EXTRACT APP INFO (saved in the database)
- * - brand name, app title, system info (for other calculations)
+ * - brand name, app title, system info (for CRUD in the admin)
  * -----------------------------------------------------------------
  */
-
 function getAppInfo () {
 
   return new Promise((resolve)=>{
-
-    console.log('.....getAppInfo>>>>' );
 
     const { globals, appLoader } = this.state;
     dbGetNode(`site-info`).on('value', (snapshot) => {
 
       dbGetSnapshotData({ snapshot, singleData: true }).then((data) => {
 
-        /**
-         * ---------------------------
-         * OPTMIZE THIS PROCESS LATER
-         * ---------------------------
-         */
         if (data) { // only if data is available
 
-          // Save brand globally
-          if (data.brand) { // brand
-            // Save autofill admin form
-            globals.brand = data.brand;
-            // update app title with brand name and slogan
-            document.title = globals.brand.name + (data.brand.slogan ? ` | ${data.brand.slogan}` : '');
-          }
-
-          // Save system globally
-          if (data.system) { // system
-            // Save autofill admin form
-            globals.system = data.system;
-          }
+          ['brand', 'system', 'adminCreds'].forEach(option => {
+            if(data[option]) {
+              globals[option] = data[option];
+              if(option==='brand') {
+                document.title = globals[option].name + (data[option].slogan ? ` | ${data[option].slogan}` : '');
+              }
+            }
+          });
 
           // Flag appInfo setting as completed
           appLoader.appInfo = true;
           
         } // [end] only if data is available
-
-        /**
-         * ---------------------------
-         * OPTMIZE THIS PROCESS LATER
-         * ---------------------------
-         */
 
         this.setState({ globals, appLoader }, ()=>{ resolve('data extraction done'); console.log('.....[done]getAppInfo>>>>' ); });
 
@@ -297,8 +268,9 @@ class App extends Component {
     } else {
       
       // [*] Submit record (code duplicated: must be optimized)
+      const submitUrl = nodeDir1 ? `${nodeRoot}/${nodeDir1}/` : `${nodeRoot}/`;
       const prodSubmitted = dbSaveRecord({
-        url:`${nodeRoot}/${nodeDir1}/`,
+        url: submitUrl,
         record: { ...event.formData },
         isSingleRecord,
       });
@@ -315,6 +287,41 @@ class App extends Component {
     }
 
   } //...
+
+
+
+
+  handleAdminLogin = (event) => {
+    console.log('?????', event.formData)
+    const { formData:{ name }, formData:{ password } } = event; 
+    const { dialogInfo } = this.state;
+
+    // Inform the user ...
+    dialogInfo.set({ active:true, message:'Fetching information ...' });
+
+    dbGetNode(`site-info/adminCreds`).once('value', (snapshot) => {
+
+      dbGetSnapshotData({ snapshot, singleData: true }).then((adminUser) => {
+
+        // Find-out if this user exist in the DB
+        if (adminUser && adminUser.name===name && adminUser.password===password) {
+          console.log('---->>>>found it', adminUser);
+          const { globals } = this.state;
+          globals.adminUser = adminUser;
+
+          // Inform the user ...
+          dialogInfo.set({ active:false, message:'' });
+          // dialogInfo.active = false;
+          // dialogInfo.message =;
+
+          this.setState({ globals });
+        }
+
+      });
+
+    });
+
+  };
 
 
   /**
@@ -406,6 +413,7 @@ class App extends Component {
       <GlobalContext.Provider value={{...this.state.globals}}>
         <AppPresentation
           {...this.state} 
+          handleAdminLogin={this.handleAdminLogin}
           handleUserLogin={this.handleUserLogin}
           handleAdminDataSubmit={this.handleAdminDataSubmit}
         />

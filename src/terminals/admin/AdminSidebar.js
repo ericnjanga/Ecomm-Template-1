@@ -27,6 +27,9 @@ const AdminSidebar = ({
         <h2>Site Info</h2>
         <ul>
           <li>
+            <NavLink to="/admin/admin-user" exact activeClassName="selected">Admin User</NavLink> 
+          </li>
+          <li>
             <NavLink to="/admin/brand" exact activeClassName="selected">Brand</NavLink> 
           </li>
           <li>

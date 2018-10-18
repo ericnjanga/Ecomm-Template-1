@@ -11,8 +11,7 @@ const AdminPresentation = ({
 }) => {
   return (
     <React.Fragment>
-      {/* <AdminLogin /> */}
-      {/* <div className="screen admin full-screen" style={{ position: 'fixed', top: '0', left:'0' }}> 
+      <div className="screen admin full-screen" style={{ position: 'fixed', top: '0', left:'0' }}> 
         <AdminSidebar
           toggleSidebar={toggleSidebar}
           className="screen admin sidebar overflow-y-scroll"
@@ -20,7 +19,7 @@ const AdminPresentation = ({
         />
         
         <AdminContent />
-      </div> */}
+      </div>
     </React.Fragment>
   );
 };

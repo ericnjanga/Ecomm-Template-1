@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import PropTypes from 'prop-types';
 import ItemDetail from './terminals/widgets/itemDetail.js';
 import Admin from './terminals/admin/Admin.js';
-import VisitorPresentation from './terminals/visitor/VisitorPresentation.js';
+import CarsPresentation from './terminals/visitor/CarsPresentation.js';
 import AdminLogin from './terminals/admin/login';
 import DialogInfo from './terminals/widgets/DialogInfo.js'
 import TopNavigation from './terminals/TopNavigation.js';
@@ -19,7 +19,9 @@ class AppPresentation extends React.Component {
   render() {
 
     const {
+      adminActive,
       authPanel, 
+      handleAdminLogin,
       handleUserLogin,
       dialogInfo,
       appLoader,
@@ -74,10 +76,13 @@ class AppPresentation extends React.Component {
 
         <Router>
           <div className="Et1">
-            
-            
             <Switch>
-              {/* Home screen */}
+              {/* 
+                Welcome screen:
+                --------------
+                - Top nav (visible)
+                - Cars presentation
+              */}
               <Route 
                 path={'/'}
                 exact
@@ -86,7 +91,7 @@ class AppPresentation extends React.Component {
                     return(
                       <React.Fragment>
                         <TopNavigation />
-                        <VisitorPresentation
+                        <CarsPresentation
                           authPanel={authPanel}
                           handleUserLogin={handleUserLogin}
                         />
@@ -99,35 +104,57 @@ class AppPresentation extends React.Component {
 
               {/* 
                 Admin: 
-                If user cannot authenticate, any handle after '/admin/' must redirect to '/admin'
+                ------
+                - Unauthenticated users:
+                -- Redirected to'/admin/'
+                -- Never get to '/admin/:id'
+                -- Top nav (not visible)
+                - Authenticated users:
+                -- Redirected to '/admin/:id'
+                -- Never get to '/admin/'
+                -- Top nav (visible)
               */}
               <Route path={'/admin'} render={(props) => (
                 <React.Fragment>
-                  <AdminLogin />
+                  {/* Declaring '/admin/' route with content (redirecting to 'admin landing' if authenticated) */}
+                  <GlobalContext.Consumer>
+                    {
+                      (global) => (
+                        global && global.adminUser ? 
+                        <Redirect to={{ pathname:'/admin/admin-user' }} />
+                        :
+                        <AdminLogin
+                          handleLogin={handleAdminLogin}
+                        />
+                      )
+                    }
+                  </GlobalContext.Consumer>
+                  {/* Declaring '/admin/:id' route with content (redirecting to 'admin login' if unauthenticated) */}
                   <Route path={'/admin/:id'} render={(props) => (
                     <GlobalContext.Consumer>
                       {
                         (global) => (
-                          global && global.admin ?
-                          <Admin />
+                          global && global.adminUser ? 
+                          <React.Fragment>
+                            <TopNavigation />
+                            <Admin />
+                          </React.Fragment>
                           :
-                          <Redirect
-                            to={{
-                              pathname: "/admin",
-                              state: { from: props.location }
-                            }}
-                          />
+                          <Redirect to={{ pathname:'/admin' }} />
                         )
                       }
                     </GlobalContext.Consumer>
                   )} />
-                  
-                  <Admin />
                 </React.Fragment>
               )} />
               
             
-              {/* Home screen will render for any 404 page */}
+              {/*
+                404 Page: 
+                ---------
+                - Top nav (visible)
+                - 404 content
+              */}
               <Route 
                 render={
                   () => {
@@ -141,7 +168,6 @@ class AppPresentation extends React.Component {
                 }
               />
             </Switch>
-
           </div>  
         </Router>
       </React.Fragment>
