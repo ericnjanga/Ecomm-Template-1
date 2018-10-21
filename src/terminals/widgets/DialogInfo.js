@@ -34,7 +34,7 @@ class DialogFeedback extends React.Component {
         open={active}
         // {...other}
       >
-        <DialogTitle id="simple-dialog-title">{ message } ...</DialogTitle>
+        <DialogTitle id="simple-dialog-title">{ message }</DialogTitle>
         <div style={{ textAlign:'center', marginBottom:'30px' }}>
           <CircularProgress className={classes.progress} />
         </div>

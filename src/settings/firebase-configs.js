@@ -29,7 +29,7 @@ export const firebaseConfig = {
 
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig.dev); // 'dev or 'prod'
+firebase.initializeApp(firebaseConfig.prod); // 'dev or 'prod'
 
 // Get Firebase references
 export const DATABASE = firebase.database(); // database

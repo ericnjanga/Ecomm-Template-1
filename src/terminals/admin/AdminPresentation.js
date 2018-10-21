@@ -8,6 +8,7 @@ const AdminPresentation = ({
   toggleSidebar,
   sidebar,
 }) => {
+
   return (
     <React.Fragment>
       <div className="screen admin full-screen" style={{ position: 'fixed', top: '0', left:'0' }}> 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Route, Switch } from "react-router-dom";
+// Without "Redirect" Routes aren't working
+import { BrowserRouter as Redirect, Route, Switch } from "react-router-dom";
 import AdminCredentials from './content/AdminCredentials.js';
 import AdminContentBrand from './content/AdminContentBrand.js';
 import AdminContentSystem from './content/AdminContentSystem.js';

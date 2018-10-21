@@ -71,6 +71,22 @@ export default class TopNavigation extends React.Component {
 
 
               <React.Fragment>
+
+                <GlobalContext.Consumer>
+                  {
+                    (global) => (
+                      global && global.adminUser && 
+                      <React.Fragment>
+                        <NavItem>
+                          <NavLink to="/" exact activeClassName="selected">Page d'acceuil</NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to="/admin" exact activeClassName="selected">Admin</NavLink>
+                        </NavItem>
+                      </React.Fragment>
+                    )
+                  }
+                </GlobalContext.Consumer>
                 <NavItem>
                   <Button
                     color="link"
@@ -78,9 +94,6 @@ export default class TopNavigation extends React.Component {
                   >
                     { TEXT_COPY.nav.logout }
                   </Button>
-                  {/* <NavLink to="/admin" activeClassName="selected">
-                    
-                  </NavLink> */}
                 </NavItem>
               </React.Fragment>
                 

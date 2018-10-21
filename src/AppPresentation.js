@@ -106,7 +106,6 @@ class AppPresentation extends React.Component {
                             )
                           }
                         </GlobalContext.Consumer>
-
               
                         <TopNavigation />
                         <CarsPresentation
@@ -131,7 +130,7 @@ class AppPresentation extends React.Component {
                 -- Never get to '/admin/'
                 -- Top nav (visible)
               */}
-              <Route path={'/admin'} render={(props) => (
+              <Route path={'/admin'} exact render={(props) => (
                 <React.Fragment>
                   {/* Declaring '/admin/' route with content (redirecting to 'admin landing' if authenticated) */}
                   <GlobalContext.Consumer>
@@ -146,6 +145,11 @@ class AppPresentation extends React.Component {
                       )
                     }
                   </GlobalContext.Consumer>
+                </React.Fragment>
+              )} />
+
+              <Route path={'/admin'} render={(props) => (
+                <React.Fragment>
                   {/* Declaring '/admin/:id' route with content (redirecting to 'admin login' if unauthenticated) */}
                   <Route path={'/admin/:id'} render={(props) => (
                     <GlobalContext.Consumer>

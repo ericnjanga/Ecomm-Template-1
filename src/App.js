@@ -292,7 +292,7 @@ class App extends Component {
 
 
   handleAdminLogin = (event) => {
-    console.log('?????', event.formData)
+    
     const { formData:{ name }, formData:{ password } } = event; 
     const { dialogInfo } = this.state;
 
@@ -304,17 +304,25 @@ class App extends Component {
       dbGetSnapshotData({ snapshot, singleData: true }).then((adminUser) => {
 
         // Find-out if this user exist in the DB
-        if (adminUser && adminUser.name===name && adminUser.password===password) {
-          console.log('---->>>>found it', adminUser);
+        if (adminUser && adminUser.name==name && adminUser.password==password) {
+          // console.log('---->>>>found it', adminUser);
           const { globals } = this.state;
           globals.adminUser = adminUser;
 
           // Inform the user ...
           dialogInfo.set({ active:false, message:'' });
-          // dialogInfo.active = false;
-          // dialogInfo.message =;
 
           this.setState({ globals });
+
+        } else {
+          // Give some times before displaying the error message
+          window.setTimeout(()=>{
+            dialogInfo.set({ active:true, message:"nom d'utilisateur ou mot de passe incorrect" });
+          }, 800);
+          window.setTimeout(()=>{
+            dialogInfo.set({ active:false, message:'' });
+          }, 2200);
+          
         }
 
       });

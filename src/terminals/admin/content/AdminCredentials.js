@@ -23,9 +23,7 @@ const structure = {
   },
 };
 
-const AdminCredentials = ({
-  handleSubmit
-}) => {
+const AdminCredentials = () => {
 
   const dataDir = structure.name;
   
