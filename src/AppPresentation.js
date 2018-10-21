@@ -12,6 +12,7 @@ import { TEXT_COPY } from './settings/language-and-text.js';
 import CheckBoxOffIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxOnIcon from '@material-ui/icons/CheckBox';
 import Page404 from './terminals/404Page';
+import AuthPresentation from './terminals/auth/AuthPresentation.js';
 
 
 class AppPresentation extends React.Component {
@@ -19,7 +20,6 @@ class AppPresentation extends React.Component {
   render() {
 
     const {
-      adminActive,
       authPanel, 
       handleAdminLogin,
       handleUserLogin,
@@ -90,9 +90,26 @@ class AppPresentation extends React.Component {
                   () => {
                     return(
                       <React.Fragment>
+                        {/*
+                          Display only auth panel is user is not admin
+                          -----------------
+                        */}
+                        <GlobalContext.Consumer>
+                          {
+                            (global) => (
+                              global && !global.adminUser &&
+                              <AuthPresentation
+                                className="screen-auth screen-fixed opaque-black full-screen"
+                                active={authPanel.active}
+                                handleLogin={handleUserLogin}
+                              />
+                            )
+                          }
+                        </GlobalContext.Consumer>
+
+              
                         <TopNavigation />
                         <CarsPresentation
-                          authPanel={authPanel}
                           handleUserLogin={handleUserLogin}
                         />
                       </React.Fragment>

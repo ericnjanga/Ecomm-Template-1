@@ -1,7 +1,6 @@
 import React from 'react';
 import img404 from './../img/ks-img7.jpg';
 import { NavLink } from "react-router-dom";
-import { Button } from 'reactstrap';
 
 const Page404 = () => {
   return (

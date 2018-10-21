@@ -1,7 +1,6 @@
 import React from 'react';
 
 import GetData from './../../utilities/funcAsChild/getData.js';
-import AuthPresentation from './../../terminals/auth/AuthPresentation.js';
 
 import Hero from './Hero.js';
 import Spotlight from './Spotlight.js';
@@ -10,17 +9,10 @@ import Footer from './Footer.js';
 
 
 const CarsPresentation = ({
-  authPanel, 
   handleUserLogin,
 }) => {
   return (
     <React.Fragment>
-      {/* Auth screen */}
-      <AuthPresentation
-        className="screen-auth screen-fixed opaque-black full-screen"
-        active={authPanel.active}
-        handleLogin={handleUserLogin}
-      />
 
       <div className="screen">
         <section className="box-padd30-tb text-center bg-dark1 css-about">

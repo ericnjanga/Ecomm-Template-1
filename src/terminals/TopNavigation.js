@@ -33,6 +33,7 @@ export default class TopNavigation extends React.Component {
 
   /**
    * Clear saved information and reload the page
+   * (Admin info saved in the global context will be lost)
    */
   logout = () => {
     localStorageRemove({ prefix:`${APP_PREFIX}-`, name:'name' });
@@ -44,8 +45,6 @@ export default class TopNavigation extends React.Component {
 
 
   render() {
-
-    alert('adapt top nav to ADMIN and USERS')
 
     return (
       <Navbar
@@ -69,29 +68,6 @@ export default class TopNavigation extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-
-              <GlobalContext.Consumer>
-                {
-                  (global) => (
-
-                    console.log('==============global.user', global.user )
-                    // global && global.user &&
-                    // global && global.user && global.user.isAdmin===true &&
-                    // <React.Fragment>
-                    //   <NavItem>
-                    //     <NavLink to="/" exact activeClassName="selected">
-                    //       { TEXT_COPY.nav.cars }
-                    //     </NavLink>
-                    //   </NavItem>
-                    //   <NavItem>
-                    //     <NavLink to="/admin" activeClassName="selected">
-                    //       { TEXT_COPY.nav.admin }
-                    //     </NavLink>
-                    //   </NavItem>
-                    // </React.Fragment>
-                  )
-                }
-              </GlobalContext.Consumer>
 
 
               <React.Fragment>

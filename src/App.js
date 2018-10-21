@@ -48,7 +48,7 @@ function verifySavedUserInfoAndHideAuthPanel () {
   
             // Save user database info inside the global object
             globals.user = userInDB[0];
-            console.log('....globals.user=', globals.user);
+            // console.log('....globals.user=', globals.user);
             
             // Hide login screen
             authPanel.active = false;

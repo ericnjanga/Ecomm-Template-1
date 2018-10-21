@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Redirect, Route, Switch } from "react-router-dom";
-import { GlobalContext } from './../../settings/basics.js';
+import { BrowserRouter as Route, Switch } from "react-router-dom";
 import AdminCredentials from './content/AdminCredentials.js';
 import AdminContentBrand from './content/AdminContentBrand.js';
 import AdminContentSystem from './content/AdminContentSystem.js';
@@ -9,16 +8,12 @@ import AdminSubscriptions from './content/AdminSubscriptions.js';
 import AdminProductList from './content/AdminProductList.js';
 
 
-const AdminContent = ({
-  data,
-  handleSubmit,
-}) => {
+const AdminContent = () => {
 
   return (
     <section style={{ width:'100%', margin:'0 auto', overflow:'scroll' }}> 
       <div style={{ padding:'30px' }}>
         <Switch>
-          {/* <Route path={'/admin'} exact component={AdminContentBrand} /> */}
           <Route path={'/admin/admin-user'} exact component={AdminCredentials} />
           <Route path={'/admin/brand'} exact component={AdminContentBrand} />
           <Route path={'/admin/system'} exact component={AdminContentSystem} />

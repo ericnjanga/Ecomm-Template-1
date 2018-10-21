@@ -1,7 +1,6 @@
 import React from 'react';
 import AdminContent from './AdminContent.js';
 import AdminSidebar from './AdminSidebar.js';
-import AdminLogin from './login';
 
 // alert('Make sure only admin sees admin');
 
