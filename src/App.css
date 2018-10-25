@@ -183,35 +183,35 @@ ul {
 
 
 /**
- * modal-itemDetail
+ * itemModal
  * ----------------------
 */
-.modal-itemDetail .modal-title {
+.itemModal .modal-title {
   text-transform: capitalize;
 }
-.modal-itemDetail__image,
-.modal-itemDetail__title,
-.modal-itemDetail__article {
+.itemModal__image,
+.itemModal__title,
+.itemModal__article {
   margin-bottom: 1.5rem;
 }
-.modal-itemDetail__addinfo {
+.itemModal__addinfo {
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 
-.modal-itemDetail__footer {
+.itemModal__footer {
   background: #ddd;
   border-bottom-right-radius: .3rem;
   border-bottom-left-radius: .3rem;
 }
 
-.modal-itemDetail__title {
+.itemModal__title {
   position: relative;
 }
-.modal-itemDetail__title small {
+.itemModal__title small {
   font-size: 1rem;
 }
-.modal-itemDetail__title small .title-size4 {
+.itemModal__title small .title-size4 {
   font-size: 0.95rem;
 }
 

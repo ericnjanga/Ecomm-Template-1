@@ -67,7 +67,7 @@ const ItemInfo1 = ({
         {
           onSpotlight &&
           <WrapWithSmall isSmall={isSmall}>
-            <span className="badge badge-primary text-truncate" style={badgeStyle}>{ TEXT_COPY.itemDetail.onSpotlight }</span>
+            <span className="badge badge-primary text-truncate" style={badgeStyle}>{ TEXT_COPY.itemModal.onSpotlight }</span>
           </WrapWithSmall>
         }
         <WrapWithSmall isSmall={isSmall}>

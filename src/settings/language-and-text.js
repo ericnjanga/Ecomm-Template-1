@@ -44,8 +44,8 @@ export const appTextCopy = {
       loginPassword: 'Password',
     },
     // Admin area -----------------------------------------------------------------
-    // itemDetail -----------------------------------------------------------------
-    itemDetail: {
+    // itemModal -----------------------------------------------------------------
+    itemModal: {
       onSpotlight: 'Deal Of The Week',
       mileage: 'Mileage',
       colors: 'Colors',
@@ -76,7 +76,7 @@ export const appTextCopy = {
       admin: 'Administration',
       logout: 'Logout',
     }
-    // itemDetail -----------------------------------------------------------------
+    // itemModal -----------------------------------------------------------------
   },
 
 
@@ -114,8 +114,8 @@ export const appTextCopy = {
       loginUsername: "Nom d'utilisateur ou email",
       loginPassword: 'Mot de passe',
     },
-    // itemDetail -----------------------------------------------------------------
-    itemDetail: {
+    // itemModal -----------------------------------------------------------------
+    itemModal: {
       onSpotlight: 'Affaire De La Semaine',
       mileage: 'kilométrage',
       colors: 'Couleurs',
@@ -146,7 +146,7 @@ export const appTextCopy = {
       admin: 'Administration',
       logout: 'Se deconnecter',
     }
-    // itemDetail -----------------------------------------------------------------
+    // itemModal -----------------------------------------------------------------
   },  
 };
 

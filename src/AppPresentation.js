@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import PropTypes from 'prop-types';
-import ItemDetail from './terminals/widgets/itemDetail.js';
 import Admin from './terminals/admin/Admin.js';
 import CarsPresentation from './terminals/visitor/CarsPresentation.js';
 import AdminLogin from './terminals/admin/login';
@@ -16,6 +15,11 @@ import AuthPresentation from './terminals/auth/AuthPresentation.js';
 
 
 class AppPresentation extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
 
   render() {
 
@@ -61,18 +65,6 @@ class AppPresentation extends React.Component {
         <DialogInfo
           {...dialogInfo}
         />
-
-        <GlobalContext.Consumer>
-          {
-            (global) => (
-              <ItemDetail
-                show={global.itemDetailModal}
-                toggle={global.toggleItemDetailModal}
-                data={global.itemDetail}
-              />
-            )
-          }
-        </GlobalContext.Consumer>
 
         <Router>
           <div className="Et1">

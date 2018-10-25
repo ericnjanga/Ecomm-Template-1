@@ -18,76 +18,104 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { NavLink } from "react-router-dom";
+import ItemModal from './ItemModal.js';
 import ItemInfo1 from './ItemInfo1.js';
 import FetchImage from './../../utilities/funcAsChild/fetchImage.js';
 import PictureFrame from './../../utilities/funcAsChild/PictureFrame.js';
-import { GlobalContext } from './../../settings/basics.js';
 
 
-const ItemPreview = ({
-  data,
-  modeCondenced,
-}) => {
+class ItemPreview extends React.Component {
+  constructor(props) {
+    super(props);
 
-  // console.log('-5- ItemPreview rendered = ', data);
+    this.state = {
+      modal: {
+        show: false,
+      },
+    };
+  }
+  
 
-  if(!data || !data.title) {
-    return false;
+  /**
+   * Toggle item detail modal
+   * @param {*} prodFormData
+   */
+  toggleModal = () => {
+
+    this.setState((state) => {
+      const { modal } = state;
+      modal.show = !modal.show;
+      return { modal };
+    });
+
   }
 
-  return (
-    <div className="card box-shadow-hover">
-      <FetchImage
-        dir='products'
-        name={data.image}
-      >
-        {
-          (url) => (
-            <PictureFrame
-              className='prodImg-frame preview'
-              imgWidth={400}
-              frameHeight={200}
-            >
-              {
-                (position) => (
-                  <img
-                    style={{...position}}
-                    src={url}
-                    alt={data.title}
-                  />
-                )
-              }
-            </PictureFrame>
-          )
-        }
-      </FetchImage>
 
-      <div className="card-body">
-        <ItemInfo1
-          {...data}
-          isSmall
-          truncate
-        />
+  render() {
 
-        <DisplayItemText
-          data={data}
-          modeCondenced={modeCondenced}
-        />
-        <div className="text-center">
-          {/* <NavLink to={`//${data.id}`} className="link">More details</NavLink> */}
-          <GlobalContext.Consumer>
+    const {
+      data,
+      modeCondenced,
+    } = this.props;
+
+    if(!data || !data.title) {
+      return false;
+    }
+
+    return (
+      <React.Fragment>
+        <div className="card box-shadow-hover">
+          <FetchImage
+            dir='products'
+            name={data.image}
+          >
             {
-              (global) => (
-                <button className="btn btn-link" onClick={()=>{ global.toggleItemDetailModal(data, true)}}>More details</button>
+              (url) => (
+                <PictureFrame
+                  className='prodImg-frame preview'
+                  imgWidth={400}
+                  frameHeight={200}
+                >
+                  {
+                    (position) => (
+                      <img
+                        style={{...position}}
+                        src={url}
+                        alt={data.title}
+                      />
+                    )
+                  }
+                </PictureFrame>
               )
             }
-          </GlobalContext.Consumer>
-          
+          </FetchImage>
+
+          <div className="card-body">
+            <ItemInfo1
+              {...data}
+              isSmall
+              truncate
+            />
+
+            <DisplayItemText
+              data={data}
+              modeCondenced={modeCondenced}
+            />
+            <div className="text-center">
+              <button className="btn btn-link" onClick={this.toggleModal}>More details</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  );
+
+        <ItemModal
+          {...this.state.modal}
+          data={this.props.data}
+          toggle={this.toggleModal}
+        />
+      </React.Fragment>
+    );
+
+  }// [end] render
 };
 
 

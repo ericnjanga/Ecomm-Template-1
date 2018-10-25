@@ -8,9 +8,9 @@ import ItemsListing from './ItemsListing.js';
 import Footer from './Footer.js';
 
 
-const CarsPresentation = ({
-  handleUserLogin,
+const CarsPresentation = ({ 
 }) => {
+
   return (
     <React.Fragment>
 
@@ -44,7 +44,8 @@ const CarsPresentation = ({
         </GetData>
   
         <section className="box-padd50-tb css-content">
-          <ItemsListing />
+          <ItemsListing
+          />
         </section>
         
         

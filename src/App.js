@@ -150,25 +150,7 @@ class App extends Component {
         userInfo: false,
       },
       globals: {
-        itemDetailModal: false,
         handleSubmit: this.handleAdminDataSubmit,
-
-        /**
-         * Toggle item detail modal
-         * @param {*} prodFormData
-         */
-        toggleItemDetailModal: (data, bool) => {
-
-          const { globals } = this.state;
-    
-          globals.itemDetailModal = bool;
-          if(data) {
-            globals.itemDetail = data; 
-          }
-          
-          this.setState({ globals });
-    
-        },
       },
       authPanel: {
         active: true, 
